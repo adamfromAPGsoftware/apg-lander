@@ -18,7 +18,8 @@ const Hero = () => {
           {/* Left content */}
           <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Your Entire Business. One AI-Powered Tool.
+              Your Entire Business.<br />
+              One AI-Powered Tool.
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mt-4">
               Replace your SaaS stack, centralize ops, and launch in 2 weeks. Built for speed. Ready for AI.
