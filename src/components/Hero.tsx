@@ -8,7 +8,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 const Hero = () => {
   return (
     <section id="hero" className="py-16 md:py-24 max-width">
-      <Card className="w-full h-[500px] bg-black/[0.96] relative overflow-hidden border-brand-green/30">
+      <Card className="w-full h-[500px] bg-black/[0.96] relative overflow-hidden border-0">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="white"
