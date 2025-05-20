@@ -14,7 +14,7 @@ const Hero = () => {
             <div className="mb-4">
               
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl font-bold leading-tight md:text-5xl">
               Your Entire Business.
               <br />One AI-Powered Tool.
             </h1>
