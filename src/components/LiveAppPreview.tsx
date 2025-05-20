@@ -16,7 +16,7 @@ const LiveAppPreview = () => {
         backgroundPosition: "center"
       }} className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="text-center p-8 max-w-md bg-black bg-opacity-70 rounded-lg">
-            <p className="text-xl mb-6 text-gray-300">Experience our interactive demo and see what your business could be running in two weeks</p>
+            
             <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-7 px-8 shadow-lg shadow-brand-green/20 hover:scale-105 transition-all" onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}>
               Try Live Demo
             </Button>
