@@ -37,22 +37,115 @@ const Features = () => {
       </div>
       
       <div className="flex flex-col items-center mb-12">
-        <DatabaseWithRestApi 
-          title="AI CRM System Integration"
-          circleText="AI CRM"
-          lightColor="#90F23C"
-          badgeTexts={{
-            first: "Clients",
-            second: "Projects",
-            third: "Tasks",
-            fourth: "Invoicing"
-          }}
-          buttonTexts={{
-            first: "Business Logic",
-            second: "AI Engine"
-          }}
-          nodes={crmNodes}
-        />
+        {/* Central AI CRM System */}
+        <div className="relative mb-16">
+          <DatabaseWithRestApi 
+            title="AI CRM System Integration"
+            circleText="AI CRM"
+            lightColor="#90F23C"
+            badgeTexts={{
+              first: "Clients",
+              second: "Projects",
+              third: "Tasks",
+              fourth: "Invoicing"
+            }}
+            buttonTexts={{
+              first: "Business Logic",
+              second: "AI Engine"
+            }}
+          />
+          
+          {/* Surrounding node components */}
+          <div className="absolute -top-24 -left-32">
+            <DatabaseWithRestApi 
+              className="scale-50"
+              circleText="CRM"
+              title="Client Management"
+              lightColor="#6E59A5"
+              badgeTexts={{
+                first: "Add",
+                second: "Edit",
+                third: "View",
+                fourth: "Delete"
+              }}
+            />
+          </div>
+          
+          <div className="absolute -top-24 -right-32">
+            <DatabaseWithRestApi 
+              className="scale-50"
+              circleText="Lead"
+              title="Lead Management"
+              lightColor="#F97316"
+              badgeTexts={{
+                first: "Track",
+                second: "Score",
+                third: "Convert",
+                fourth: "Report"
+              }}
+            />
+          </div>
+          
+          <div className="absolute top-12 -left-40">
+            <DatabaseWithRestApi 
+              className="scale-50"
+              circleText="Task"
+              title="Task Management"
+              lightColor="#0EA5E9"
+              badgeTexts={{
+                first: "Create",
+                second: "Assign",
+                third: "Update",
+                fourth: "Complete"
+              }}
+            />
+          </div>
+          
+          <div className="absolute top-12 -right-40">
+            <DatabaseWithRestApi 
+              className="scale-50"
+              circleText="Doc"
+              title="Document Management"
+              lightColor="#D946EF"
+              badgeTexts={{
+                first: "Create",
+                second: "Share",
+                third: "Sign",
+                fourth: "Store"
+              }}
+            />
+          </div>
+          
+          <div className="absolute top-48 -left-32">
+            <DatabaseWithRestApi 
+              className="scale-50"
+              circleText="Bill"
+              title="Billing System"
+              lightColor="#8B5CF6"
+              badgeTexts={{
+                first: "Create",
+                second: "Send",
+                third: "Track",
+                fourth: "Remind"
+              }}
+            />
+          </div>
+          
+          <div className="absolute top-48 -right-32">
+            <DatabaseWithRestApi 
+              className="scale-50"
+              circleText="Time"
+              title="Time Tracking"
+              lightColor="#1EAEDB"
+              badgeTexts={{
+                first: "Start",
+                second: "Pause",
+                third: "Resume",
+                fourth: "Report"
+              }}
+            />
+          </div>
+        </div>
       </div>
       
       <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
