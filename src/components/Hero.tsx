@@ -24,14 +24,18 @@ const Hero = () => {
         </div>
         
         <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden animate-fade-in animation-delay-200">
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-900 rounded-lg">
-            <div className="text-center p-6">
-              <p className="text-lg mb-3">Video Presentation</p>
-              <Button className="bg-brand-green text-black hover:bg-opacity-90">
-                Watch Demo
-              </Button>
-            </div>
-          </div>
+          <video
+            className="w-full h-full object-cover rounded-lg"
+            controls
+            preload="metadata"
+            poster="/placeholder.svg"
+          >
+            <source
+              src="https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Industrial%20Revolution%20VSL%20(Compressed).mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>
