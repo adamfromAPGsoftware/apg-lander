@@ -13,10 +13,10 @@ const LiveAppPreview = () => {
       </div>
       
       <div className="relative h-[400px] md:h-[600px] rounded-xl overflow-hidden border border-gray-800 animate-fade-in animation-delay-200">
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-          <div className="text-center p-6">
-            <p className="text-xl mb-4">Interactive Demo</p>
-            <Button className="bg-brand-green text-black hover:bg-opacity-90">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-950">
+          <div className="text-center p-8 max-w-md">
+            <p className="text-xl mb-6 text-gray-300">Experience our interactive demo and see what your business could be running in two weeks</p>
+            <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-7 px-8 shadow-lg shadow-brand-green/20 hover:scale-105 transition-all">
               Try Live Demo
             </Button>
           </div>
