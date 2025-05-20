@@ -25,7 +25,6 @@ interface DatabaseWithRestApiProps {
   };
   title?: string;
   lightColor?: string;
-  icon?: React.ReactNode;
 }
 
 const DatabaseWithRestApi = ({
@@ -35,7 +34,6 @@ const DatabaseWithRestApi = ({
   buttonTexts,
   title,
   lightColor,
-  icon,
 }: DatabaseWithRestApiProps) => {
   return (
     <div
@@ -417,7 +415,7 @@ const DatabaseWithRestApi = ({
         {/* box title */}
         <div className="absolute -top-3 z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-2 py-1 sm:-top-4 sm:py-1.5">
           <SparklesIcon className="size-3" />
-          <span className="ml-2 text-[10px] whitespace-nowrap overflow-hidden text-ellipsis max-w-[120px]">
+          <span className="ml-2 text-[10px]">
             {title ? title : "Data exchange using a customized REST API"}
           </span>
         </div>
@@ -428,13 +426,13 @@ const DatabaseWithRestApi = ({
         {/* box content */}
         <div className="relative z-10 flex h-[150px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background shadow-md">
           {/* Badges */}
-          <div className="absolute bottom-8 left-6 z-10 h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2 ">
-            {icon ? icon : <HeartHandshakeIcon className="size-4" />}
-            <span className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[70px]">{buttonTexts?.first || "LegionDev"}</span>
+          <div className="absolute bottom-8 left-12 z-10 h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2 ">
+            <HeartHandshakeIcon className="size-4" />
+            <span>{buttonTexts?.first || "LegionDev"}</span>
           </div>
-          <div className="absolute right-6 z-10 hidden h-7 rounded-full bg-[#101112] px-3 text-xs sm:flex border items-center gap-2">
+          <div className="absolute right-16 z-10 hidden h-7 rounded-full bg-[#101112] px-3 text-xs sm:flex border items-center gap-2">
             <Folder className="size-4" />
-            <span className="whitespace-nowrap overflow-hidden text-ellipsis max-w-[70px]">{buttonTexts?.second || "v2_updates"}</span>
+            <span>{buttonTexts?.second || "v2_updates"}</span>
           </div>
           {/* Circles */}
           <motion.div
