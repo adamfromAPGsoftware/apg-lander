@@ -1,5 +1,6 @@
 
 import React from 'react';
+import DatabaseWithRestApi from "@/components/ui/database-with-rest-api";
 
 const Features = () => {
   const featuresList = [
@@ -18,6 +19,24 @@ const Features = () => {
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
           Your $20K system comes with everything your business needs to operate efficiently
         </p>
+      </div>
+      
+      <div className="flex flex-col items-center mb-12">
+        <DatabaseWithRestApi 
+          title="AI CRM System Integration"
+          circleText="AI CRM"
+          lightColor="#90F23C"
+          badgeTexts={{
+            first: "Clients",
+            second: "Projects",
+            third: "Tasks",
+            fourth: "Invoicing"
+          }}
+          buttonTexts={{
+            first: "Business Logic",
+            second: "AI Engine"
+          }}
+        />
       </div>
       
       <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
