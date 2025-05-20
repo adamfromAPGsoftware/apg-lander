@@ -6,7 +6,12 @@ const Navbar = () => {
   return (
     <nav className="w-full py-6 max-width">
       <div className="flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          <img 
+            src="/lovable-uploads/bca44067-a767-4ffb-9b03-ad8313ec5290.png" 
+            alt="APG Software Logo" 
+            className="h-8 w-auto"
+          />
           <h1 className="text-2xl font-bold">APG Software</h1>
         </div>
         

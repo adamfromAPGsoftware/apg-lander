@@ -6,7 +6,14 @@ const Footer = () => {
     <footer className="py-12 border-t border-gray-800 max-width">
       <div className="grid md:grid-cols-4 gap-8">
         <div>
-          <h3 className="text-xl font-bold mb-4">APG Software</h3>
+          <div className="flex items-center gap-2 mb-4">
+            <img 
+              src="/lovable-uploads/bca44067-a767-4ffb-9b03-ad8313ec5290.png" 
+              alt="APG Software Logo" 
+              className="h-8 w-auto"
+            />
+            <h3 className="text-xl font-bold">APG Software</h3>
+          </div>
           <p className="text-gray-400">
             Custom business software, built in 14 days.
           </p>
