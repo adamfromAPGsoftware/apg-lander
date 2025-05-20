@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { DollarSign, Calculator } from "lucide-react";
+import { DollarSign, Calculator, Info } from "lucide-react";
 
 type SaasToolType = {
   name: string;
@@ -43,7 +43,9 @@ const ROICalculator = () => {
   const [hoursWasted, setHoursWasted] = useState<number>(10);
   const [teamSize, setTeamSize] = useState<number>(5);
   const [hourlyRate, setHourlyRate] = useState<number>(50);
-  const [totalWaste, setTotalWaste] = useState<number>(0);
+  const [annualWaste, setAnnualWaste] = useState<number>(0);
+  const [saasCost, setSaasCost] = useState<number>(0);
+  const [timeCost, setTimeCost] = useState<number>(0);
   
 
   useEffect(() => {
@@ -56,7 +58,13 @@ const ROICalculator = () => {
     
     const monthlyTimeWaste = hoursWasted * teamSize * hourlyRate * 4; // 4 weeks in a month
     
-    setTotalWaste(monthlySaasCost + monthlyTimeWaste);
+    // Calculate annual costs
+    const annualSaasCost = monthlySaasCost * 12;
+    const annualTimeWaste = monthlyTimeWaste * 12;
+    
+    setSaasCost(annualSaasCost);
+    setTimeCost(annualTimeWaste);
+    setAnnualWaste(annualSaasCost + annualTimeWaste);
   }, [saasTools, hoursWasted, teamSize, hourlyRate]);
 
   const handleToolToggle = (index: number) => {
@@ -155,9 +163,26 @@ const ROICalculator = () => {
           </div>
           
           <div className="bg-brand-green bg-opacity-10 rounded-lg p-6 mb-8 mt-10">
-            <h4 className="text-lg font-bold text-brand-green mb-2">Your Estimated Monthly Waste</h4>
-            <p className="text-3xl md:text-4xl font-bold">${totalWaste.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+            <h4 className="text-lg font-bold text-brand-green mb-2">Your Estimated Annual Waste</h4>
+            <p className="text-3xl md:text-4xl font-bold">${annualWaste.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
             <p className="text-sm text-gray-400 mt-2">Based on your selections and an average hourly rate of ${hourlyRate}</p>
+            
+            <div className="mt-4 pt-4 border-t border-gray-800">
+              <div className="flex flex-col space-y-2 text-sm text-gray-400">
+                <div className="flex justify-between">
+                  <span>SaaS Tools Cost:</span>
+                  <span>${saasCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Time Waste Cost:</span>
+                  <span>${timeCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+                </div>
+                <div className="flex items-start mt-3 text-xs">
+                  <Info className="h-4 w-4 mr-2 flex-shrink-0 mt-0.5" />
+                  <p>Formula: Annual SaaS Cost (Avg tool cost × team size × 12 months) + Annual Time Waste (Weekly hours × team size × hourly rate × 52 weeks). Pricing data may change, resulting in a margin of error in the calculated estimate.</p>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div className="text-center">
