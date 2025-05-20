@@ -17,6 +17,13 @@ const Hero = () => {
         <div className="flex h-full flex-col md:flex-row">
           {/* Left content */}
           <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/67ebee85-eee8-44fe-9ef8-9bbf1a56efff.png" 
+                alt="Company Logo" 
+                className="h-12 md:h-16"
+              />
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               Your Entire Business.
               <br />One AI-Powered Tool.
