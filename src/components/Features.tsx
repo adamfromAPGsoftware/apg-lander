@@ -1,6 +1,7 @@
 
 import React from 'react';
 import DatabaseWithRestApi from "@/components/ui/database-with-rest-api";
+import { Users, TrendingUp, ListChecks, Receipt, FileText, Truck, Wallet, Clock, Currency } from "lucide-react";
 
 const Features = () => {
   const featuresList = [
@@ -10,6 +11,20 @@ const Features = () => {
     "Task Boards, Messaging, Client Portals",
     "Vector DB Sync, AI Agents Ready",
     "First Bi-Weekly Sprint included"
+  ];
+
+  // Define the list of nodes feeding into the AI CRM
+  const crmNodes = [
+    { name: "Clients", icon: <Users size={16} /> },
+    { name: "Leads", icon: <TrendingUp size={16} /> },
+    { name: "Tasks", icon: <ListChecks size={16} /> },
+    { name: "Invoices", icon: <Receipt size={16} /> },
+    { name: "Proposals", icon: <FileText size={16} /> },
+    { name: "Scope Docs", icon: <FileText size={16} /> },
+    { name: "Transactions", icon: <Currency size={16} /> },
+    { name: "Suppliers", icon: <Truck size={16} /> },
+    { name: "Bills", icon: <Wallet size={16} /> },
+    { name: "Timesheets", icon: <Clock size={16} /> },
   ];
 
   return (
@@ -36,6 +51,7 @@ const Features = () => {
             first: "Business Logic",
             second: "AI Engine"
           }}
+          nodes={crmNodes}
         />
       </div>
       

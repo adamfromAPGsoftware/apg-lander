@@ -21,6 +21,10 @@ interface DatabaseWithRestApiProps {
   };
   title?: string;
   lightColor?: string;
+  nodes?: Array<{
+    name: string;
+    icon: React.ReactNode;
+  }>;
 }
 
 const DatabaseWithRestApi = ({
@@ -30,6 +34,7 @@ const DatabaseWithRestApi = ({
   buttonTexts,
   title,
   lightColor,
+  nodes,
 }: DatabaseWithRestApiProps) => {
   return (
     <div
@@ -253,6 +258,21 @@ const DatabaseWithRestApi = ({
         </div>
         {/* box content */}
         <div className="relative z-10 flex h-[150px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background shadow-md">
+          {/* Nodes */}
+          {nodes && nodes.length > 0 && (
+            <div className="absolute inset-0 p-4 flex flex-wrap gap-2 justify-center items-center overflow-hidden">
+              {nodes.map((node, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center gap-1 bg-[#101112] border border-gray-800 px-2 py-1 rounded-lg text-xs"
+                >
+                  <span className="text-brand-green">{node.icon}</span>
+                  <span>{node.name}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          
           {/* Badges */}
           <div className="absolute bottom-8 left-12 z-10 h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2 ">
             <HeartHandshakeIcon className="size-4" />
