@@ -83,4 +83,25 @@
       transform: rotate(360deg);
     }
   }
+  
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(25%, 25%) scale(0.5);
+    }
+    30% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0%, 0%) scale(1);
+    }
+  }
+  
+  .animate-spotlight {
+    animation: spotlight 10s ease 0.5s infinite;
+  }
 }
