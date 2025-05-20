@@ -1,28 +1,18 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { SplineScene } from "@/components/ui/splite";
 import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
-
 const Hero = () => {
-  return (
-    <section id="hero" className="py-16 md:py-24 max-width">
+  return <section id="hero" className="py-16 md:py-24 max-width">
       <Card className="w-full h-[500px] bg-black/[0.96] relative overflow-hidden border-0">
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          fill="white"
-        />
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
         
         <div className="flex h-full flex-col md:flex-row">
           {/* Left content */}
           <div className="flex-1 p-8 relative z-10 flex flex-col justify-center">
             <div className="mb-4">
-              <img 
-                src="/lovable-uploads/67ebee85-eee8-44fe-9ef8-9bbf1a56efff.png" 
-                alt="Company Logo" 
-                className="h-12 md:h-16"
-              />
+              
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               Your Entire Business.
@@ -43,15 +33,10 @@ const Hero = () => {
 
           {/* Right content - 3D scene */}
           <div className="flex-1 relative">
-            <SplineScene 
-              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-              className="w-full h-full"
-            />
+            <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
           </div>
         </div>
       </Card>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
