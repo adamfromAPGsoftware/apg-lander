@@ -10,7 +10,7 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/168b5e80-e8e2-4f1c-b083-9dc3a6192668.png" 
               alt="APG Software Logo" 
-              className="h-8 w-auto"
+              className="h-12 w-auto"
             />
             <h3 className="text-xl font-bold">APG Software</h3>
           </div>

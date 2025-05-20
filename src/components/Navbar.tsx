@@ -10,7 +10,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/168b5e80-e8e2-4f1c-b083-9dc3a6192668.png" 
             alt="APG Software Logo" 
-            className="h-8 w-auto"
+            className="h-12 w-auto"
           />
           <h1 className="text-2xl font-bold">APG Software</h1>
         </div>
