@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img 
-            src="/lovable-uploads/bca44067-a767-4ffb-9b03-ad8313ec5290.png" 
+            src="/lovable-uploads/168b5e80-e8e2-4f1c-b083-9dc3a6192668.png" 
             alt="APG Software Logo" 
             className="h-8 w-auto"
           />
