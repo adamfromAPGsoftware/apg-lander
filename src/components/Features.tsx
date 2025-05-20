@@ -30,11 +30,7 @@ const Features = () => {
             first: "Clients",
             second: "Projects",
             third: "Tasks",
-            fourth: "Invoicing",
-            fifth: "Leads",
-            sixth: "Proposals",
-            seventh: "Timesheets",
-            eighth: "Suppliers"
+            fourth: "Invoicing"
           }}
           buttonTexts={{
             first: "Business Logic",

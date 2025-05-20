@@ -14,10 +14,6 @@ interface DatabaseWithRestApiProps {
     second: string;
     third: string;
     fourth: string;
-    fifth?: string;
-    sixth?: string;
-    seventh?: string;
-    eighth?: string;
   };
   buttonTexts?: {
     first: string;
@@ -56,18 +52,10 @@ const DatabaseWithRestApi = ({
           strokeDasharray="100 100"
           pathLength="100"
         >
-          {/* Original 4 paths */}
           <path d="M 31 10 v 15 q 0 5 5 5 h 59 q 5 0 5 5 v 10" />
           <path d="M 77 10 v 10 q 0 5 5 5 h 13 q 5 0 5 5 v 10" />
           <path d="M 124 10 v 10 q 0 5 -5 5 h -14 q -5 0 -5 5 v 10" />
           <path d="M 170 10 v 15 q 0 5 -5 5 h -60 q -5 0 -5 5 v 10" />
-          
-          {/* 4 additional paths for the new nodes */}
-          <path d="M 31 30 v 10 q 0 5 5 5 h 59 q 5 0 5 5 v 10" />
-          <path d="M 77 30 v 5 q 0 5 5 5 h 13 q 5 0 5 5 v 10" />
-          <path d="M 124 30 v 5 q 0 5 -5 5 h -14 q -5 0 -5 5 v 10" />
-          <path d="M 170 30 v 10 q 0 5 -5 5 h -60 q -5 0 -5 5 v 10" />
-          
           {/* Animation For Path Starting */}
           <animate
             attributeName="stroke-dashoffset"
@@ -80,8 +68,7 @@ const DatabaseWithRestApi = ({
             keyTimes="0; 1"
           />
         </g>
-        
-        {/* Blue Lights - Original 4 */}
+        {/* Blue Lights */}
         <g mask="url(#db-mask-1)">
           <circle
             className="database db-light-1"
@@ -118,46 +105,7 @@ const DatabaseWithRestApi = ({
             fill="url(#db-blue-grad)"
           />
         </g>
-        
-        {/* Blue Lights - Additional 4 */}
-        <g mask="url(#db-mask-5)">
-          <circle
-            className="database db-light-5"
-            cx="0"
-            cy="0"
-            r="12"
-            fill="url(#db-blue-grad)"
-          />
-        </g>
-        <g mask="url(#db-mask-6)">
-          <circle
-            className="database db-light-6"
-            cx="0"
-            cy="0"
-            r="12"
-            fill="url(#db-blue-grad)"
-          />
-        </g>
-        <g mask="url(#db-mask-7)">
-          <circle
-            className="database db-light-7"
-            cx="0"
-            cy="0"
-            r="12"
-            fill="url(#db-blue-grad)"
-          />
-        </g>
-        <g mask="url(#db-mask-8)">
-          <circle
-            className="database db-light-8"
-            cx="0"
-            cy="0"
-            r="12"
-            fill="url(#db-blue-grad)"
-          />
-        </g>
-        
-        {/* Buttons - Original 4 */}
+        {/* Buttons */}
         <g stroke="currentColor" fill="none" strokeWidth="0.4">
           {/* First Button */}
           <g>
@@ -247,100 +195,9 @@ const DatabaseWithRestApi = ({
               {badgeTexts?.fourth || "DELETE"}
             </text>
           </g>
-          
-          {/* Additional 4 Buttons */}
-          {/* Fifth Button */}
-          <g>
-            <rect
-              fill="#18181B"
-              x="14"
-              y="25"
-              width="34"
-              height="10"
-              rx="5"
-            ></rect>
-            <DatabaseIcon x="18" y="27.5"></DatabaseIcon>
-            <text
-              x="28"
-              y="32"
-              fill="white"
-              stroke="none"
-              fontSize="5"
-              fontWeight="500"
-            >
-              {badgeTexts?.fifth || "PATCH"}
-            </text>
-          </g>
-          {/* Sixth Button */}
-          <g>
-            <rect
-              fill="#18181B"
-              x="60"
-              y="25"
-              width="34"
-              height="10"
-              rx="5"
-            ></rect>
-            <DatabaseIcon x="64" y="27.5"></DatabaseIcon>
-            <text
-              x="74"
-              y="32"
-              fill="white"
-              stroke="none"
-              fontSize="5"
-              fontWeight="500"
-            >
-              {badgeTexts?.sixth || "HEAD"}
-            </text>
-          </g>
-          {/* Seventh Button */}
-          <g>
-            <rect
-              fill="#18181B"
-              x="108"
-              y="25"
-              width="34"
-              height="10"
-              rx="5"
-            ></rect>
-            <DatabaseIcon x="112" y="27.5"></DatabaseIcon>
-            <text
-              x="122"
-              y="32"
-              fill="white"
-              stroke="none"
-              fontSize="5"
-              fontWeight="500"
-            >
-              {badgeTexts?.seventh || "OPTIONS"}
-            </text>
-          </g>
-          {/* Eighth Button */}
-          <g>
-            <rect
-              fill="#18181B"
-              x="150"
-              y="25"
-              width="40"
-              height="10"
-              rx="5"
-            ></rect>
-            <DatabaseIcon x="154" y="27.5"></DatabaseIcon>
-            <text
-              x="165"
-              y="32"
-              fill="white"
-              stroke="none"
-              fontSize="5"
-              fontWeight="500"
-            >
-              {badgeTexts?.eighth || "CONNECT"}
-            </text>
-          </g>
         </g>
-        
         <defs>
-          {/* Original 4 masks */}
+          {/* 1 -  user list */}
           <mask id="db-mask-1">
             <path
               d="M 31 10 v 15 q 0 5 5 5 h 59 q 5 0 5 5 v 10"
@@ -348,6 +205,7 @@ const DatabaseWithRestApi = ({
               stroke="white"
             />
           </mask>
+          {/* 2 - task list */}
           <mask id="db-mask-2">
             <path
               d="M 77 10 v 10 q 0 5 5 5 h 13 q 5 0 5 5 v 10"
@@ -355,6 +213,7 @@ const DatabaseWithRestApi = ({
               stroke="white"
             />
           </mask>
+          {/* 3 - backlogs */}
           <mask id="db-mask-3">
             <path
               d="M 124 10 v 10 q 0 5 -5 5 h -14 q -5 0 -5 5 v 10"
@@ -362,6 +221,7 @@ const DatabaseWithRestApi = ({
               stroke="white"
             />
           </mask>
+          {/* 4 - misc */}
           <mask id="db-mask-4">
             <path
               d="M 170 10 v 15 q 0 5 -5 5 h -60 q -5 0 -5 5 v 10"
@@ -369,37 +229,6 @@ const DatabaseWithRestApi = ({
               stroke="white"
             />
           </mask>
-          
-          {/* Additional 4 masks */}
-          <mask id="db-mask-5">
-            <path
-              d="M 31 30 v 10 q 0 5 5 5 h 59 q 5 0 5 5 v 10"
-              strokeWidth="0.5"
-              stroke="white"
-            />
-          </mask>
-          <mask id="db-mask-6">
-            <path
-              d="M 77 30 v 5 q 0 5 5 5 h 13 q 5 0 5 5 v 10"
-              strokeWidth="0.5"
-              stroke="white"
-            />
-          </mask>
-          <mask id="db-mask-7">
-            <path
-              d="M 124 30 v 5 q 0 5 -5 5 h -14 q -5 0 -5 5 v 10"
-              strokeWidth="0.5"
-              stroke="white"
-            />
-          </mask>
-          <mask id="db-mask-8">
-            <path
-              d="M 170 30 v 10 q 0 5 -5 5 h -60 q -5 0 -5 5 v 10"
-              strokeWidth="0.5"
-              stroke="white"
-            />
-          </mask>
-          
           {/* Blue Grad */}
           <radialGradient id="db-blue-grad" fx="1">
             <stop offset="0%" stopColor={lightColor || "#00A6F5"} />
@@ -407,7 +236,6 @@ const DatabaseWithRestApi = ({
           </radialGradient>
         </defs>
       </svg>
-      
       {/* Main Box */}
       <div className="absolute bottom-10 flex w-full flex-col items-center">
         {/* bottom shadow */}
