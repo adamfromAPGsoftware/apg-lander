@@ -1,41 +1,60 @@
-import React from 'react';
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Settings2, Sparkles, Zap } from 'lucide-react'
+import { ReactNode } from 'react'
 
-const WhyDifferent = () => {
-  const differentiators = [
-    {
-      title: "Break Free from SaaS Overload",
-      description: "Eliminate $3,000+/month in SaaS subscriptions and manual processes by replacing them with a single streamlined system."
-    },
-    {
-      title: "AI That Understands Your Business",
-      description: "Sync all your operations with AI-powered automation built around your actual workflows—not generic templates."
-    },
-    {
-      title: "One Tool to Run It All",
-      description: "Ditch the 10+ tools. Get a fully tailored internal system designed specifically to manage your entire business from one place."
-    }
-  ];
+function WhyDifferent() {
+    return (
+        <section className="py-16 md:py-32">
+            <div className="@container mx-auto max-w-5xl px-6">
+                <div className="text-center">
+                    <h2 className="text-5xl font-bold mb-4">Why This Tool Is Different</h2>
+                    <p className="mt-4 text-xl text-gray-300">Not just software — this is the last internal system your business will ever need.</p>
+                </div>
+                <div className="mx-auto mt-8 flex flex-col md:flex-row gap-10 md:mt-16 max-w-5xl justify-center items-stretch">
+                    <Card className="flex-1 group border-0 bg-[#222] shadow-none flex flex-col items-center rounded-2xl p-8">
+                        <CardHeader className="pb-3 flex flex-col items-center">
+                            <div className="mb-8">
+                                <CardDecorator>
+                                    <Sparkles className="h-10 w-10 text-brand-green" />
+                                </CardDecorator>
+                            </div>
+                            <h3 className="mt-2 font-bold text-2xl md:text-3xl text-center">Built for AI from Day One</h3>
+                        </CardHeader>
+                        <CardContent />
+                    </Card>
+                    <Card className="flex-1 group border-0 bg-[#222] shadow-none flex flex-col items-center rounded-2xl p-8">
+                        <CardHeader className="pb-3 flex flex-col items-center">
+                            <div className="mb-8">
+                                <CardDecorator>
+                                    <Settings2 className="h-10 w-10 text-brand-green" />
+                                </CardDecorator>
+                            </div>
+                            <h3 className="mt-2 font-bold text-2xl md:text-3xl text-center">Replaces $3,000+/Month in SaaS Tools</h3>
+                        </CardHeader>
+                        <CardContent />
+                    </Card>
+                    <Card className="flex-1 group border-0 bg-[#222] shadow-none flex flex-col items-center rounded-2xl p-8">
+                        <CardHeader className="pb-3 flex flex-col items-center">
+                            <div className="mb-8">
+                                <CardDecorator>
+                                    <Zap className="h-10 w-10 text-brand-green" />
+                                </CardDecorator>
+                            </div>
+                            <h3 className="mt-2 font-bold text-2xl md:text-3xl text-center">Live in 2 Weeks — Yours Forever</h3>
+                        </CardHeader>
+                        <CardContent />
+                    </Card>
+                </div>
+            </div>
+        </section>
+    )
+}
 
-  return (
-    <section id="why-different" className="py-16 md:py-24 bg-[#111] rounded-xl max-width">
-      <div className="text-center mb-12 animate-fade-in">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Why We're Different</h2>
-      </div>
-      
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {differentiators.map((item, index) => (
-          <div 
-            key={index}
-            className="bg-black p-6 rounded-xl border border-gray-800 animate-fade-in"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <h3 className="text-xl font-bold mb-3 text-brand-green">{item.title}</h3>
-            <p className="text-gray-300">{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
+const CardDecorator = ({ children }: { children: ReactNode }) => (
+    <div aria-hidden className="relative mx-auto size-36 [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]">
+        <div className="absolute inset-0 [--border:rgba(255,255,255,0.15)] dark:[--border:rgba(255,255,255,0.25)] bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:24px_24px] opacity-40"/>
+        <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-t border-l">{children}</div>
+    </div>
+)
 
-export default WhyDifferent;
+export default WhyDifferent; 

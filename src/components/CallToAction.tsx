@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 
@@ -14,8 +13,12 @@ const CallToAction = () => {
           <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-8">
             Book Your Discovery Call
           </Button>
-          <Button variant="outline" className="border-brand-green text-brand-green hover:bg-brand-green hover:bg-opacity-10 text-lg py-6 px-8">
-            View a Sample Build
+          <Button 
+            variant="outline" 
+            className="border-brand-green text-brand-green hover:bg-brand-green hover:bg-opacity-10 text-lg py-6 px-8"
+            onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}
+          >
+            Try the Demo
           </Button>
         </div>
       </div>
