@@ -380,17 +380,17 @@ const DatabaseWithRestApi = ({
         {/* AI Knowledge Base Badge (moved above agents) */}
         <div
           id="main-box-title-xarrow"
-          className="z-20 flex items-center justify-center rounded-lg border-2 border-brand-green bg-[#101112] px-8 py-4 mb-12 mt-8 shadow-lg"
+          className="z-20 flex items-center justify-center rounded-lg border-2 border-white bg-white px-8 py-4 mb-12 mt-8 shadow-lg"
           ref={titleRef}
         >
-          <SparklesIcon className="w-10 h-10 mr-4 text-brand-green" />
-          <span className="text-2xl font-bold tracking-wide text-brand-green">
+          <SparklesIcon className="w-10 h-10 mr-4 text-black" />
+          <span className="text-2xl font-bold tracking-wide text-black">
             {title ? title : "AI Knowledge Base"}
           </span>
         </div>
         {/* AI Agents Section */}
         <div className="flex flex-col items-center mt-8 mb-12 w-full">
-          <h3 className="text-xl font-bold mb-4 text-brand-green">AI Agents</h3>
+          <h3 className="text-xl font-bold mb-4 text-white">AI Agents</h3>
           <div className="flex flex-wrap justify-center gap-6 w-full">
             {aiAgents.map((agent, i) => (
               <div
