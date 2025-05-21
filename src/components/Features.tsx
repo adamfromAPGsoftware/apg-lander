@@ -25,7 +25,6 @@ const Features = () => {
         <DatabaseWithRestApi
           badges={["Clients", "Projects", "Tasks", "Invoicing", "Leads", "Bills", "Transactions", "Suppliers", "Timesheets", "Reports", "Proposals", "Scope Docs", "Messages", "Announcements", "Companies"]}
           buttonTexts={{ first: "LegionDev", second: "v2_updates" }}
-          title="Data exchange using a customized REST API"
         />
       </div>
     </section>

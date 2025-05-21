@@ -32,17 +32,18 @@ const DatabaseWithRestApi = ({
   const badgeRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mainBoxRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const titleRef = useRef<HTMLDivElement | null>(null);
   const [lines, setLines] = useState<{ x1: number; y1: number; x2: number; y2: number }[]>([]);
 
   useEffect(() => {
     // Calculate positions after render
     const newLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
-    if (!containerRef.current || !mainBoxRef.current) return;
+    if (!containerRef.current || !mainBoxRef.current || !titleRef.current) return;
     const containerRect = containerRef.current.getBoundingClientRect();
-    const mainBoxRect = mainBoxRef.current.getBoundingClientRect();
-    const mainBoxCenter = {
-      x: mainBoxRect.left + mainBoxRect.width / 2 - containerRect.left,
-      y: mainBoxRect.top + mainBoxRect.height / 2 - containerRect.top,
+    const titleRect = titleRef.current.getBoundingClientRect();
+    const titleTopCenter = {
+      x: titleRect.left + titleRect.width / 2 - containerRect.left,
+      y: titleRect.top - containerRect.top,
     };
     badgeRefs.current.forEach((badge, i) => {
       if (badge) {
@@ -54,8 +55,8 @@ const DatabaseWithRestApi = ({
         newLines.push({
           x1: badgeCenter.x,
           y1: badgeCenter.y,
-          x2: mainBoxCenter.x,
-          y2: mainBoxCenter.y,
+          x2: titleTopCenter.x,
+          y2: titleTopCenter.y,
         });
       }
     });
@@ -79,19 +80,34 @@ const DatabaseWithRestApi = ({
         style={{ overflow: "visible" }}
       >
         {lines.map((line, i) => (
-          <motion.line
-            key={i}
-            x1={line.x1}
-            y1={line.y1}
-            x2={line.x2}
-            y2={line.y2}
-            stroke="#90F23C"
-            strokeWidth={2}
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 0.7, delay: i * 0.04 }}
-            style={{ opacity: 0.7 }}
-          />
+          <React.Fragment key={i}>
+            <motion.line
+              x1={line.x1}
+              y1={line.y1}
+              x2={line.x2}
+              y2={line.y2}
+              stroke="#90F23C"
+              strokeWidth={1}
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.7, delay: i * 0.04 }}
+              style={{ opacity: 0.7 }}
+            />
+            {/* Data pulse animation */}
+            <motion.circle
+              r={5}
+              fill="#90F23C"
+              style={{ filter: "drop-shadow(0 0 8px #90F23C)" }}
+              initial={{ opacity: 0, cx: line.x1, cy: line.y1 }}
+              animate={{
+                opacity: [0, 1, 0.7, 0],
+                scale: [0.7, 1.1, 0.7],
+                cx: [line.x1, line.x2],
+                cy: [line.y1, line.y2],
+              }}
+              transition={{ duration: 1.6, repeat: Infinity, delay: i * 0.08 }}
+            />
+          </React.Fragment>
         ))}
       </svg>
       {/* Grouped content container */}
@@ -146,10 +162,14 @@ const DatabaseWithRestApi = ({
           className="mt-10 flex w-full max-w-[600px] flex-col items-center"
         >
           {/* Box Title inside Main Box (static) */}
-          <div id="main-box-title-xarrow" className="z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-2 py-1 mb-2 mt-2">
+          <div
+            id="main-box-title-xarrow"
+            className="z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-2 py-1 mb-2 mt-2"
+            ref={titleRef}
+          >
             <SparklesIcon className="size-3" />
             <span className="ml-2 text-[10px]">
-              {title ? title : "Data exchange using a customized REST API"}
+              {title ? title : "AI Knowledge Base"}
             </span>
           </div>
           {/* bottom shadow */}
