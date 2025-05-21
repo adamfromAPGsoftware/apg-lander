@@ -25,8 +25,11 @@ const Hero = () => {
               <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-6">
                 📞 Book Your Discovery Call
               </Button>
-              <Button variant="outline" className="border-brand-green text-brand-green hover:bg-brand-green hover:bg-opacity-10 text-lg py-6 px-6">
-                💡 See What's Included
+              <Button variant="outline" className="border-brand-green text-brand-green hover:bg-brand-green hover:bg-opacity-10 text-lg py-6 px-6" onClick={() => {
+                const el = document.getElementById('roi-calculator');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}>
+                💡 Calculate my savings
               </Button>
             </div>
           </div>
