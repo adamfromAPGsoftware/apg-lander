@@ -170,7 +170,7 @@ const DatabaseWithRestApi = ({
     // 2. Left to edge
     const leftX = 0; // flush with left edge
     // 3. Up above container
-    const upY = Math.max(0, badgesRect.top - containerRect.top - 260); // go even higher
+    const upY = Math.max(0, badgesRect.top - containerRect.top - 60); // go even higher
     // 4. In to center above badges
     const centerX = end.x;
     // 5. Down to badges
@@ -184,7 +184,7 @@ const DatabaseWithRestApi = ({
     <div
       ref={containerRef}
       className={cn(
-        "relative flex flex-col items-center w-full",
+        "relative flex flex-col items-center w-full pt-20",
         className
       )}
       style={{ minHeight: 420 }}
