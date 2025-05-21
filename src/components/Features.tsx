@@ -1,6 +1,6 @@
 import React from 'react';
 import AISystemAnimation from "./AISystemAnimation";
-// import DatabaseWithRestApi from "@/components/ui/database-with-rest-api";
+import DatabaseWithRestApi from "@/components/ui/database-with-rest-api";
 
 const Features = () => {
   const featuresList = [
@@ -22,7 +22,11 @@ const Features = () => {
       </div>
       
       <div className="flex flex-col items-center mb-12">
-        <AISystemAnimation />
+        <DatabaseWithRestApi
+          badges={["Clients", "Projects", "Tasks", "Invoicing", "Leads", "Bills", "Transactions", "Suppliers", "Timesheets", "Reports", "Proposals", "Scope Docs", "Messages", "Announcements", "Companies"]}
+          buttonTexts={{ first: "LegionDev", second: "v2_updates" }}
+          title="Data exchange using a customized REST API"
+        />
       </div>
     </section>
   );

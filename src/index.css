@@ -105,3 +105,14 @@
     animation: spotlight 10s ease 0.5s infinite;
   }
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

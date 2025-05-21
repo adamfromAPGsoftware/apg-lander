@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Folder, HeartHandshakeIcon, SparklesIcon, Database,
@@ -28,15 +28,74 @@ const DatabaseWithRestApi = ({
   title,
   lightColor,
 }: DatabaseWithRestApiProps) => {
+  // Refs for badges and main box
+  const badgeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mainBoxRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [lines, setLines] = useState<{ x1: number; y1: number; x2: number; y2: number }[]>([]);
+
+  useEffect(() => {
+    // Calculate positions after render
+    const newLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+    if (!containerRef.current || !mainBoxRef.current) return;
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const mainBoxRect = mainBoxRef.current.getBoundingClientRect();
+    const mainBoxCenter = {
+      x: mainBoxRect.left + mainBoxRect.width / 2 - containerRect.left,
+      y: mainBoxRect.top + mainBoxRect.height / 2 - containerRect.top,
+    };
+    badgeRefs.current.forEach((badge, i) => {
+      if (badge) {
+        const badgeRect = badge.getBoundingClientRect();
+        const badgeCenter = {
+          x: badgeRect.left + badgeRect.width / 2 - containerRect.left,
+          y: badgeRect.top + badgeRect.height / 2 - containerRect.top,
+        };
+        newLines.push({
+          x1: badgeCenter.x,
+          y1: badgeCenter.y,
+          x2: mainBoxCenter.x,
+          y2: mainBoxCenter.y,
+        });
+      }
+    });
+    setLines(newLines);
+  }, [badges]);
+
   return (
     <div
+      ref={containerRef}
       className={cn(
         "relative flex flex-col items-center w-full",
         className
       )}
+      style={{ minHeight: 420 }}
     >
+      {/* SVG overlay for lines */}
+      <svg
+        className="absolute left-0 top-0 w-full h-full pointer-events-none z-10"
+        width="100%"
+        height="100%"
+        style={{ overflow: "visible" }}
+      >
+        {lines.map((line, i) => (
+          <motion.line
+            key={i}
+            x1={line.x1}
+            y1={line.y1}
+            x2={line.x2}
+            y2={line.y2}
+            stroke="#90F23C"
+            strokeWidth={2}
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.7, delay: i * 0.04 }}
+            style={{ opacity: 0.7 }}
+          />
+        ))}
+      </svg>
       {/* Grouped content container */}
-      <div className="w-full flex flex-col items-center">
+      <div className="w-full flex flex-col items-center relative z-20">
         {/* Badges Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-0 mb-8 w-full px-4 place-items-center">
           {badges.map((badge, i) => {
@@ -68,6 +127,7 @@ const DatabaseWithRestApi = ({
               <div
                 key={badge + i}
                 id={`badge-xarrow-${i}`}
+                ref={el => (badgeRefs.current[i] = el)}
                 className="relative flex flex-col items-center min-h-[36px] justify-center font-semibold shadow-sm bg-[#18181B] border border-gray-800 rounded-lg text-base text-white px-4 py-2 w-full"
                 style={{ zIndex: 2 }}
               >
@@ -82,6 +142,7 @@ const DatabaseWithRestApi = ({
         {/* Main Box */}
         <div
           id="main-box-xarrow"
+          ref={mainBoxRef}
           className="mt-10 flex w-full max-w-[600px] flex-col items-center"
         >
           {/* Box Title inside Main Box (static) */}
