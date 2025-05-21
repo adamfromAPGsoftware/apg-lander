@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -29,14 +30,6 @@ const DatabaseWithRestApi = ({
   title,
   lightColor,
 }: DatabaseWithRestApiProps) => {
-  // Layout constants for dynamic badges
-  const badgeWidth = 34;
-  const badgeHeight = 10;
-  const badgeSpacing = 8;
-  const startX = 14;
-  const y = 5;
-  const svgWidth = startX * 2 + badges.length * badgeWidth + (badges.length - 1) * badgeSpacing;
-
   return (
     <div
       className={cn(
@@ -47,7 +40,7 @@ const DatabaseWithRestApi = ({
       {/* Grouped content container */}
       <div className="w-full flex flex-col items-center">
         {/* Badges Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mt-0 mb-8 w-full px-4 place-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-0 mb-8 w-full px-4 place-items-center">
           {badges.map((badge, i) => {
             // Map badge names to Lucide icons
             const badgeIconMap: Record<string, React.ReactNode> = {
@@ -107,7 +100,6 @@ const DatabaseWithRestApi = ({
         <div
           id="main-box-xarrow"
           className="mt-10 flex w-full max-w-[600px] flex-col items-center"
-          data-lov-id="src/components/ui/database-with-rest-api.tsx:139:8"
         >
           {/* Box Title inside Main Box (static) */}
           <div id="main-box-title-xarrow" className="z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-2 py-1 mb-2 mt-2">
