@@ -135,7 +135,7 @@ const DatabaseWithRestApi = ({
               r={5}
               fill="#90F23C"
               style={{ filter: "drop-shadow(0 0 8px #90F23C)" }}
-              initial={{ opacity: 0, cx: line.x1, cy: line.y1 }}
+              initial={{ opacity: 0, cx: line.x1, cy: line.y1, scale: 0.7 }}
               animate={{
                 opacity: [0, 1, 0.7, 0],
                 scale: [0.7, 1.1, 0.7],
@@ -165,7 +165,7 @@ const DatabaseWithRestApi = ({
               r={5}
               fill="#90F23C"
               style={{ filter: "drop-shadow(0 0 8px #90F23C)" }}
-              initial={{ opacity: 0, cx: line.x1, cy: line.y1 }}
+              initial={{ opacity: 0, cx: line.x1, cy: line.y1, scale: 0.7 }}
               animate={{
                 opacity: [0, 1, 0.7, 0],
                 scale: [0.7, 1.1, 0.7],
@@ -225,7 +225,7 @@ const DatabaseWithRestApi = ({
         {/* AI Knowledge Base Badge (moved above agents) */}
         <div
           id="main-box-title-xarrow"
-          className="z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-4 py-2 mb-8 mt-2"
+          className="z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-4 py-2 mb-12 mt-8"
           ref={titleRef}
         >
           <SparklesIcon className="size-3" />
@@ -234,7 +234,7 @@ const DatabaseWithRestApi = ({
           </span>
         </div>
         {/* AI Agents Section */}
-        <div className="flex flex-col items-center mt-2 w-full">
+        <div className="flex flex-col items-center mt-8 mb-12 w-full">
           <h3 className="text-xl font-bold mb-4 text-brand-green">AI Agents</h3>
           <div className="flex flex-wrap justify-center gap-6 w-full">
             {aiAgents.map((agent, i) => (
@@ -255,7 +255,7 @@ const DatabaseWithRestApi = ({
         <div
           id="main-box-xarrow"
           ref={mainBoxRef}
-          className="mt-16 flex w-full max-w-[600px] flex-col items-center"
+          className="mt-20 flex w-full max-w-[600px] flex-col items-center"
         >
           {/* bottom shadow */}
           <div className="absolute -bottom-4 h-[100px] w-[62%] rounded-lg bg-accent/30" />
