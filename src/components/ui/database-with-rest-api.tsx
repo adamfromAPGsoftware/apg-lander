@@ -284,8 +284,8 @@ const DatabaseWithRestApi = ({
           className="z-20 flex items-center justify-center rounded-lg border-2 border-brand-green bg-[#101112] px-8 py-4 mb-12 mt-8 shadow-lg"
           ref={titleRef}
         >
-          <SparklesIcon className="size-3" />
-          <span className="ml-3 text-2xl font-bold tracking-wide text-brand-green">
+          <SparklesIcon className="w-10 h-10 mr-4 text-brand-green" />
+          <span className="text-2xl font-bold tracking-wide text-brand-green">
             {title ? title : "AI Knowledge Base"}
           </span>
         </div>
@@ -315,10 +315,26 @@ const DatabaseWithRestApi = ({
         >
           {/* bottom shadow */}
           <div className="absolute -bottom-4 h-[100px] w-[62%] rounded-lg bg-accent/30" />
-          {/* box outter circle */}
-          <div className="absolute -bottom-8 z-30 grid h-[60px] w-[60px] place-items-center rounded-full border-t bg-[#141516] font-semibold text-xs">
+          {/* box outer circle - larger, pulsing border */}
+          <motion.div
+            className="absolute -bottom-16 z-30 grid h-[110px] w-[110px] place-items-center rounded-full font-semibold text-lg bg-[#141516]"
+            style={{ border: '2px solid #90F23C', boxShadow: '0 0 0 0 #90F23C' }}
+            animate={{
+              boxShadow: [
+                '0 0 0 0 #90F23C',
+                '0 0 16px 4px #90F23C88',
+                '0 0 0 0 #90F23C'
+              ],
+              borderColor: [
+                '#90F23C',
+                '#90F23C',
+                '#90F23C'
+              ]
+            }}
+            transition={{ duration: 2.5, repeat: Infinity }}
+          >
             {circleText ? circleText : "CRM"}
-          </div>
+          </motion.div>
           {/* box content */}
           <div className="relative z-10 flex h-[150px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background shadow-md">
             {/* New Badges Row */}
