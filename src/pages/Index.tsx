@@ -8,6 +8,7 @@ import SocialProof from '@/components/SocialProof';
 import AISystem from '@/components/AISystem';
 import WhyDifferent from '@/components/WhyDifferent';
 import TargetAudience from '@/components/TargetAudience';
+import { AIAgents } from '@/components/ui/features-8';
 import ProcessSteps from '@/components/ProcessSteps';
 import CallToAction from '@/components/CallToAction';
 import Footer from '@/components/Footer';
@@ -24,6 +25,7 @@ const Index = () => {
       <SocialProof />
       <ROICalculator />
       <WhyDifferent />
+      <AIAgents />
       <ProcessSteps />
       <CallToAction />
       <Footer />
