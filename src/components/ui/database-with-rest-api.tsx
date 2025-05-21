@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -8,7 +7,6 @@ import {
   Users, Briefcase, CheckSquare, FileText, UserPlus, Receipt, ArrowLeftRight, Truck, Clock, BarChart, FileSignature, MessageCircle, Megaphone, Building
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Xarrow from "react-xarrows";
 
 interface DatabaseWithRestApiProps {
   className?: string;
@@ -81,21 +79,6 @@ const DatabaseWithRestApi = ({
             );
           })}
         </div>
-        {/* Xarrows connecting each badge to the main box */}
-        {badges.map((_, i) => (
-          <Xarrow
-            key={i}
-            start="main-box-title-xarrow"
-            end={`badge-xarrow-${i}`}
-            color="#90F23C"
-            strokeWidth={1}
-            showHead={false}
-            dashness={false}
-            zIndex={1}
-            startAnchor="top"
-            endAnchor="bottom"
-          />
-        ))}
         {/* Main Box */}
         <div
           id="main-box-xarrow"
