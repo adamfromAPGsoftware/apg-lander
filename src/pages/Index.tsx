@@ -19,9 +19,9 @@ const Index = () => {
       <Hero />
       <TargetAudience />
       <AISystem />
+      <ValueProposition />
       <ROICalculator />
       <LiveAppPreview />
-      <ValueProposition />
       <SocialProof />
       <WhyDifferent />
       <ProcessSteps />
