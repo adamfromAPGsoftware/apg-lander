@@ -18,7 +18,6 @@ const Navbar = () => {
           <a href="#ai-system" className="text-sm hover:text-brand-green transition-colors">AI System</a>
           <a href="#ai-agents" className="text-sm hover:text-brand-green transition-colors">Agents</a>
           <a href="#live-app-preview" className="text-sm hover:text-brand-green transition-colors">Live Preview</a>
-          <a href="#roi-calculator" className="text-sm hover:text-brand-green transition-colors">Calculator</a>
         </div>
         
         <div>

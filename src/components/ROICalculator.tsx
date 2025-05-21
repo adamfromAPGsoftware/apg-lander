@@ -82,13 +82,6 @@ const ROICalculator = () => {
   return (
     <section id="roi-calculator" className="py-16 md:py-24 bg-[#111] rounded-xl my-16 max-width">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What's Tool Chaos Costing You?</h2>
-          <p className="text-lg text-gray-300">
-            Still paying for multiple tools and manually tracking tasks across different platforms?
-          </p>
-        </div>
-
         <div className="bg-black p-6 md:p-10 rounded-xl border border-gray-800 animate-fade-in animation-delay-200">
           <div className="flex items-center gap-2 mb-6">
             <Calculator className="text-brand-green" />
@@ -189,7 +182,7 @@ const ROICalculator = () => {
               className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-8 whitespace-normal break-words max-w-xs w-full mx-auto md:max-w-none md:w-auto"
               onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}
             >
-              🔥 See What You Could Have Instead
+              See What You Could Have Instead
             </Button>
           </div>
         </div>

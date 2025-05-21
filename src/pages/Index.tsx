@@ -26,7 +26,6 @@ const Index = () => {
       <ValueProposition />
       <LiveAppPreview />
       <SocialProof />
-      <ROICalculator />
       <WhyDifferent />
       <ProcessSteps />
       <CallToAction />
