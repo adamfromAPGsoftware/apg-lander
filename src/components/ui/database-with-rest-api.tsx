@@ -142,7 +142,7 @@ const DatabaseWithRestApi = ({
                 cx: [line.x1, line.x2],
                 cy: [line.y1, line.y2],
               }}
-              transition={{ duration: 1.6, repeat: Infinity, delay: i * 0.08 }}
+              transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
             />
           </React.Fragment>
         ))}
@@ -172,7 +172,7 @@ const DatabaseWithRestApi = ({
                 cx: [line.x1, line.x2],
                 cy: [line.y1, line.y2],
               }}
-              transition={{ duration: 1.6, repeat: Infinity, delay: i * 0.08 }}
+              transition={{ duration: 4.5, repeat: Infinity, delay: i * 0.08 }}
             />
           </React.Fragment>
         ))}
