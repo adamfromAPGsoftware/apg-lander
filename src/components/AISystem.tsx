@@ -2,7 +2,7 @@ import React from 'react';
 import AISystemAnimation from "./AISystemAnimation";
 import DatabaseWithRestApi from "@/components/ui/database-with-rest-api";
 
-const Features = () => {
+const AISystem = () => {
   const featuresList = [
     "Clients, Companies, Leads",
     "Dashboards, Projects, Invoicing",
@@ -31,4 +31,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default AISystem;
