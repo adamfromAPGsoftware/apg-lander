@@ -35,6 +35,16 @@ const DatabaseWithRestApi = ({
   const titleRef = useRef<HTMLDivElement | null>(null);
   const [lines, setLines] = useState<{ x1: number; y1: number; x2: number; y2: number }[]>([]);
 
+  // AI Agents badges
+  const aiAgents = [
+    { label: "AI Task Agent" },
+    { label: "AI Social Media Agent" },
+    { label: "AI Proposal Agent" },
+    { label: "AI Finance Agent" },
+  ];
+  const agentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [agentLines, setAgentLines] = useState<{ x1: number; y1: number; x2: number; y2: number }[]>([]);
+
   useEffect(() => {
     // Calculate positions after render
     const newLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
@@ -62,6 +72,33 @@ const DatabaseWithRestApi = ({
     });
     setLines(newLines);
   }, [badges]);
+
+  useEffect(() => {
+    if (!containerRef.current || !titleRef.current) return;
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const titleRect = titleRef.current.getBoundingClientRect();
+    const titleBottomCenter = {
+      x: titleRect.left + titleRect.width / 2 - containerRect.left,
+      y: titleRect.bottom - containerRect.top,
+    };
+    const newAgentLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+    agentRefs.current.forEach((agent, i) => {
+      if (agent) {
+        const agentRect = agent.getBoundingClientRect();
+        const agentCenter = {
+          x: agentRect.left + agentRect.width / 2 - containerRect.left,
+          y: agentRect.top + agentRect.height / 2 - containerRect.top,
+        };
+        newAgentLines.push({
+          x1: titleBottomCenter.x,
+          y1: titleBottomCenter.y,
+          x2: agentCenter.x,
+          y2: agentCenter.y,
+        });
+      }
+    });
+    setAgentLines(newAgentLines);
+  }, [aiAgents.length]);
 
   return (
     <div
@@ -94,6 +131,36 @@ const DatabaseWithRestApi = ({
               style={{ opacity: 0.7 }}
             />
             {/* Data pulse animation */}
+            <motion.circle
+              r={5}
+              fill="#90F23C"
+              style={{ filter: "drop-shadow(0 0 8px #90F23C)" }}
+              initial={{ opacity: 0, cx: line.x1, cy: line.y1 }}
+              animate={{
+                opacity: [0, 1, 0.7, 0],
+                scale: [0.7, 1.1, 0.7],
+                cx: [line.x1, line.x2],
+                cy: [line.y1, line.y2],
+              }}
+              transition={{ duration: 1.6, repeat: Infinity, delay: i * 0.08 }}
+            />
+          </React.Fragment>
+        ))}
+        {/* AI Agent lines */}
+        {agentLines.map((line, i) => (
+          <React.Fragment key={"agent-" + i}>
+            <motion.line
+              x1={line.x1}
+              y1={line.y1}
+              x2={line.x2}
+              y2={line.y2}
+              stroke="#90F23C"
+              strokeWidth={1}
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.7, delay: i * 0.04 }}
+              style={{ opacity: 0.7 }}
+            />
             <motion.circle
               r={5}
               fill="#90F23C"
@@ -155,23 +222,41 @@ const DatabaseWithRestApi = ({
             );
           })}
         </div>
-        {/* Main Box */}
+        {/* AI Knowledge Base Badge (moved above agents) */}
+        <div
+          id="main-box-title-xarrow"
+          className="z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-4 py-2 mb-8 mt-2"
+          ref={titleRef}
+        >
+          <SparklesIcon className="size-3" />
+          <span className="ml-2 text-base font-semibold">
+            {title ? title : "AI Knowledge Base"}
+          </span>
+        </div>
+        {/* AI Agents Section */}
+        <div className="flex flex-col items-center mt-2 w-full">
+          <h3 className="text-xl font-bold mb-4 text-brand-green">AI Agents</h3>
+          <div className="flex flex-wrap justify-center gap-6 w-full">
+            {aiAgents.map((agent, i) => (
+              <div
+                key={agent.label}
+                ref={el => (agentRefs.current[i] = el)}
+                className="relative flex flex-col items-center min-h-[36px] justify-center font-semibold shadow-sm bg-[#18181B] border border-gray-800 rounded-lg text-base text-white px-6 py-3"
+                style={{ zIndex: 2 }}
+              >
+                <span className="flex items-center gap-2">
+                  {agent.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Main Box (now without title badge) */}
         <div
           id="main-box-xarrow"
           ref={mainBoxRef}
-          className="mt-10 flex w-full max-w-[600px] flex-col items-center"
+          className="mt-16 flex w-full max-w-[600px] flex-col items-center"
         >
-          {/* Box Title inside Main Box (static) */}
-          <div
-            id="main-box-title-xarrow"
-            className="z-20 flex items-center justify-center rounded-lg border bg-[#101112] px-2 py-1 mb-2 mt-2"
-            ref={titleRef}
-          >
-            <SparklesIcon className="size-3" />
-            <span className="ml-2 text-[10px]">
-              {title ? title : "AI Knowledge Base"}
-            </span>
-          </div>
           {/* bottom shadow */}
           <div className="absolute -bottom-4 h-[100px] w-[62%] rounded-lg bg-accent/30" />
           {/* box outter circle */}
