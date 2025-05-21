@@ -21,8 +21,8 @@ const Index = () => {
       <AISystem />
       <ValueProposition />
       <LiveAppPreview />
-      <ROICalculator />
       <SocialProof />
+      <ROICalculator />
       <WhyDifferent />
       <ProcessSteps />
       <CallToAction />
