@@ -46,6 +46,30 @@ const DatabaseWithRestApi = ({
   const [agentLines, setAgentLines] = useState<{ x1: number; y1: number; x2: number; y2: number }[]>([]);
   const [agentToMainBoxLines, setAgentToMainBoxLines] = useState<{ x1: number; y1: number; x2: number; y2: number }[]>([]);
 
+  const crmCircleRef = useRef<HTMLDivElement | null>(null);
+  const badgesRowRef = useRef<HTMLDivElement | null>(null);
+  const [dataPath, setDataPath] = useState<string>("");
+  const [dataLabelPos, setDataLabelPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  // Pulse animation for Data path
+  const dataPulseRef = useRef<SVGCircleElement | null>(null);
+  useEffect(() => {
+    if (!dataPath || !dataPulseRef.current) return;
+    const path = document.querySelector('path[d="' + dataPath + '"]') as SVGPathElement;
+    if (!path || !('getTotalLength' in path)) return;
+    let frame: number;
+    const len = path.getTotalLength();
+    const animate = () => {
+      const t = ((performance.now() / 3000) % 1);
+      const pt = path.getPointAtLength(t * len);
+      dataPulseRef.current!.setAttribute('cx', pt.x.toString());
+      dataPulseRef.current!.setAttribute('cy', pt.y.toString());
+      frame = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => cancelAnimationFrame(frame);
+  }, [dataPath]);
+
   useEffect(() => {
     // Calculate positions after render
     const newLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
@@ -124,6 +148,37 @@ const DatabaseWithRestApi = ({
     });
     setAgentToMainBoxLines(newAgentToMainBoxLines);
   }, [aiAgents.length]);
+
+  useEffect(() => {
+    // Data segmented path calculation (straight lines)
+    if (!crmCircleRef.current || !badgesRowRef.current || !containerRef.current) return;
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const crmRect = crmCircleRef.current.getBoundingClientRect();
+    const badgesRect = badgesRowRef.current.getBoundingClientRect();
+    const start = {
+      x: crmRect.left + crmRect.width / 2 - containerRect.left,
+      y: crmRect.top + crmRect.height - containerRect.top,
+    };
+    const end = {
+      x: badgesRect.left + badgesRect.width / 2 - containerRect.left,
+      y: badgesRect.top - containerRect.top,
+    };
+    const containerWidth = containerRect.width;
+    const containerHeight = containerRect.height;
+    // 1. Down from CRM
+    const downY = start.y + 40;
+    // 2. Left to edge
+    const leftX = 0; // flush with left edge
+    // 3. Up above container
+    const upY = Math.max(0, badgesRect.top - containerRect.top - 260); // go even higher
+    // 4. In to center above badges
+    const centerX = end.x;
+    // 5. Down to badges
+    const path = `M ${start.x},${start.y} L ${start.x},${downY} L ${leftX},${downY} L ${leftX},${upY} L ${centerX},${upY} L ${centerX},${end.y}`;
+    setDataPath(path);
+    // Label at the top horizontal segment
+    setDataLabelPos({ x: (leftX + centerX) / 2, y: upY });
+  }, [badges, aiAgents.length]);
 
   return (
     <div
@@ -231,11 +286,55 @@ const DatabaseWithRestApi = ({
             />
           </React.Fragment>
         ))}
+        {/* Data arc path and pulse */}
+        {dataPath && (
+          <>
+            <motion.path
+              d={dataPath}
+              stroke="#90F23C"
+              strokeWidth={2}
+              fill="none"
+              strokeDasharray="6 6"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.2 }}
+              style={{ opacity: 0.5 }}
+            />
+            {/* Pulse animation along path (improved) */}
+            <motion.circle
+              ref={dataPulseRef}
+              r={7}
+              fill="#90F23C"
+              style={{ filter: "drop-shadow(0 0 12px #90F23C)" }}
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{
+                opacity: [0, 1, 0.7, 0],
+                scale: [0.7, 1.1, 0.7],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            {/* Data label at midpoint */}
+            <text
+              x={dataLabelPos.x}
+              y={dataLabelPos.y - 8}
+              textAnchor="middle"
+              fill="#90F23C"
+              fontSize="1.1rem"
+              fontWeight="bold"
+              style={{ filter: "drop-shadow(0 0 6px #90F23C)" }}
+            >
+              Data
+            </text>
+          </>
+        )}
       </svg>
       {/* Grouped content container */}
       <div className="w-full flex flex-col items-center relative z-20">
         {/* Badges Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-0 mb-8 w-full px-4 place-items-center">
+        <div
+          ref={badgesRowRef}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-0 mb-8 w-full px-4 place-items-center"
+        >
           {badges.filter(badge => ![
             "Timesheets",
             "Reports",
@@ -332,6 +431,7 @@ const DatabaseWithRestApi = ({
               ]
             }}
             transition={{ duration: 2.5, repeat: Infinity }}
+            ref={crmCircleRef}
           >
             {circleText ? circleText : "CRM"}
           </motion.div>
