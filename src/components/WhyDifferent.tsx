@@ -1,34 +1,25 @@
-
 import React from 'react';
 
 const WhyDifferent = () => {
   const differentiators = [
     {
-      title: "You own your system",
-      description: "No ongoing subscriptions or per-seat pricing. Pay once, own forever."
+      title: "Break Free from SaaS Overload",
+      description: "Eliminate $3,000+/month in SaaS subscriptions and manual processes by replacing them with a single streamlined system."
     },
     {
-      title: "Tailored to your workflows",
-      description: "Built around your business processes, not forcing you into rigid templates."
+      title: "AI That Understands Your Business",
+      description: "Sync all your operations with AI-powered automation built around your actual workflows—not generic templates."
     },
     {
-      title: "Built by experts",
-      description: "Our team has launched over 60+ custom tools for businesses of all sizes."
-    },
-    {
-      title: "Consolidates your entire stack",
-      description: "Replace 5-10 separate tools with one cohesive system."
-    },
-    {
-      title: "Delivers real ROI — fast",
-      description: "Average client sees positive ROI within the first quarter of use."
+      title: "One Tool to Run It All",
+      description: "Ditch the 10+ tools. Get a fully tailored internal system designed specifically to manage your entire business from one place."
     }
   ];
 
   return (
     <section id="why-different" className="py-16 md:py-24 bg-[#111] rounded-xl max-width">
       <div className="text-center mb-12 animate-fade-in">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Not Another CRM. Not Another Subscription.</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Why We're Different</h2>
       </div>
       
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
