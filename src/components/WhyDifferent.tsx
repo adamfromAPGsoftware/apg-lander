@@ -5,13 +5,13 @@ import { ReactNode } from 'react'
 function WhyDifferent() {
     return (
         <section className="py-16 md:py-32">
-            <div className="@container mx-auto max-w-5xl px-6">
+            <div className="@container mx-auto px-6">
                 <div className="text-center">
                     <h2 className="text-5xl font-bold mb-4">Why This Tool Is Different</h2>
                     <p className="mt-4 text-xl text-gray-300">Not just software — this is the last internal system your business will ever need.</p>
                 </div>
-                <div className="mx-auto mt-8 flex flex-col md:flex-row gap-10 md:mt-16 max-w-5xl justify-center items-stretch">
-                    <Card className="flex-1 group border-0 bg-[#222] shadow-none flex flex-col items-center rounded-2xl p-8">
+                <div className="mx-auto mt-8 flex flex-col md:flex-row w-full gap-10 md:mt-16 justify-center items-stretch">
+                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8">
                         <CardHeader className="pb-3 flex flex-col items-center">
                             <div className="mb-8">
                                 <CardDecorator>
@@ -22,7 +22,7 @@ function WhyDifferent() {
                         </CardHeader>
                         <CardContent />
                     </Card>
-                    <Card className="flex-1 group border-0 bg-[#222] shadow-none flex flex-col items-center rounded-2xl p-8">
+                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8">
                         <CardHeader className="pb-3 flex flex-col items-center">
                             <div className="mb-8">
                                 <CardDecorator>
@@ -33,7 +33,7 @@ function WhyDifferent() {
                         </CardHeader>
                         <CardContent />
                     </Card>
-                    <Card className="flex-1 group border-0 bg-[#222] shadow-none flex flex-col items-center rounded-2xl p-8">
+                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8">
                         <CardHeader className="pb-3 flex flex-col items-center">
                             <div className="mb-8">
                                 <CardDecorator>
