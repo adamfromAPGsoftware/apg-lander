@@ -180,6 +180,66 @@ const DatabaseWithRestApi = ({
     setDataLabelPos({ x: (leftX + centerX) / 2, y: upY });
   }, [badges, aiAgents.length]);
 
+  // Refs for node pulses
+  const nodePulseRefs = useRef<(SVGCircleElement | null)[]>([]);
+  const agentPulseRefs = useRef<(SVGCircleElement | null)[]>([]);
+  const agentToMainPulseRefs = useRef<(SVGCircleElement | null)[]>([]);
+
+  // Animate node pulses to always track the line
+  useEffect(() => {
+    let frames: number[] = [];
+    nodePulseRefs.current.forEach((el, i) => {
+      if (!el || !lines[i]) return;
+      const animate = () => {
+        const t = ((performance.now() / 3000 + i * 0.2) % 1);
+        const { x1, y1, x2, y2 } = lines[i];
+        const cx = x1 + (x2 - x1) * t;
+        const cy = y1 + (y2 - y1) * t;
+        el.setAttribute('cx', cx.toString());
+        el.setAttribute('cy', cy.toString());
+        frames[i] = requestAnimationFrame(animate);
+      };
+      animate();
+    });
+    return () => frames.forEach(f => cancelAnimationFrame(f));
+  }, [lines]);
+
+  useEffect(() => {
+    let frames: number[] = [];
+    agentPulseRefs.current.forEach((el, i) => {
+      if (!el || !agentLines[i]) return;
+      const animate = () => {
+        const t = ((performance.now() / 3000 + i * 0.2) % 1);
+        const { x1, y1, x2, y2 } = agentLines[i];
+        const cx = x1 + (x2 - x1) * t;
+        const cy = y1 + (y2 - y1) * t;
+        el.setAttribute('cx', cx.toString());
+        el.setAttribute('cy', cy.toString());
+        frames[i] = requestAnimationFrame(animate);
+      };
+      animate();
+    });
+    return () => frames.forEach(f => cancelAnimationFrame(f));
+  }, [agentLines]);
+
+  useEffect(() => {
+    let frames: number[] = [];
+    agentToMainPulseRefs.current.forEach((el, i) => {
+      if (!el || !agentToMainBoxLines[i]) return;
+      const animate = () => {
+        const t = ((performance.now() / 3000 + i * 0.2) % 1);
+        const { x1, y1, x2, y2 } = agentToMainBoxLines[i];
+        const cx = x1 + (x2 - x1) * t;
+        const cy = y1 + (y2 - y1) * t;
+        el.setAttribute('cx', cx.toString());
+        el.setAttribute('cy', cy.toString());
+        frames[i] = requestAnimationFrame(animate);
+      };
+      animate();
+    });
+    return () => frames.forEach(f => cancelAnimationFrame(f));
+  }, [agentToMainBoxLines]);
+
   return (
     <div
       ref={containerRef}
@@ -212,15 +272,14 @@ const DatabaseWithRestApi = ({
             />
             {/* Data pulse animation */}
             <motion.circle
+              ref={el => (nodePulseRefs.current[i] = el)}
               r={5}
               fill="#90F23C"
               style={{ filter: "drop-shadow(0 0 8px #90F23C)" }}
-              initial={{ opacity: 0, cx: line.x1, cy: line.y1, scale: 0.7 }}
+              initial={{ opacity: 0, scale: 0.7 }}
               animate={{
                 opacity: [0, 1, 0.7, 0],
                 scale: [0.7, 1.1, 0.7],
-                cx: [line.x1, line.x2],
-                cy: [line.y1, line.y2],
               }}
               transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
             />
@@ -242,15 +301,14 @@ const DatabaseWithRestApi = ({
               style={{ opacity: 0.7 }}
             />
             <motion.circle
+              ref={el => (agentPulseRefs.current[i] = el)}
               r={5}
               fill="#90F23C"
               style={{ filter: "drop-shadow(0 0 8px #90F23C)" }}
-              initial={{ opacity: 0, cx: line.x1, cy: line.y1, scale: 0.7 }}
+              initial={{ opacity: 0, scale: 0.7 }}
               animate={{
                 opacity: [0, 1, 0.7, 0],
                 scale: [0.7, 1.1, 0.7],
-                cx: [line.x1, line.x2],
-                cy: [line.y1, line.y2],
               }}
               transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
             />
@@ -272,15 +330,14 @@ const DatabaseWithRestApi = ({
               style={{ opacity: 0.7 }}
             />
             <motion.circle
+              ref={el => (agentToMainPulseRefs.current[i] = el)}
               r={5}
               fill="#90F23C"
               style={{ filter: "drop-shadow(0 0 8px #90F23C)" }}
-              initial={{ opacity: 0, cx: line.x1, cy: line.y1, scale: 0.7 }}
+              initial={{ opacity: 0, scale: 0.7 }}
               animate={{
                 opacity: [0, 1, 0.7, 0],
                 scale: [0.7, 1.1, 0.7],
-                cx: [line.x1, line.x2],
-                cy: [line.y1, line.y2],
               }}
               transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
             />
