@@ -31,19 +31,19 @@ const TargetAudience = () => {
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {audiences.map((audience, index) => (
-          <div
-            key={index}
-            className="bg-[#111] p-6 rounded-xl border border-gray-800 text-center animate-fade-in"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <div className="flex justify-center mb-4">
+            <div 
+              key={index}
+              className="bg-[#111] p-6 rounded-xl border border-gray-800 text-center animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="flex justify-center mb-4">
               <div className="bg-brand-green bg-opacity-20 rounded-full p-3 w-16 h-16 flex items-center justify-center">
                 <span className="text-4xl">{audience.icon}</span>
+                </div>
               </div>
+              <h3 className="text-xl font-bold mb-3">{audience.title}</h3>
+              <p className="text-gray-300">{audience.description}</p>
             </div>
-            <h3 className="text-xl font-bold mb-3">{audience.title}</h3>
-            <p className="text-gray-300">{audience.description}</p>
-          </div>
         ))}
       </div>
     </section>

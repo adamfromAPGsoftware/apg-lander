@@ -185,7 +185,7 @@ const ROICalculator = () => {
           </div>
           
           <div className="text-center">
-            <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-8">
+            <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-8" onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}>
               🔥 See What You Could Have Instead
             </Button>
           </div>

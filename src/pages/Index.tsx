@@ -6,8 +6,9 @@ import LiveAppPreview from '@/components/LiveAppPreview';
 import ValueProposition from '@/components/ValueProposition';
 import SocialProof from '@/components/SocialProof';
 import AISystem from '@/components/AISystem';
-import { Features as WhyDifferent } from '@/components/ui/features-2';
 import TargetAudience from '@/components/TargetAudience';
+import HowItWorks from '@/components/HowItWorks';
+import WhyDifferent from '@/components/WhyDifferent';
 import { AIAgents } from '@/components/ui/features-8';
 import ProcessSteps from '@/components/ProcessSteps';
 import CallToAction from '@/components/CallToAction';
@@ -19,6 +20,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <TargetAudience />
+      <HowItWorks />
       <AISystem />
       <AIAgents />
       <ValueProposition />

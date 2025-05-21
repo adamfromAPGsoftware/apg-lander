@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { ReactNode } from 'react'
- import { Sparkles, Settings2, Zap } from 'lucide-react'
+import { Sparkles, Settings2, Zap } from 'lucide-react'
 
 const CardDecorator = ({ children }: { children: ReactNode }) => (
     <div aria-hidden className="relative mx-auto size-36 [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]">
