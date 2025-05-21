@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Footer = () => {
@@ -17,6 +16,7 @@ const Footer = () => {
           <p className="text-gray-400">
             Custom business software, built in 14 days.
           </p>
+          <p className="text-gray-500 text-xs mt-2">1 Sussex Street, Barangaroo, NSW 2000</p>
         </div>
         
         <div>
@@ -50,6 +50,9 @@ const Footer = () => {
       
       <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
         <p>&copy; {new Date().getFullYear()} APG Software. All rights reserved.</p>
+        <p className="mt-2 text-xs text-gray-500 flex items-center justify-center gap-1">
+          made with <span className="text-red-500">♥</span> in Sydney, Australia
+        </p>
       </div>
     </footer>
   );

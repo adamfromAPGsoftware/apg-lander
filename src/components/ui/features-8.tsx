@@ -3,7 +3,7 @@ import { ClipboardList, Handshake, Megaphone, FileText, PiggyBank, Search } from
 
 export function AIAgents() {
     return (
-        <section className="bg-black py-16 md:py-32">
+        <section id="ai-agents" className="bg-black py-16 md:py-32">
             <div className="mx-auto max-w-3xl lg:max-w-5xl px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold mb-4">AI Agents</h2>
