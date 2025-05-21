@@ -13,7 +13,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-16 md:py-24 max-width">
+    <section id="features" className="py-16 md:py-24 pb-28 md:pb-36 max-width">
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Everything You Need, Nothing You Don't</h2>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
@@ -21,7 +21,7 @@ const Features = () => {
         </p>
       </div>
       
-      <div className="flex flex-col items-center mb-12">
+      <div className="flex flex-col items-center">
         <DatabaseWithRestApi
           badges={["Clients", "Projects", "Tasks", "Invoicing", "Leads", "Bills", "Transactions", "Suppliers", "Timesheets", "Reports", "Proposals", "Scope Docs", "Messages", "Announcements", "Companies"]}
           buttonTexts={{ first: "LegionDev", second: "v2_updates" }}
