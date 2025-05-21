@@ -20,8 +20,8 @@ const Index = () => {
       <TargetAudience />
       <AISystem />
       <ValueProposition />
-      <ROICalculator />
       <LiveAppPreview />
+      <ROICalculator />
       <SocialProof />
       <WhyDifferent />
       <ProcessSteps />
