@@ -6,7 +6,7 @@ import LiveAppPreview from '@/components/LiveAppPreview';
 import ValueProposition from '@/components/ValueProposition';
 import SocialProof from '@/components/SocialProof';
 import AISystem from '@/components/AISystem';
-import WhyDifferent from '@/components/WhyDifferent';
+import { Features as WhyDifferent } from '@/components/ui/features-2';
 import TargetAudience from '@/components/TargetAudience';
 import { AIAgents } from '@/components/ui/features-8';
 import ProcessSteps from '@/components/ProcessSteps';
@@ -20,12 +20,12 @@ const Index = () => {
       <Hero />
       <TargetAudience />
       <AISystem />
+      <AIAgents />
       <ValueProposition />
       <LiveAppPreview />
       <SocialProof />
       <ROICalculator />
       <WhyDifferent />
-      <AIAgents />
       <ProcessSteps />
       <CallToAction />
       <Footer />
