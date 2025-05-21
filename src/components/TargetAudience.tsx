@@ -1,27 +1,26 @@
 import React from 'react';
-import { Briefcase, Target, Construction, Users } from "lucide-react";
 
 const TargetAudience = () => {
   const audiences = [
     {
-      icon: Construction,
-      title: "Construction & Field Ops",
-      description: "Streamline project management, team coordination, and client communications."
+      icon: '🧰',
+      title: "+You're Running a Service–Based Business",
+      description: "Agencies, consultants, construction firms and other operators who are juggling clients, projects, and internal workflows across too many tools."
     },
     {
-      icon: Target,
-      title: "Agencies & Creative Teams",
-      description: "Manage clients, projects, and deliverables in one centralized hub."
+      icon: '💸',
+      title: "You're Spending $3,000+/Month on SaaS Tools",
+      description: "You're paying for project management, CRM, quoting, chat, and docs tools — but none of them actually work together or reflect your real processes."
     },
     {
-      icon: Briefcase,
-      title: "Consulting Firms",
-      description: "Track client engagements, deliverables, and internal knowledge."
+      icon: '🤖',
+      title: "You Want to Automate, But Nothing's Ready",
+      description: "You know AI could save you time, but your systems are too scattered and unstructured for it to do anything useful."
     },
     {
-      icon: Users,
-      title: "Internal Ops & Automation Teams",
-      description: "Build workflows and systems that scale with your organization."
+      icon: '🧠',
+      title: "You Need One Smart System That Just Works",
+      description: "A single, AI-powered platform tailored to your business — built fast, easy to use, and ready to evolve as you grow."
     }
   ];
 
@@ -29,31 +28,23 @@ const TargetAudience = () => {
     <section id="target-audience" className="py-16 md:py-24 max-width">
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Who This Is For</h2>
-        <p className="text-lg md:text-xl text-brand-green font-semibold max-w-2xl mx-auto">
-          Sick of $3000+/month of SaaS Subscriptions and want to be AI First adopters?
-        </p>
       </div>
-      
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {audiences.map((audience, index) => {
-          const Icon = audience.icon;
-          
-          return (
-            <div 
-              key={index}
-              className="bg-[#111] p-6 rounded-xl border border-gray-800 text-center animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex justify-center mb-4">
-                <div className="bg-brand-green bg-opacity-20 rounded-full p-3">
-                  <Icon className="h-8 w-8 text-brand-green" />
-                </div>
+        {audiences.map((audience, index) => (
+          <div
+            key={index}
+            className="bg-[#111] p-6 rounded-xl border border-gray-800 text-center animate-fade-in"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
+            <div className="flex justify-center mb-4">
+              <div className="bg-brand-green bg-opacity-20 rounded-full p-3 w-16 h-16 flex items-center justify-center">
+                <span className="text-4xl">{audience.icon}</span>
               </div>
-              <h3 className="text-xl font-bold mb-3">{audience.title}</h3>
-              <p className="text-gray-300">{audience.description}</p>
             </div>
-          );
-        })}
+            <h3 className="text-xl font-bold mb-3">{audience.title}</h3>
+            <p className="text-gray-300">{audience.description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
