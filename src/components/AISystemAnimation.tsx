@@ -46,12 +46,12 @@ const nodes = [
       height: 70,
       textAlign: 'center' as React.CSSProperties['textAlign'],
       fontWeight: 'bold' as React.CSSProperties['fontWeight'],
-      color: '#fff',
+      color: 'hsl(var(--foreground))',
       borderRadius: 20,
       boxShadow: '0 0 24px 4px #90F23C55',
       border: '2px solid #90F23C',
       fontSize: 20,
-      background: 'transparent',
+      background: 'hsl(var(--background))',
     },
   },
   {
@@ -64,12 +64,12 @@ const nodes = [
       height: 70,
       textAlign: 'center' as React.CSSProperties['textAlign'],
       fontWeight: 'bold' as React.CSSProperties['fontWeight'],
-      color: '#fff',
+      color: 'hsl(var(--foreground))',
       borderRadius: 20,
       boxShadow: '0 0 24px 4px #90F23C33',
       border: '2px solid #90F23C',
       fontSize: 18,
-      background: 'transparent',
+      background: 'hsl(var(--background))',
     },
   },
   {
@@ -81,12 +81,12 @@ const nodes = [
       width: 110,
       height: 50,
       textAlign: 'center' as React.CSSProperties['textAlign'],
-      color: '#fff',
+      color: 'hsl(var(--foreground))',
       borderRadius: 16,
-      border: '2px solid #334155',
+      border: '2px solid hsl(var(--border))',
       fontWeight: 'bold' as React.CSSProperties['fontWeight'],
       fontSize: 16,
-      background: 'transparent',
+      background: 'hsl(var(--card))',
     },
   },
   {
@@ -98,12 +98,12 @@ const nodes = [
       width: 110,
       height: 50,
       textAlign: 'center' as React.CSSProperties['textAlign'],
-      color: '#fff',
+      color: 'hsl(var(--foreground))',
       borderRadius: 16,
-      border: '2px solid #334155',
+      border: '2px solid hsl(var(--border))',
       fontWeight: 'bold' as React.CSSProperties['fontWeight'],
       fontSize: 16,
-      background: 'transparent',
+      background: 'hsl(var(--card))',
     },
   },
   // Mini AI Agents around AI System
@@ -116,11 +116,11 @@ const nodes = [
       width: 130,
       height: 40,
       fontSize: 13,
-      color: '#fff',
+      color: 'hsl(var(--foreground))',
       borderRadius: 14,
       border: '2px solid #90F23C',
       fontWeight: 'bold' as React.CSSProperties['fontWeight'],
-      background: 'transparent',
+      background: 'hsl(var(--card))',
     },
   },
   {
@@ -132,11 +132,11 @@ const nodes = [
       width: 110,
       height: 40,
       fontSize: 13,
-      color: '#fff',
+      color: 'hsl(var(--foreground))',
       borderRadius: 14,
       border: '2px solid #90F23C',
       fontWeight: 'bold' as React.CSSProperties['fontWeight'],
-      background: 'transparent',
+      background: 'hsl(var(--card))',
     },
   },
   {
@@ -148,11 +148,11 @@ const nodes = [
       width: 150,
       height: 40,
       fontSize: 13,
-      color: '#fff',
+      color: 'hsl(var(--foreground))',
       borderRadius: 14,
       border: '2px solid #90F23C',
       fontWeight: 'bold' as React.CSSProperties['fontWeight'],
-      background: 'transparent',
+      background: 'hsl(var(--card))',
     },
   },
 ];
@@ -174,7 +174,7 @@ const edges = [
 
 const AISystemAnimation: React.FC = () => {
   return (
-    <div style={{ width: '100%', height: 650, background: '#101112', borderRadius: 16 }}>
+    <div style={{ width: '100%', height: 650, background: 'hsl(var(--muted))', borderRadius: 16 }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -190,7 +190,7 @@ const AISystemAnimation: React.FC = () => {
         selectionOnDrag={false}
         proOptions={{ hideAttribution: true }}
       >
-        <Background color="#222" gap={24} />
+        <Background color="hsl(var(--border))" gap={24} />
       </ReactFlow>
     </div>
   );

@@ -9,14 +9,14 @@ import AISystem from '@/components/AISystem';
 import TargetAudience from '@/components/TargetAudience';
 import HowItWorks from '@/components/HowItWorks';
 import WhyDifferent from '@/components/WhyDifferent';
-import { AIAgents } from '@/components/ui/features-8';
+import AIAgents from '@/components/AIAgents';
 import ProcessSteps from '@/components/ProcessSteps';
 import CallToAction from '@/components/CallToAction';
 import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
       <TargetAudience />

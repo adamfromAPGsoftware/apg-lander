@@ -28,7 +28,7 @@ const SocialProof = () => {
     return Array(5).fill(0).map((_, i) => (
       <svg 
         key={i}
-        className={`w-5 h-5 ${i < count ? 'text-yellow-400' : 'text-gray-700'}`}
+        className={`w-5 h-5 ${i < count ? 'text-yellow-400' : 'text-muted-foreground'}`}
         fill="currentColor" 
         viewBox="0 0 20 20"
       >
@@ -48,15 +48,15 @@ const SocialProof = () => {
           {renderStars(5)}
         </div>
         <p className="ml-2 text-xl font-bold">4.9/5</p>
-        <span className="mx-2 text-gray-500">|</span>
-        <p className="text-gray-300">52 verified reviews</p>
+        <span className="mx-2 text-muted-foreground">|</span>
+        <p className="text-muted-foreground">52 verified reviews</p>
       </div>
       
       <div className="grid md:grid-cols-3 gap-6">
         {reviews.map((review, index) => (
           <div 
             key={index}
-            className="bg-[#111] p-6 rounded-xl border border-gray-800 animate-fade-in"
+            className="bg-card p-6 rounded-xl border border-border animate-fade-in"
             style={{ animationDelay: `${200 + (index * 100)}ms` }}
           >
             <div className="flex mb-3">
@@ -65,7 +65,7 @@ const SocialProof = () => {
             <p className="text-lg mb-4">"{review.content}"</p>
             <div>
               <p className="font-semibold">{review.author}</p>
-              <p className="text-sm text-gray-400">{review.company}</p>
+              <p className="text-sm text-muted-foreground">{review.company}</p>
             </div>
           </div>
         ))}

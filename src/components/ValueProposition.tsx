@@ -12,7 +12,7 @@ const ValueProposition = () => {
   ];
 
   return (
-    <section id="value-proposition" className="py-16 md:py-24 bg-[#111] rounded-xl max-width">
+    <section id="value-proposition" className="py-16 md:py-24 bg-muted rounded-xl max-width">
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">One Custom System. Live in 2 Weeks.</h2>
       </div>

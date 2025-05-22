@@ -4,7 +4,7 @@ const TargetAudience = () => {
   const audiences = [
     {
       icon: '🧰',
-      title: "+You're Running a Service–Based Business",
+      title: "You're Running a Service–Based Business",
       description: "Agencies, consultants, construction firms and other operators who are juggling clients, projects, and internal workflows across too many tools."
     },
     {
@@ -33,7 +33,7 @@ const TargetAudience = () => {
         {audiences.map((audience, index) => (
             <div 
               key={index}
-              className="bg-[#111] p-6 rounded-xl border border-gray-800 text-center animate-fade-in"
+              className="bg-card p-6 rounded-xl border border-border text-center animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="flex justify-center mb-4">
@@ -42,7 +42,7 @@ const TargetAudience = () => {
                 </div>
               </div>
               <h3 className="text-xl font-bold mb-3">{audience.title}</h3>
-              <p className="text-gray-300">{audience.description}</p>
+              <p className="text-muted-foreground">{audience.description}</p>
             </div>
         ))}
       </div>

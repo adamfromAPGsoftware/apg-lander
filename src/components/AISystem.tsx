@@ -16,7 +16,7 @@ const AISystem = () => {
     <section id="ai-system" className="py-16 md:py-24 pb-28 md:pb-36 max-width">
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Train AI on your Founder's Brain, Not the Intern</h2>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
           An AI System is essential to build accurate AI Agents. We did our best to visualise how this works.
         </p>
       </div>

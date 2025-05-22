@@ -4,12 +4,12 @@ const LiveAppPreview = () => {
   return <section id="live-app-preview" className="py-16 md:py-24 max-width">
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">What You're Missing</h2>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Click through a real system you could have running in 14 days — for just $150/month in hosting.
         </p>
       </div>
       
-      <div className="relative h-[400px] md:h-[600px] rounded-xl overflow-hidden border border-gray-800 animate-fade-in animation-delay-200">
+      <div className="relative h-[400px] md:h-[600px] rounded-xl overflow-hidden border border-border animate-fade-in animation-delay-200">
         <div style={{
         backgroundImage: "url('/lovable-uploads/ba2d3931-d91a-4e96-8b9f-4b407700d059.png')",
         backgroundSize: "cover",

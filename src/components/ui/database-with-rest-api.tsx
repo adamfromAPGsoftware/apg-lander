@@ -423,7 +423,7 @@ const DatabaseWithRestApi = ({
                 key={badge + i}
                 id={`badge-xarrow-${i}`}
                 ref={el => (badgeRefs.current[i] = el)}
-                className="relative flex flex-col items-center min-h-[36px] justify-center font-semibold shadow-sm bg-[#18181B] border border-gray-800 rounded-lg text-base text-white px-4 py-2 w-full"
+                className="relative flex flex-col items-center min-h-[36px] justify-center font-semibold shadow-sm bg-card border border-border rounded-lg text-base text-foreground px-4 py-2 w-full"
                 style={{ zIndex: 2 }}
               >
                 <span className="flex items-center gap-2">
@@ -447,13 +447,13 @@ const DatabaseWithRestApi = ({
         </div>
         {/* AI Agents Section */}
         <div className="flex flex-col items-center mt-8 mb-12 w-full">
-          <h3 className="text-xl font-bold mb-4 text-white">AI Agents</h3>
+          <h3 className="text-xl font-bold mb-4 text-foreground">AI Agents</h3>
           <div className="flex flex-wrap justify-center gap-6 w-full">
             {aiAgents.map((agent, i) => (
               <div
                 key={agent.label}
                 ref={el => (agentRefs.current[i] = el)}
-                className="relative flex flex-col items-center min-h-[36px] justify-center font-semibold shadow-sm bg-[#18181B] border border-gray-800 rounded-lg text-base text-white px-6 py-3"
+                className="relative flex flex-col items-center min-h-[36px] justify-center font-semibold shadow-sm bg-card border border-border rounded-lg text-base text-foreground px-6 py-3"
                 style={{ zIndex: 2 }}
               >
                 <span className="flex items-center gap-2">
@@ -473,7 +473,7 @@ const DatabaseWithRestApi = ({
           <div className="absolute -bottom-4 h-[100px] w-[62%] rounded-lg bg-accent/30" />
           {/* box outer circle - larger, pulsing border */}
           <motion.div
-            className="absolute -bottom-16 z-30 grid h-[110px] w-[110px] place-items-center rounded-full font-semibold text-lg bg-[#141516]"
+            className="absolute -bottom-16 z-30 grid h-[110px] w-[110px] place-items-center rounded-full font-semibold text-lg bg-card text-foreground"
             style={{ border: '2px solid #90F23C', boxShadow: '0 0 0 0 #90F23C' }}
             animate={{
               boxShadow: [
@@ -496,27 +496,27 @@ const DatabaseWithRestApi = ({
           <div className="relative z-10 flex h-[150px] w-full items-center justify-center overflow-hidden rounded-lg border bg-background shadow-md">
             {/* New Badges Row */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-wrap gap-3 justify-center">
-              <div className="h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2">
+              <div className="h-7 rounded-full bg-muted px-3 text-xs border border-border flex items-center gap-2 text-muted-foreground">
                 <HeartHandshakeIcon className="size-4" />
                 <span>Project Management</span>
               </div>
-              <div className="h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2">
+              <div className="h-7 rounded-full bg-muted px-3 text-xs border border-border flex items-center gap-2 text-muted-foreground">
                 <Folder className="size-4" />
                 <span>Payroll</span>
               </div>
-              <div className="h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2">
+              <div className="h-7 rounded-full bg-muted px-3 text-xs border border-border flex items-center gap-2 text-muted-foreground">
                 <BarChart className="size-4" />
                 <span>Reporting</span>
               </div>
-              <div className="h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2">
+              <div className="h-7 rounded-full bg-muted px-3 text-xs border border-border flex items-center gap-2 text-muted-foreground">
                 <MessageCircle className="size-4" />
                 <span>Communications</span>
               </div>
-              <div className="h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2">
+              <div className="h-7 rounded-full bg-muted px-3 text-xs border border-border flex items-center gap-2 text-muted-foreground">
                 <FileText className="size-4" />
                 <span>Dashboard</span>
               </div>
-              <div className="h-7 rounded-full bg-[#101112] px-3 text-xs border flex items-center gap-2">
+              <div className="h-7 rounded-full bg-muted px-3 text-xs border border-border flex items-center gap-2 text-muted-foreground">
                 <Briefcase className="size-4" />
                 <span>Content Management</span>
               </div>
@@ -569,7 +569,7 @@ const DatabaseIcon = ({ x = "0", y = "0" }: { x: string; y: string }) => {
       height="5"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="white"
+      stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

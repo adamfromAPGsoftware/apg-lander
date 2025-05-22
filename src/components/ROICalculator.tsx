@@ -80,7 +80,7 @@ const ROICalculator = () => {
   };
 
   return (
-    <div id="roi-calculator" className="bg-black p-6 md:p-8 rounded-xl border border-gray-800 animate-fade-in w-full">
+    <div id="roi-calculator" className="bg-card p-6 md:p-8 rounded-xl border border-border animate-fade-in w-full">
       <div className="flex items-center gap-2 mb-6">
         <Calculator className="text-brand-green" />
         <h3 className="text-xl font-bold">Interactive ROI Calculator</h3>
@@ -99,7 +99,7 @@ const ROICalculator = () => {
               <Label htmlFor={`tool-${index}`} className="flex items-center justify-between w-full">
                 <span>{tool.name}</span>
                 {tool.maxCost > 0 && (
-                  <span className="text-xs md:text-sm text-gray-400 hidden xs:inline">
+                  <span className="text-xs md:text-sm text-muted-foreground hidden xs:inline">
                     ${tool.minCost}{tool.minCost !== tool.maxCost ? `-${tool.maxCost}` : ""}
                   </span>
                 )}
@@ -119,7 +119,7 @@ const ROICalculator = () => {
             step={1}
             className="mb-2"
           />
-          <p className="text-xs md:text-sm text-gray-400">{hoursWasted} hours/week</p>
+          <p className="text-xs md:text-sm text-muted-foreground">{hoursWasted} hours/week</p>
         </div>
         
         <div>
@@ -131,7 +131,7 @@ const ROICalculator = () => {
             step={1}
             className="mb-2"
           />
-          <p className="text-xs md:text-sm text-gray-400">{teamSize} team members</p>
+          <p className="text-xs md:text-sm text-muted-foreground">{teamSize} team members</p>
         </div>
       </div>
       
@@ -139,7 +139,7 @@ const ROICalculator = () => {
         <h4 className="text-lg mb-3">What's your team's average hourly rate?</h4>
         <div className="flex items-center">
           <div className="relative w-full max-w-xs">
-            <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+            <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="number"
               value={hourlyRate}
@@ -148,17 +148,17 @@ const ROICalculator = () => {
               min="0"
             />
           </div>
-          <span className="ml-3 text-xs md:text-sm text-gray-400">USD per hour</span>
+          <span className="ml-3 text-xs md:text-sm text-muted-foreground">USD per hour</span>
         </div>
       </div>
       
       <div className="bg-brand-green bg-opacity-10 rounded-lg p-6 mb-8 mt-10">
         <h4 className="text-lg font-bold text-brand-green mb-2">Your Estimated Annual Waste</h4>
         <p className="text-3xl md:text-4xl font-bold">${annualWaste.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
-        <p className="text-xs md:text-sm text-gray-400 mt-2">Based on your selections and an average hourly rate of ${hourlyRate}</p>
+        <p className="text-xs md:text-sm text-muted-foreground mt-2">Based on your selections and an average hourly rate of ${hourlyRate}</p>
         
-        <div className="mt-4 pt-4 border-t border-gray-800">
-          <div className="flex flex-col space-y-2 text-xs md:text-sm text-gray-400">
+        <div className="mt-4 pt-4 border-t border-border">
+          <div className="flex flex-col space-y-2 text-xs md:text-sm text-muted-foreground">
             <div className="flex justify-between">
               <span>SaaS Tools Cost:</span>
               <span>${saasCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
