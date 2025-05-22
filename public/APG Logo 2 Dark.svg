@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <!-- Dark rounded background -->
+  <rect x="0" y="0" width="48" height="48" fill="#111111" rx="8"/>
+  
+  <!-- APG Logo elements scaled appropriately -->
+  <g transform="translate(12, 12)">
+    <!-- Main circular design representing the logo -->
+    <circle cx="12" cy="12" r="10" fill="none" stroke="#90F23C" stroke-width="2"/>
+    
+    <!-- Central geometric pattern -->
+    <g stroke="#90F23C" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <!-- Letter A representation -->
+      <path d="M8 18 L12 10 L16 18 M9.5 15 L14.5 15"/>
+      
+      <!-- Additional geometric elements -->
+      <circle cx="12" cy="8" r="1.5" fill="#90F23C"/>
+      <circle cx="8" cy="20" r="1" fill="#90F23C"/>
+      <circle cx="16" cy="20" r="1" fill="#90F23C"/>
+      
+      <!-- Connecting lines -->
+      <path d="M12 6.5 L12 8"/>
+      <path d="M8 19 L8 20"/>
+      <path d="M16 19 L16 20"/>
+    </g>
+    
+    <!-- Corner accent dots -->
+    <circle cx="6" cy="6" r="0.8" fill="#90F23C" opacity="0.6"/>
+    <circle cx="18" cy="6" r="0.8" fill="#90F23C" opacity="0.6"/>
+    <circle cx="6" cy="18" r="0.8" fill="#90F23C" opacity="0.6"/>
+    <circle cx="18" cy="18" r="0.8" fill="#90F23C" opacity="0.6"/>
+  </g>
+</svg> 

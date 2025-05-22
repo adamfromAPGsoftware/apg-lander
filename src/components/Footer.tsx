@@ -7,9 +7,9 @@ const Footer = () => {
         {/* Left side - Logo and company info */}
         <div className="flex items-center gap-3">
           <img 
-            src="/lovable-uploads/168b5e80-e8e2-4f1c-b083-9dc3a6192668.png" 
+            src="/APG Logo 2.svg" 
             alt="APG Software Logo" 
-            className="h-6 w-6"
+            className="h-6 w-6 bg-gray-900 rounded px-0.5"
           />
           <div>
             <h3 className="font-bold text-foreground">APG Software</h3>
