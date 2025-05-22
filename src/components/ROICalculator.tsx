@@ -80,114 +80,110 @@ const ROICalculator = () => {
   };
 
   return (
-    <section id="roi-calculator" className="py-16 md:py-24 bg-[#111] rounded-xl my-16 px-0 md:px-8 w-screen max-w-none md:max-w-7xl md:mx-auto overflow-x-hidden">
-      <div className="max-w-5xl mx-auto px-0 md:px-4">
-        <div className="bg-black p-8 md:p-12 rounded-xl border border-gray-800 animate-fade-in animation-delay-200">
-          <div className="flex items-center gap-2 mb-6">
-            <Calculator className="text-brand-green" />
-            <h3 className="text-xl font-bold">Interactive ROI Calculator</h3>
-          </div>
-          
-          <div className="mb-8">
-            <h4 className="text-lg mb-3">Which tools are you currently paying for?</h4>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {saasTools.map((tool, index) => (
-                <div key={tool.name} className="flex items-center space-x-2">
-                  <Checkbox 
-                    id={`tool-${index}`} 
-                    checked={tool.checked}
-                    onCheckedChange={() => handleToolToggle(index)}
-                  />
-                  <Label htmlFor={`tool-${index}`} className="flex items-center justify-between w-full">
-                    <span>{tool.name}</span>
-                    {tool.maxCost > 0 && (
-                      <span className="text-xs text-gray-400">
-                        ${tool.minCost}{tool.minCost !== tool.maxCost ? `-${tool.maxCost}` : ""}
-                      </span>
-                    )}
-                  </Label>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="text-lg mb-3">How many hours per week do you spend on manual work?</h4>
-              <Slider 
-                value={[hoursWasted]} 
-                onValueChange={(value) => setHoursWasted(value[0])}
-                max={40}
-                step={1}
-                className="mb-2"
+    <div id="roi-calculator" className="bg-black p-6 md:p-8 rounded-xl border border-gray-800 animate-fade-in w-full">
+      <div className="flex items-center gap-2 mb-6">
+        <Calculator className="text-brand-green" />
+        <h3 className="text-xl font-bold">Interactive ROI Calculator</h3>
+      </div>
+      
+      <div className="mb-8">
+        <h4 className="text-lg mb-3">Which tools are you currently paying for?</h4>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {saasTools.map((tool, index) => (
+            <div key={tool.name} className="flex items-center space-x-2">
+              <Checkbox 
+                id={`tool-${index}`} 
+                checked={tool.checked}
+                onCheckedChange={() => handleToolToggle(index)}
               />
-              <p className="text-sm text-gray-400">{hoursWasted} hours/week</p>
+              <Label htmlFor={`tool-${index}`} className="flex items-center justify-between w-full">
+                <span>{tool.name}</span>
+                {tool.maxCost > 0 && (
+                  <span className="text-xs md:text-sm text-gray-400 hidden xs:inline">
+                    ${tool.minCost}{tool.minCost !== tool.maxCost ? `-${tool.maxCost}` : ""}
+                  </span>
+                )}
+              </Label>
             </div>
-            
-            <div>
-              <h4 className="text-lg mb-3">Team size?</h4>
-              <Slider 
-                value={[teamSize]} 
-                onValueChange={(value) => setTeamSize(value[0])}
-                max={50}
-                step={1}
-                className="mb-2"
-              />
-              <p className="text-sm text-gray-400">{teamSize} team members</p>
-            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 className="text-lg mb-3">How many hours per week do you spend on manual work?</h4>
+          <Slider 
+            value={[hoursWasted]} 
+            onValueChange={(value) => setHoursWasted(value[0])}
+            max={40}
+            step={1}
+            className="mb-2"
+          />
+          <p className="text-xs md:text-sm text-gray-400">{hoursWasted} hours/week</p>
+        </div>
+        
+        <div>
+          <h4 className="text-lg mb-3">Team size?</h4>
+          <Slider 
+            value={[teamSize]} 
+            onValueChange={(value) => setTeamSize(value[0])}
+            max={50}
+            step={1}
+            className="mb-2"
+          />
+          <p className="text-xs md:text-sm text-gray-400">{teamSize} team members</p>
+        </div>
+      </div>
+      
+      <div className="mt-8 mb-8">
+        <h4 className="text-lg mb-3">What's your team's average hourly rate?</h4>
+        <div className="flex items-center">
+          <div className="relative w-full max-w-xs">
+            <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+            <Input
+              type="number"
+              value={hourlyRate}
+              onChange={handleHourlyRateChange}
+              className="pl-10"
+              min="0"
+            />
           </div>
-          
-          <div className="mt-8 mb-8">
-            <h4 className="text-lg mb-3">What's your team's average hourly rate?</h4>
-            <div className="flex items-center">
-              <div className="relative w-full max-w-xs">
-                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
-                <Input
-                  type="number"
-                  value={hourlyRate}
-                  onChange={handleHourlyRateChange}
-                  className="pl-10"
-                  min="0"
-                />
-              </div>
-              <span className="ml-3 text-gray-400">USD per hour</span>
+          <span className="ml-3 text-xs md:text-sm text-gray-400">USD per hour</span>
+        </div>
+      </div>
+      
+      <div className="bg-brand-green bg-opacity-10 rounded-lg p-6 mb-8 mt-10">
+        <h4 className="text-lg font-bold text-brand-green mb-2">Your Estimated Annual Waste</h4>
+        <p className="text-3xl md:text-4xl font-bold">${annualWaste.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
+        <p className="text-xs md:text-sm text-gray-400 mt-2">Based on your selections and an average hourly rate of ${hourlyRate}</p>
+        
+        <div className="mt-4 pt-4 border-t border-gray-800">
+          <div className="flex flex-col space-y-2 text-xs md:text-sm text-gray-400">
+            <div className="flex justify-between">
+              <span>SaaS Tools Cost:</span>
+              <span>${saasCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
             </div>
-          </div>
-          
-          <div className="bg-brand-green bg-opacity-10 rounded-lg p-6 mb-8 mt-10">
-            <h4 className="text-lg font-bold text-brand-green mb-2">Your Estimated Annual Waste</h4>
-            <p className="text-3xl md:text-4xl font-bold">${annualWaste.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
-            <p className="text-sm text-gray-400 mt-2">Based on your selections and an average hourly rate of ${hourlyRate}</p>
-            
-            <div className="mt-4 pt-4 border-t border-gray-800">
-              <div className="flex flex-col space-y-2 text-sm text-gray-400">
-                <div className="flex justify-between">
-                  <span>SaaS Tools Cost:</span>
-                  <span>${saasCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Time Waste Cost:</span>
-                  <span>${timeCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
-                </div>
-                <div className="flex items-start mt-3 text-xs">
-                  <Info className="h-4 w-4 mr-2 flex-shrink-0 mt-0.5" />
-                  <p>Formula: Annual SaaS Cost (Avg tool cost × team size × 12 months) + Annual Time Waste (Weekly hours × team size × hourly rate × 52 weeks). Pricing data may change, resulting in a margin of error in the calculated estimate.</p>
-                </div>
-              </div>
+            <div className="flex justify-between">
+              <span>Time Waste Cost:</span>
+              <span>${timeCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
             </div>
-          </div>
-          
-          <div className="text-center">
-            <Button 
-              className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-7 px-10 md:py-7 md:px-12 whitespace-normal break-words max-w-xs w-full mx-auto md:max-w-none md:w-auto"
-              onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}
-            >
-              See What You Could Have Instead
-            </Button>
+            <div className="flex items-start mt-3 text-xs">
+              <Info className="h-4 w-4 mr-2 flex-shrink-0 mt-0.5" />
+              <p>Formula: Annual SaaS Cost (Avg tool cost × team size × 12 months) + Annual Time Waste (Weekly hours × team size × hourly rate × 52 weeks). Pricing data may change, resulting in a margin of error in the calculated estimate.</p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+      
+      <div className="text-center">
+        <Button 
+          className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-7 px-10 md:py-7 md:px-12 whitespace-normal break-words max-w-xs w-full mx-auto md:max-w-none md:w-auto"
+          onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}
+        >
+          See What You Could Have Instead
+        </Button>
+      </div>
+    </div>
   );
 };
 
