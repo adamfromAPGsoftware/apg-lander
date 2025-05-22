@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   return (
-    <nav className="w-full py-6 max-width">
-      <div className="flex items-center justify-between">
+    <nav className="w-full py-6 bg-black">
+      <div className="flex items-center justify-between max-width">
         <div className="flex items-center gap-2">
           <img 
             src="/lovable-uploads/168b5e80-e8e2-4f1c-b083-9dc3a6192668.png" 

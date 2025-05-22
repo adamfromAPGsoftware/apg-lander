@@ -42,7 +42,7 @@
   }
   
   body {
-    @apply bg-black text-white font-dm-sans;
+    @apply bg-white text-white font-dm-sans;
   }
 }
 
@@ -110,6 +110,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-foreground;
   }
 }

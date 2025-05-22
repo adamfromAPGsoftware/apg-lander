@@ -4,7 +4,7 @@ const TargetAudience = () => {
   const audiences = [
     {
       icon: '🧰',
-      title: "+You're Running a Service–Based Business",
+      title: "You're Running a Service–Based Business",
       description: "Agencies, consultants, construction firms and other operators who are juggling clients, projects, and internal workflows across too many tools."
     },
     {
@@ -27,7 +27,7 @@ const TargetAudience = () => {
   return (
     <section id="target-audience" className="py-16 md:py-24 max-width">
       <div className="text-center mb-12 animate-fade-in">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Who This Is For</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">Who This Is For</h2>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {audiences.map((audience, index) => (
