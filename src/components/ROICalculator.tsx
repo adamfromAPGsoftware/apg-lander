@@ -80,9 +80,9 @@ const ROICalculator = () => {
   };
 
   return (
-    <section id="roi-calculator" className="py-16 md:py-24 bg-[#111] rounded-xl my-16 max-width">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="bg-black p-6 md:p-10 rounded-xl border border-gray-800 animate-fade-in animation-delay-200">
+    <section id="roi-calculator" className="py-16 md:py-24 bg-[#111] rounded-xl my-16 px-0 md:px-8 w-screen max-w-none md:max-w-7xl md:mx-auto overflow-x-hidden">
+      <div className="max-w-5xl mx-auto px-0 md:px-4">
+        <div className="bg-black p-8 md:p-12 rounded-xl border border-gray-800 animate-fade-in animation-delay-200">
           <div className="flex items-center gap-2 mb-6">
             <Calculator className="text-brand-green" />
             <h3 className="text-xl font-bold">Interactive ROI Calculator</h3>
@@ -179,7 +179,7 @@ const ROICalculator = () => {
           
           <div className="text-center">
             <Button 
-              className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-8 whitespace-normal break-words max-w-xs w-full mx-auto md:max-w-none md:w-auto"
+              className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-7 px-10 md:py-7 md:px-12 whitespace-normal break-words max-w-xs w-full mx-auto md:max-w-none md:w-auto"
               onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}
             >
               See What You Could Have Instead
