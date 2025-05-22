@@ -11,36 +11,36 @@ function WhyDifferent() {
                     <p className="mt-4 text-xl text-gray-300">Not just software — this is the last internal system your business will ever need.</p>
                 </div>
                 <div className="mx-auto mt-8 flex flex-col md:flex-row w-full gap-10 md:mt-16 justify-center items-stretch">
-                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8">
-                        <CardHeader className="pb-3 flex flex-col items-center">
+                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8 w-full min-w-0">
+                        <CardHeader className="pb-3 flex flex-col items-center w-full min-w-0">
                             <div className="mb-8">
                                 <CardDecorator>
                                     <Sparkles className="h-10 w-10 text-brand-green" />
                                 </CardDecorator>
                             </div>
-                            <h3 className="mt-2 font-bold text-2xl md:text-3xl text-center">Built for AI from Day One</h3>
+                            <h3 className="mt-2 font-bold text-lg md:text-3xl text-center break-words w-full min-w-0">Built for AI from Day One</h3>
                         </CardHeader>
                         <CardContent />
                     </Card>
-                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8">
-                        <CardHeader className="pb-3 flex flex-col items-center">
+                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8 w-full min-w-0">
+                        <CardHeader className="pb-3 flex flex-col items-center w-full min-w-0">
                             <div className="mb-8">
                                 <CardDecorator>
                                     <Settings2 className="h-10 w-10 text-brand-green" />
                                 </CardDecorator>
                             </div>
-                            <h3 className="mt-2 font-bold text-2xl md:text-3xl text-center">Replaces $3,000+/Month in SaaS Tools</h3>
+                            <h3 className="mt-2 font-bold text-lg md:text-3xl text-center break-words w-full min-w-0">Replaces $3,000+/Month in SaaS Tools</h3>
                         </CardHeader>
                         <CardContent />
                     </Card>
-                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8">
-                        <CardHeader className="pb-3 flex flex-col items-center">
+                    <Card className="flex-1 basis-0 min-h-[320px] flex flex-col items-center border-0 bg-[#222] shadow-none rounded-2xl p-8 w-full min-w-0">
+                        <CardHeader className="pb-3 flex flex-col items-center w-full min-w-0">
                             <div className="mb-8">
                                 <CardDecorator>
                                     <Zap className="h-10 w-10 text-brand-green" />
                                 </CardDecorator>
                             </div>
-                            <h3 className="mt-2 font-bold text-2xl md:text-3xl text-center">Live in 2 Weeks — Yours Forever</h3>
+                            <h3 className="mt-2 font-bold text-lg md:text-3xl text-center break-words w-full min-w-0">Live in 2 Weeks — Yours Forever</h3>
                         </CardHeader>
                         <CardContent />
                     </Card>
