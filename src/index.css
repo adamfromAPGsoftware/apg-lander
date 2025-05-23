@@ -35,11 +35,6 @@
     --ring: 90 89% 59%;
 
     --radius: 0.5rem;
-    
-    /* New gradient variables for subtle depth */
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
-    --gradient-section: linear-gradient(180deg, hsl(0 0% 99%) 0%, hsl(0 0% 97%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 99%) 0%, hsl(0 0% 96%) 100%);
   }
 
   * {
@@ -47,9 +42,7 @@
   }
   
   body {
-    @apply text-foreground font-dm-sans;
-    background: var(--gradient-subtle);
-    min-height: 100vh;
+    @apply bg-background text-foreground font-dm-sans;
   }
 }
 
@@ -109,23 +102,6 @@
   
   .animate-spotlight {
     animation: spotlight 10s ease 0.5s infinite;
-  }
-  
-  /* New utility classes for subtle backgrounds */
-  .bg-gradient-subtle {
-    background: var(--gradient-subtle);
-  }
-  
-  .bg-gradient-section {
-    background: var(--gradient-section);
-  }
-  
-  .bg-gradient-card {
-    background: var(--gradient-card);
-  }
-  
-  .bg-section-alt {
-    background: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(0 0% 96%) 100%);
   }
 }
 

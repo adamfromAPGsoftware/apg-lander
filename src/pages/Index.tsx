@@ -16,43 +16,18 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
-      
-      {/* Section with subtle background */}
-      <section className="bg-gradient-section">
-        <TargetAudience />
-      </section>
-      
+      <TargetAudience />
       <HowItWorks />
-      
-      {/* Section with alternate background */}
-      <section className="bg-section-alt">
-        <AISystem />
-      </section>
-      
+      <AISystem />
       <AIAgents />
-      
-      {/* Section with subtle gradient */}
-      <section className="bg-gradient-section">
-        <ValueProposition />
-      </section>
-      
+      <ValueProposition />
       <LiveAppPreview />
-      
-      {/* Section with alternate background */}
-      <section className="bg-section-alt">
-        <SocialProof />
-      </section>
-      
+      <SocialProof />
       <WhyDifferent />
-      
-      {/* Section with subtle gradient */}
-      <section className="bg-gradient-section">
-        <ProcessSteps />
-      </section>
-      
+      <ProcessSteps />
       <CallToAction />
       <Footer />
     </div>

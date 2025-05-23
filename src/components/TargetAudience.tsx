@@ -33,7 +33,7 @@ const TargetAudience = () => {
         {audiences.map((audience, index) => (
             <div 
               key={index}
-              className="bg-gradient-card p-6 rounded-xl border border-border/50 shadow-sm text-center animate-fade-in"
+              className="bg-card p-6 rounded-xl border border-border text-center animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="flex justify-center mb-4">

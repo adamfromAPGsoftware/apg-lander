@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="py-8 border-t border-border/50 bg-gradient-section max-width">
+    <footer className="py-8 border-t border-border max-width">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
         {/* Left side - Logo and company info */}
         <div className="flex items-center gap-3">
