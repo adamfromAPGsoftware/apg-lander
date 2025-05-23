@@ -133,7 +133,7 @@ const SocialProof = () => {
         <div className="flex items-center">
           {renderStars(5)}
         </div>
-        <p className="ml-2 text-xl font-bold">4.9/5</p>
+        <p className="ml-2 text-xl font-bold">5/5</p>
         <span className="mx-2 text-muted-foreground">|</span>
         <p className="text-muted-foreground">50+ reviews</p>
         
@@ -148,7 +148,7 @@ const SocialProof = () => {
             <img src="/2021-upwork-new-logo-design.png" alt="Upwork" className="w-20 h-12 mt-1" />
           </a>
           <a 
-            href="https://www.trustpilot.com" 
+            href="https://au.trustpilot.com/review/apgsoftware.com" 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:opacity-80 transition-opacity"
