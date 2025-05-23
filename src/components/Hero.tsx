@@ -4,7 +4,7 @@ import ROICalculator from '@/components/ROICalculator';
 
 const Hero = () => {
   return (
-    <section id="hero" className="pt-8 md:pt-16 pb-16 md:pb-24 max-width">
+    <section id="hero" className="pt-8 md:pt-16 pb-16 md:pb-24 bg-gradient-subtle max-width">
       <ContainerScroll
         titleComponent={
           <>

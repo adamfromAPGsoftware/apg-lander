@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check } from "lucide-react";
 
@@ -12,12 +11,12 @@ const ValueProposition = () => {
   ];
 
   return (
-    <section id="value-proposition" className="py-16 md:py-24 bg-muted rounded-xl max-width">
+    <section id="value-proposition" className="py-16 md:py-24 max-width">
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">One Custom System. Live in 2 Weeks.</h2>
       </div>
       
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto bg-gradient-card rounded-xl p-8 border border-border/50 shadow-sm">
         <ul className="space-y-6">
           {benefits.map((benefit, index) => (
             <li 

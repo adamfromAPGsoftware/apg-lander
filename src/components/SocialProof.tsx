@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const SocialProof = () => {
@@ -56,7 +55,7 @@ const SocialProof = () => {
         {reviews.map((review, index) => (
           <div 
             key={index}
-            className="bg-card p-6 rounded-xl border border-border animate-fade-in"
+            className="bg-gradient-card p-6 rounded-xl border border-border/50 shadow-sm animate-fade-in"
             style={{ animationDelay: `${200 + (index * 100)}ms` }}
           >
             <div className="flex mb-3">
