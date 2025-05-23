@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const ProcessSteps = () => {
@@ -49,8 +48,8 @@ const ProcessSteps = () => {
               </div>
               <h3 className="text-xl font-bold mb-2">{step.title}</h3>
               <p className="text-muted-foreground">{step.description}</p>
-              <div className="hidden md:block absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-background border-2 border-border rounded-full w-8 h-8 text-sm flex items-center justify-center">
-                {index + 1}
+              <div className="hidden md:flex absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-background border-2 border-border rounded-full w-8 h-8 items-center justify-center">
+                <span className="text-sm font-semibold leading-none">{index + 1}</span>
               </div>
             </div>
           ))}
