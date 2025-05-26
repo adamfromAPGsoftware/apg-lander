@@ -15,49 +15,42 @@ const About = () => {
           {
             name: "Adam Goodyer",
             role: "Founder",
-            image: "/LG Profile White BG.png",
-            bio: "Full-stack developer with 6+ years of experience building custom software solutions and AI-powered applications for startups and SMEs."
+            image: "/team/adam.png"
           },
           {
             name: "Patrick Goodyer",
             role: "Co-Founder",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-            bio: "Strategic business leader focused on client relationships and business development, ensuring APG Software delivers exceptional value."
+            image: "/team/Patrick.avif"
           },
           {
             name: "Jephtah Okezie",
             role: "Developer/Designer",
-            image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
-            bio: "Versatile developer and designer who bridges the gap between functionality and aesthetics, creating beautiful and functional applications."
+            image: "/team/Jephtah.avif"
           },
           {
             name: "Asher Tucker",
             role: "Developer",
-            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-            bio: "Skilled developer specializing in modern web technologies and ensuring robust, scalable solutions for our clients."
+            image: "/team/Asher Tucker.avif"
           },
           {
             name: "Reginaldo \"Aldo\" Ahnaf",
             role: "Designer",
-            image: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=400&fit=crop&crop=face",
-            bio: "Creative designer focused on user experience and visual design, bringing innovative design solutions to every project."
+            image: "/team/Reginaldo \"Aldo\".avif"
           },
           {
             name: "Skandar Lalabouali",
             role: "Graphic Designer",
-            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-            bio: "Graphic design specialist creating compelling visual identities and marketing materials that resonate with target audiences."
+            image: "/team/Skandar.avif"
           },
           {
             name: "Eslam Sleme",
             role: "Developer",
-            image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop&crop=face",
-            bio: "Experienced developer with expertise in backend systems and database architecture, ensuring solid technical foundations."
+            image: "/team/Eslam.png"
           }
         ]}
         mainImage={{
-          src: "/Adam giving keynote speech.webp",
-          alt: "Adam Goodyer giving keynote speech",
+          src: "/Adam Speech Presentation.webp",
+          alt: "Adam Goodyer speaking at presentation",
         }}
         secondaryImage={{
           src: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=500&fit=crop&crop=center",

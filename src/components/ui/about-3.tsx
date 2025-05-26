@@ -155,14 +155,11 @@ export const About3 = ({
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-32 h-32 mx-auto rounded-full object-cover shadow-lg"
+                      className="w-32 h-32 mx-auto rounded-full object-cover object-center shadow-lg"
                     />
                   </div>
                   <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-brand-green font-medium mb-2">{member.role}</p>
-                  {member.bio && (
-                    <p className="text-sm text-muted-foreground">{member.bio}</p>
-                  )}
+                  <p className="text-black font-medium mb-2">{member.role}</p>
                 </div>
               ))}
             </div>
@@ -247,11 +244,11 @@ export const About3 = ({
           </div>
         )}
 
-        <div className="grid gap-7 lg:grid-cols-3">
+        <div className="grid gap-7 lg:grid-cols-3 lg:items-end">
           <img
             src={mainImage.src}
             alt={mainImage.alt}
-            className="size-full rounded-xl object-cover lg:col-span-2"
+            className="h-96 lg:h-auto lg:max-h-[600px] w-full rounded-xl object-cover lg:col-span-2"
           />
           <div className="flex flex-col gap-7 md:flex-row lg:flex-col">
             {upworkCard ? (
