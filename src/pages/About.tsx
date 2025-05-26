@@ -57,7 +57,7 @@ const About = () => {
           alt: "Modern software development",
         }}
         upworkCard={{
-          profileImage: "/LG Profile White BG.png",
+          profileImage: "/team/adam.png",
           name: "Adam G.",
           location: "Sydney, Australia • 1:49 PM local time",
           jobSuccess: "100% Job Success",
@@ -72,7 +72,7 @@ const About = () => {
           channelUrl: "https://www.youtube.com/@adamfreelances",
           totalViews: "50,000+",
           communityMembers: "250+",
-          profileImage: "/LG Profile White BG.png",
+          profileImage: "/team/adam.png",
         }}
         companiesTitle=""
         companies={[]}
