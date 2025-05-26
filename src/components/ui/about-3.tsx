@@ -228,7 +228,7 @@ export const About3 = ({
                           </div>
                           <div className="flex items-start gap-3">
                             <div className="w-2 h-2 rounded-full bg-brand-green mt-3 flex-shrink-0"></div>
-                            <p>Our <span className="font-medium text-foreground">educational platform</span>, which empowers builders to create these systems themselves.</p>
+                            <p>Our <span className="font-medium text-foreground">educational platforms</span>, which inform and educate builders on the rapidly evolving AI landscape.</p>
                           </div>
                         </div>
                       </div>
@@ -270,7 +270,6 @@ export const About3 = ({
                           className="w-full h-full rounded-full object-cover"
                         />
                       </div>
-                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-brand-green rounded-full"></div>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">

@@ -81,8 +81,7 @@ const About = () => {
         achievements={[
           { label: "Projects Delivered", value: "50+" },
           { label: "Years in Operation", value: "6+" },
-          { label: "Client Satisfaction", value: "100%" },
-          { label: "Average Delivery", value: "14 days" },
+          { label: "Client Satisfaction", value: "100%" }
         ]}
         foundingJourneyTitle="Our Founding Journey"
         foundingJourneyDescription={`APG Software Solutions was founded by Adam Goodyer with a simple but powerful mission: to make transformative technology radically more accessible.
