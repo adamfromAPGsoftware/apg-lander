@@ -12,3 +12,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap locations
+Sitemap: https://ai.apgsoftware.com/sitemap.xml
+Sitemap: https://ai.apgsoftware.com/sitemap-index.xml

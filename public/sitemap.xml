@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Homepage - Highest Priority -->
+  <url>
+    <loc>https://ai.apgsoftware.com/</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- About Page -->
+  <url>
+    <loc>https://ai.apgsoftware.com/about</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Important Landing Page Sections -->
+  <url>
+    <loc>https://ai.apgsoftware.com/#hero</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://ai.apgsoftware.com/#roi-calculator</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://ai.apgsoftware.com/#ai-system</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ai.apgsoftware.com/#ai-agents</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ai.apgsoftware.com/#live-app-preview</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ai.apgsoftware.com/#social-proof</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ai.apgsoftware.com/#value-proposition</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset> 
