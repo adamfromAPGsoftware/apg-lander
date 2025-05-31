@@ -13,6 +13,7 @@ import AIAgents from '@/components/AIAgents';
 import ProcessSteps from '@/components/ProcessSteps';
 import CallToAction from '@/components/CallToAction';
 import Footer from '@/components/Footer';
+import Testimonials from '@/components/Testimonials';
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <TargetAudience />
+      <Testimonials />
       <HowItWorks />
       <AISystem />
       <AIAgents />
