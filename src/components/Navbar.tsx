@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import { GlowEffect } from "@/components/ui/glow-effect";
 
 const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
   return (
-    <nav className="w-full py-6 max-width">
+    <nav className="sticky top-0 z-50 w-full py-6 max-width bg-background/80 backdrop-blur-md border-b border-border/40">
       <div className="flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img 
@@ -35,8 +36,15 @@ const Navbar = () => {
         </div>
         
         <div>
-          <Button className="bg-brand-green text-black hover:bg-opacity-90">
-            Book a Call
+          <Button className="bg-brand-green text-black hover:bg-opacity-90 px-6 py-2 relative overflow-hidden">
+            <GlowEffect 
+              colors={['#90F23C', '#ffffff', '#90F23C', '#7AE82C']}
+              mode="rotate"
+              blur="medium"
+              duration={2}
+              scale={1.8}
+            />
+            <span className="relative z-10">Book a Call</span>
           </Button>
         </div>
       </div>
