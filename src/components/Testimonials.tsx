@@ -3,64 +3,100 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
-    name: "Briana Patton",
-    role: "Operations Manager",
+    text: "Adam is very knowledgeable, he gets what you are trying to do and is very efficient! One of the best freelancers I've worked with",
+    name: "Client Review",
+    role: "Bug Fix Project",
+    rating: 5.0,
   },
   {
-    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
-    name: "Bilal Ahmed",
-    role: "IT Manager",
+    text: "The team at APG delivered outstanding work on our project. Their communication was clear and timely, making collaboration seamless. They adhered to all specifications meticulously, ensuring that the project met our exact requirements.",
+    name: "Client Review",
+    role: "CampaignCompass AI Development",
+    rating: 5.0,
   },
   {
-    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
-    name: "Saman Malik",
-    role: "Customer Support Lead",
+    text: "APG built a prototype of a CRM style app for us (very quickly) and it turned out really well. They were extremely knowledgeable and easy to work with.",
+    name: "Client Review",
+    role: "App Design and Development",
+    rating: 5.0,
   },
   {
-    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
-    name: "Omar Raza",
-    role: "CEO",
+    text: "The guys were incredibly helpful and generous in helping find solutions for my website. Thanks so much!",
+    name: "Client Review",
+    role: "Platform Development",
+    rating: 5.0,
   },
   {
-    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
-    image: "https://randomuser.me/api/portraits/women/5.jpg",
-    name: "Zainab Hussain",
-    role: "Project Manager",
+    text: "I had a great video chat with Adam. He answered my questions and provided good ideas to help in planning and moving my project forward. I intend to keep working with the team.",
+    name: "Client Review",
+    role: "60 Minute Consultation",
+    rating: 5.0,
   },
   {
-    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-    name: "Aliza Khan",
-    role: "Business Analyst",
+    text: "I couldn't be happier with their work. True professionals across the board.",
+    name: "Client Review",
+    role: "App Consulting",
+    rating: 5.0,
   },
   {
-    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
-    image: "https://randomuser.me/api/portraits/men/7.jpg",
-    name: "Farhan Siddiqui",
-    role: "Marketing Director",
+    text: "the team was highly responsive and proactive during this project. It was easy to communicate with them and they were flexible to our needs and changes.",
+    name: "Client Review",
+    role: "MVP Development",
+    rating: 5.0,
   },
   {
-    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
-    image: "https://randomuser.me/api/portraits/women/8.jpg",
-    name: "Sana Sheikh",
-    role: "Sales Manager",
+    text: "Adam completed the project in record time, was communicating very well and did a great job on the plugin I requested.",
+    name: "Client Review",
+    role: "Plugin Development",
+    rating: 5.0,
   },
   {
-    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
-    name: "Hassan Ali",
-    role: "E-commerce Manager",
+    text: "Can't thank the guys enough for the efforts to bring our MVP to life. Fantastic communication, support, and advanced technical expertise is very apparent! Wonderful job across the board.",
+    name: "Client Review",
+    role: "App Development",
+    rating: 5.0,
+  },
+  {
+    text: "Easy to work with and completed everything as requested.",
+    name: "Client Review",
+    role: "Invoice Generation App",
+    rating: 5.0,
+  },
+  {
+    text: "Adam is an expert in his field, and was friendly and helpful, answering everything I needed to know. I would highly recommend him to anyone needing development assistance.",
+    name: "Client Review",
+    role: "Developer Mentoring",
+    rating: 5.0,
+  },
+  {
+    text: "Project ran very well with good communications and very satisfied with the deliverables",
+    name: "Client Review",
+    role: "B2B Marketing Tool",
+    rating: 5.0,
+  },
+  {
+    text: "Great communicator and skilled developer. They were able to guide me through the data structure requirements and help design a great prototype.",
+    name: "Client Review",
+    role: "Development Project",
+    rating: 4.8,
+  },
+  {
+    text: "APG is fantastic to work with, clear communicators and they do work to a high standard.",
+    name: "Client Review",
+    role: "AI MVP Development",
+    rating: 5.0,
+  },
+  {
+    text: "Great Experience and will continue to work with the team",
+    name: "Client Review",
+    role: "Website Development",
+    rating: 5.0,
   },
 ];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+const firstColumn = testimonials.slice(0, 5);
+const secondColumn = testimonials.slice(5, 10);
+const thirdColumn = testimonials.slice(10, 15);
 
 const Testimonials = () => {
   return (
@@ -79,6 +115,19 @@ const Testimonials = () => {
           <p className="text-center mt-5 opacity-75">
             See what our customers have to say about us.
           </p>
+          
+          {/* View on Upwork Link */}
+          <div className="mt-6">
+            <a 
+              href="https://www.upwork.com/freelancers/adamfromapg" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-foreground hover:text-brand-green transition-colors font-medium"
+            >
+              <img src="/2021-upwork-new-logo-design.png" alt="Upwork" className="w-16 h-8" />
+              <span className="border-b border-brand-green">View all reviews on Upwork</span>
+            </a>
+          </div>
         </motion.div>
 
         <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
