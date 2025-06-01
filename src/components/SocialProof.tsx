@@ -46,6 +46,12 @@ const SocialProof = () => {
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [hasError, setHasError] = React.useState(false);
     const [thumbnailLoaded, setThumbnailLoaded] = React.useState(false);
+    const [showFallback, setShowFallback] = React.useState(false);
+
+    // Detect if we're on a mobile device
+    const isMobile = React.useMemo(() => {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }, []);
 
     const togglePlay = () => {
       if (videoRef.current) {
@@ -61,7 +67,14 @@ const SocialProof = () => {
     };
 
     const handleVideoClick = () => {
-      togglePlay();
+      // On mobile, if we're showing fallback, try to load the video first
+      if (showFallback && videoRef.current) {
+        videoRef.current.load();
+        setShowFallback(false);
+        setThumbnailLoaded(false);
+      } else {
+        togglePlay();
+      }
     };
 
     const handleVideoError = () => {
@@ -71,11 +84,40 @@ const SocialProof = () => {
 
     const handleLoadedData = () => {
       setThumbnailLoaded(true);
+      setShowFallback(false);
       // Ensure we're showing the first frame
       if (videoRef.current) {
         videoRef.current.currentTime = 0.1;
       }
     };
+
+    // Set up timeout for mobile devices
+    React.useEffect(() => {
+      if (isMobile) {
+        // On mobile, show fallback after 3 seconds if video hasn't loaded
+        const timeout = setTimeout(() => {
+          if (!thumbnailLoaded && !hasError) {
+            setShowFallback(true);
+          }
+        }, 3000);
+
+        return () => clearTimeout(timeout);
+      }
+    }, [isMobile, thumbnailLoaded, hasError]);
+
+    // For desktop, try to preload after component mounts
+    React.useEffect(() => {
+      if (!isMobile && videoRef.current) {
+        // Small delay to ensure video element is ready
+        const timeout = setTimeout(() => {
+          if (videoRef.current) {
+            videoRef.current.load();
+          }
+        }, 100);
+
+        return () => clearTimeout(timeout);
+      }
+    }, [isMobile]);
 
     return (
       <div 
@@ -88,7 +130,7 @@ const SocialProof = () => {
             <video 
               ref={videoRef}
               className="w-full h-full object-cover cursor-pointer" 
-              preload="auto"
+              preload={isMobile ? "none" : "auto"}
               playsInline
               muted
               onClick={handleVideoClick}
@@ -118,12 +160,28 @@ const SocialProof = () => {
           )}
 
           {/* Loading state */}
-          {!thumbnailLoaded && !hasError && (
+          {!thumbnailLoaded && !hasError && !showFallback && (
             <div className="absolute inset-0 bg-gradient-to-br from-brand-green/20 to-brand-green/40 flex items-center justify-center">
               <div className="text-center p-4">
                 <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin mb-3"></div>
                 <p className="text-sm font-medium text-white">{testimonial.author}</p>
                 <p className="text-xs text-white opacity-80">{testimonial.company}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Mobile fallback - show when video doesn't load */}
+          {(showFallback || (isMobile && !thumbnailLoaded && !hasError)) && (
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/30 to-brand-green/60 flex items-center justify-center">
+              <div className="text-center p-4">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+                </div>
+                <p className="text-sm font-medium text-white">{testimonial.author}</p>
+                <p className="text-xs text-white opacity-80">{testimonial.company}</p>
+                <p className="text-xs text-white opacity-60 mt-2">
+                  {isMobile ? "Tap to play video" : "Click to load video"}
+                </p>
               </div>
             </div>
           )}
