@@ -235,23 +235,29 @@ const SocialProof = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by Fast-Moving Teams</h2>
       </div>
       
-      <div className="flex items-center justify-center mb-12 animate-fade-in animation-delay-200">
+      <div className="flex flex-col sm:flex-row items-center justify-center mb-12 animate-fade-in animation-delay-200 gap-4 sm:gap-0">
         <div className="flex items-center">
-          {renderStars(5)}
+          <div className="flex items-center">
+            {renderStars(5)}
+          </div>
+          <p className="ml-2 text-xl font-bold">5/5</p>
+          <span className="mx-2 text-muted-foreground">|</span>
+          <p className="text-muted-foreground">50+ reviews</p>
         </div>
-        <p className="ml-2 text-xl font-bold">5/5</p>
-        <span className="mx-2 text-muted-foreground">|</span>
-        <p className="text-muted-foreground">50+ reviews</p>
         
         {/* Platform Logos */}
-        <div className="flex items-center ml-4 gap-3">
+        <div className="flex items-center sm:ml-4 gap-4">
           <a 
             href="https://www.upwork.com/freelancers/adamfromapg" 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:opacity-80 transition-opacity"
           >
-            <img src="/2021-upwork-new-logo-design.png" alt="Upwork" className="w-20 h-12 mt-1" />
+            <img 
+              src="/2021-upwork-new-logo-design.png" 
+              alt="Upwork" 
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+            />
           </a>
           <a 
             href="https://au.trustpilot.com/review/apgsoftware.com" 
@@ -259,7 +265,7 @@ const SocialProof = () => {
             rel="noopener noreferrer"
             className="hover:opacity-80 transition-opacity"
           >
-            <TrustPilotIcon className="w-20 h-6" />
+            <TrustPilotIcon className="h-5 sm:h-6 w-auto" />
           </a>
         </div>
       </div>
