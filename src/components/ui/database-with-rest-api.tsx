@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   Folder, HeartHandshakeIcon, SparklesIcon, Database,
@@ -53,6 +53,147 @@ const DatabaseWithRestApi = ({
 
   // Pulse animation for Data path
   const dataPulseRef = useRef<SVGCircleElement | null>(null);
+
+  // Consolidated function to recalculate all positions
+  const recalculatePositions = useCallback(() => {
+    if (!containerRef.current || !titleRef.current) return;
+
+    // Delay calculation to ensure DOM has settled after resize
+    requestAnimationFrame(() => {
+      // Calculate badge to title lines
+      const newLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+      const containerRect = containerRef.current!.getBoundingClientRect();
+      const titleRect = titleRef.current!.getBoundingClientRect();
+      const titleTopCenter = {
+        x: titleRect.left + titleRect.width / 2 - containerRect.left,
+        y: titleRect.top - containerRect.top,
+      };
+      
+      badgeRefs.current.forEach((badge, i) => {
+        if (badge) {
+          const badgeRect = badge.getBoundingClientRect();
+          const badgeCenter = {
+            x: badgeRect.left + badgeRect.width / 2 - containerRect.left,
+            y: badgeRect.top + badgeRect.height / 2 - containerRect.top,
+          };
+          newLines.push({
+            x1: badgeCenter.x,
+            y1: badgeCenter.y,
+            x2: titleTopCenter.x,
+            y2: titleTopCenter.y,
+          });
+        }
+      });
+      setLines(newLines);
+
+      // Calculate agent lines
+      const titleBottomCenter = {
+        x: titleRect.left + titleRect.width / 2 - containerRect.left,
+        y: titleRect.bottom - containerRect.top,
+      };
+      const newAgentLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+      agentRefs.current.forEach((agent, i) => {
+        if (agent) {
+          const agentRect = agent.getBoundingClientRect();
+          const agentCenter = {
+            x: agentRect.left + agentRect.width / 2 - containerRect.left,
+            y: agentRect.top + agentRect.height / 2 - containerRect.top,
+          };
+          newAgentLines.push({
+            x1: titleBottomCenter.x,
+            y1: titleBottomCenter.y,
+            x2: agentCenter.x,
+            y2: agentCenter.y,
+          });
+        }
+      });
+      setAgentLines(newAgentLines);
+
+      // Calculate lines from agents to main box
+      if (mainBoxRef.current) {
+        const mainBoxRect = mainBoxRef.current.getBoundingClientRect();
+        const mainBoxTopCenter = {
+          x: mainBoxRect.left + mainBoxRect.width / 2 - containerRect.left,
+          y: mainBoxRect.top - containerRect.top,
+        };
+        const newAgentToMainBoxLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+        agentRefs.current.forEach((agent, i) => {
+          if (agent) {
+            const agentRect = agent.getBoundingClientRect();
+            const agentCenter = {
+              x: agentRect.left + agentRect.width / 2 - containerRect.left,
+              y: agentRect.top + agentRect.height / 2 - containerRect.top,
+            };
+            newAgentToMainBoxLines.push({
+              x1: agentCenter.x,
+              y1: agentCenter.y,
+              x2: mainBoxTopCenter.x,
+              y2: mainBoxTopCenter.y,
+            });
+          }
+        });
+        setAgentToMainBoxLines(newAgentToMainBoxLines);
+      }
+
+      // Calculate data path
+      if (crmCircleRef.current && badgesRowRef.current) {
+        const crmRect = crmCircleRef.current.getBoundingClientRect();
+        const badgesRect = badgesRowRef.current.getBoundingClientRect();
+        const start = {
+          x: crmRect.left + crmRect.width / 2 - containerRect.left,
+          y: crmRect.top + crmRect.height - containerRect.top,
+        };
+        const end = {
+          x: badgesRect.left + badgesRect.width / 2 - containerRect.left,
+          y: badgesRect.top - containerRect.top,
+        };
+        // 1. Down from CRM
+        const downY = start.y + 40;
+        // 2. Left to edge
+        const leftX = 0; // flush with left edge
+        // 3. Up above container
+        const upY = Math.max(0, badgesRect.top - containerRect.top - 60); // go even higher
+        // 4. In to center above badges
+        const centerX = end.x;
+        // 5. Down to badges
+        const path = `M ${start.x},${start.y} L ${start.x},${downY} L ${leftX},${downY} L ${leftX},${upY} L ${centerX},${upY} L ${centerX},${end.y}`;
+        setDataPath(path);
+        // Label at the top horizontal segment
+        setDataLabelPos({ x: (leftX + centerX) / 2, y: upY });
+      }
+    });
+  }, [badges, aiAgents.length]);
+
+  // Debounced resize handler
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        recalculatePositions();
+      }, 150); // Debounce for 150ms
+    };
+
+    // Initial calculation
+    const initialTimeout = setTimeout(recalculatePositions, 100);
+    
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(initialTimeout);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [recalculatePositions]);
+
+  // Trigger recalculation when badges or agents change
+  useEffect(() => {
+    const timeout = setTimeout(recalculatePositions, 100);
+    return () => clearTimeout(timeout);
+  }, [badges, aiAgents.length, recalculatePositions]);
+
   useEffect(() => {
     if (!dataPath || !dataPulseRef.current) return;
     const path = document.querySelector('path[d="' + dataPath + '"]') as SVGPathElement;
@@ -69,116 +210,6 @@ const DatabaseWithRestApi = ({
     animate();
     return () => cancelAnimationFrame(frame);
   }, [dataPath]);
-
-  useEffect(() => {
-    // Calculate positions after render
-    const newLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
-    if (!containerRef.current || !mainBoxRef.current || !titleRef.current) return;
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const titleRect = titleRef.current.getBoundingClientRect();
-    const titleTopCenter = {
-      x: titleRect.left + titleRect.width / 2 - containerRect.left,
-      y: titleRect.top - containerRect.top,
-    };
-    badgeRefs.current.forEach((badge, i) => {
-      if (badge) {
-        const badgeRect = badge.getBoundingClientRect();
-        const badgeCenter = {
-          x: badgeRect.left + badgeRect.width / 2 - containerRect.left,
-          y: badgeRect.top + badgeRect.height / 2 - containerRect.top,
-        };
-        newLines.push({
-          x1: badgeCenter.x,
-          y1: badgeCenter.y,
-          x2: titleTopCenter.x,
-          y2: titleTopCenter.y,
-        });
-      }
-    });
-    setLines(newLines);
-  }, [badges]);
-
-  useEffect(() => {
-    if (!containerRef.current || !titleRef.current) return;
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const titleRect = titleRef.current.getBoundingClientRect();
-    const titleBottomCenter = {
-      x: titleRect.left + titleRect.width / 2 - containerRect.left,
-      y: titleRect.bottom - containerRect.top,
-    };
-    const newAgentLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
-    agentRefs.current.forEach((agent, i) => {
-      if (agent) {
-        const agentRect = agent.getBoundingClientRect();
-        const agentCenter = {
-          x: agentRect.left + agentRect.width / 2 - containerRect.left,
-          y: agentRect.top + agentRect.height / 2 - containerRect.top,
-        };
-        newAgentLines.push({
-          x1: titleBottomCenter.x,
-          y1: titleBottomCenter.y,
-          x2: agentCenter.x,
-          y2: agentCenter.y,
-        });
-      }
-    });
-    setAgentLines(newAgentLines);
-    // Calculate lines from agents to main box
-    if (!mainBoxRef.current) return;
-    const mainBoxRect = mainBoxRef.current.getBoundingClientRect();
-    const mainBoxTopCenter = {
-      x: mainBoxRect.left + mainBoxRect.width / 2 - containerRect.left,
-      y: mainBoxRect.top - containerRect.top,
-    };
-    const newAgentToMainBoxLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
-    agentRefs.current.forEach((agent, i) => {
-      if (agent) {
-        const agentRect = agent.getBoundingClientRect();
-        const agentCenter = {
-          x: agentRect.left + agentRect.width / 2 - containerRect.left,
-          y: agentRect.top + agentRect.height / 2 - containerRect.top,
-        };
-        newAgentToMainBoxLines.push({
-          x1: agentCenter.x,
-          y1: agentCenter.y,
-          x2: mainBoxTopCenter.x,
-          y2: mainBoxTopCenter.y,
-        });
-      }
-    });
-    setAgentToMainBoxLines(newAgentToMainBoxLines);
-  }, [aiAgents.length]);
-
-  useEffect(() => {
-    // Data segmented path calculation (straight lines)
-    if (!crmCircleRef.current || !badgesRowRef.current || !containerRef.current) return;
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const crmRect = crmCircleRef.current.getBoundingClientRect();
-    const badgesRect = badgesRowRef.current.getBoundingClientRect();
-    const start = {
-      x: crmRect.left + crmRect.width / 2 - containerRect.left,
-      y: crmRect.top + crmRect.height - containerRect.top,
-    };
-    const end = {
-      x: badgesRect.left + badgesRect.width / 2 - containerRect.left,
-      y: badgesRect.top - containerRect.top,
-    };
-    const containerWidth = containerRect.width;
-    const containerHeight = containerRect.height;
-    // 1. Down from CRM
-    const downY = start.y + 40;
-    // 2. Left to edge
-    const leftX = 0; // flush with left edge
-    // 3. Up above container
-    const upY = Math.max(0, badgesRect.top - containerRect.top - 60); // go even higher
-    // 4. In to center above badges
-    const centerX = end.x;
-    // 5. Down to badges
-    const path = `M ${start.x},${start.y} L ${start.x},${downY} L ${leftX},${downY} L ${leftX},${upY} L ${centerX},${upY} L ${centerX},${end.y}`;
-    setDataPath(path);
-    // Label at the top horizontal segment
-    setDataLabelPos({ x: (leftX + centerX) / 2, y: upY });
-  }, [badges, aiAgents.length]);
 
   // Refs for node pulses
   const nodePulseRefs = useRef<(SVGCircleElement | null)[]>([]);
