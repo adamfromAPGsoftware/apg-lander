@@ -375,10 +375,9 @@ const DatabaseWithRestApi = ({
               x={dataLabelPos.x}
               y={dataLabelPos.y - 8}
               textAnchor="middle"
-              fill="#90F23C"
+              fill="#065f46"
               fontSize="1.1rem"
               fontWeight="bold"
-              style={{ filter: "drop-shadow(0 0 6px #90F23C)" }}
             >
               Data
             </text>
