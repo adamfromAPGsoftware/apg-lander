@@ -9,21 +9,24 @@ const SocialProof = () => {
       company: "Founder at LyricsWhiz",
       quote: "They have been exceptional with their understanding of AI and that's been vital for this projects success",
       fullQuote: "I want to give a big shoutout to APG Software Solutions for being a standout development process. They been exceptional with their understand of Bubble and AI and that's been vital for this projects success. Communication has been top notch and their approach has made everything feel effortless",
-      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Loren%20Schiller%20Lyrics%20Whiz.mp4"
+      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Loren%20Schiller%20Lyrics%20Whiz.mp4",
+      posterUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5MEYyM0MiIHN0b3Atb3BhY2l0eT0iMC4zIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjOTBGMjNDIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNTM0IiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMjY3IiByPSI1MCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIpIi8+PHBhdGggZD0iTTE3NSAyNDJMMjI1IDI2N0wxNzUgMjkyWiIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjIwMCIgeT0iMzUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+TG9yZW48L3RleHQ+PHRleHQgeD0iMjAwIiB5PSIzODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44KSIgZm9udC1zaXplPSIxOCI+Rm91bmRlciBhdCBMeXJpY3NXaGl6PC90ZXh0Pjx0ZXh0IHg9IjIwMCIgeT0iNDIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNikiIGZvbnQtc2l6ZT0iMTYiPkNsaWNrIHRvIHBsYXkgdmlkZW88L3RleHQ+PC9zdmc+"
     },
     {
       author: "Dan", 
       company: "Founder at AEON",
       quote: "Honestly one of the best agencies I've ever worked with and I would highly recommend them if you're looking for an A+ software partner",
       fullQuote: "I wanted to say a big thanks to the team at APG Software Solutions who have been a fantastic development partner. They communicate really well and have a really sound understanding of Bubble which has been crucial to our success. Honestly one of the best agencies I've ever worked with and I would highly recommend them if you're looking for an A+ software partner",
-      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Dan%20Benyamin%20(AEON).mp4"
+      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Dan%20Benyamin%20(AEON).mp4",
+      posterUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5MEYyM0MiIHN0b3Atb3BhY2l0eT0iMC40Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjOTBGMjNDIiBzdG9wLW9wYWNpdHk9IjAuOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNTM0IiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMjY3IiByPSI1MCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIpIi8+PHBhdGggZD0iTTE3NSAyNDJMMjI1IDI2N0wxNzUgMjkyWiIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjIwMCIgeT0iMzUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+RGFuPC90ZXh0Pjx0ZXh0IHg9IjIwMCIgeT0iMzgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuOCkiIGZvbnQtc2l6ZT0iMTgiPkZvdW5kZXIgYXQgQUVPTjwvdGV4dD48dGV4dCB4PSIyMDAiIHk9IjQyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjYpIiBmb250LXNpemU9IjE2Ij5DbGljayB0byBwbGF5IHZpZGVvPC90ZXh0Pjwvc3ZnPg=="
     },
     {
       author: "Tom",
       company: "CEO at T5 Football", 
       quote: "Their level of expertise, communication and the detail they go into was above and beyond what I was expected.",
       fullQuote: "Their level of expertise, communication and the detail they go into was above and beyond what I was expected. I've worked with many software agencies before and they haven't really delivered what these guys delivered in such a short amount of time",
-      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Thomas%20Fay%20(T5%20Football).MP4"
+      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Thomas%20Fay%20(T5%20Football).MP4",
+      posterUrl: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5MEYyM0MiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzkwRjIzQyIgc3RvcC1vcGFjaXR5PSIwLjc1Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI1MzQiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIyNjciIHI9IjUwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMikiLz48cGF0aCBkPSJNMTc1IDI0MkwyMjUgMjY3TDE3NSAyOTJaIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjAwIiB5PSIzNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5Ub208L3RleHQ+PHRleHQgeD0iMjAwIiB5PSIzODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44KSIgZm9udC1zaXplPSIxOCI+Q0VPIGF0IFQ1IEZvb3RiYWxsPC90ZXh0Pjx0ZXh0IHg9IjIwMCIgeT0iNDIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNikiIGZvbnQtc2l6ZT0iMTYiPkNsaWNrIHRvIHBsYXkgdmlkZW88L3RleHQ+PC9zdmc+"
     }
   ];
 
@@ -44,80 +47,29 @@ const SocialProof = () => {
   const VideoTestimonial = ({ testimonial, index }: { testimonial: any, index: number }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = React.useState(false);
-    const [hasError, setHasError] = React.useState(false);
-    const [thumbnailLoaded, setThumbnailLoaded] = React.useState(false);
-    const [showFallback, setShowFallback] = React.useState(false);
+    const [hasVideoStarted, setHasVideoStarted] = React.useState(false);
 
     // Detect if we're on a mobile device
     const isMobile = React.useMemo(() => {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }, []);
 
-    const togglePlay = () => {
+    const handlePlay = () => {
       if (videoRef.current) {
-        if (isPlaying) {
-          videoRef.current.pause();
-        } else {
-          videoRef.current.play().catch((error) => {
-            console.error('Error playing video:', error);
-          });
-        }
-        setIsPlaying(!isPlaying);
+        setHasVideoStarted(true);
+        videoRef.current.play().catch((error) => {
+          console.error('Error playing video:', error);
+        });
+        setIsPlaying(true);
       }
     };
 
-    const handleVideoClick = () => {
-      // On mobile, if we're showing fallback, try to load the video first
-      if (showFallback && videoRef.current) {
-        videoRef.current.load();
-        setShowFallback(false);
-        setThumbnailLoaded(false);
-      } else {
-        togglePlay();
-      }
-    };
-
-    const handleVideoError = () => {
-      setHasError(true);
-      console.error('Video failed to load:', testimonial.videoUrl);
-    };
-
-    const handleLoadedData = () => {
-      setThumbnailLoaded(true);
-      setShowFallback(false);
-      // Ensure we're showing the first frame
+    const handlePause = () => {
       if (videoRef.current) {
-        videoRef.current.currentTime = 0.1;
+        videoRef.current.pause();
+        setIsPlaying(false);
       }
     };
-
-    // Set up timeout for mobile devices
-    React.useEffect(() => {
-      if (isMobile) {
-        // On mobile, show fallback after 3 seconds if video hasn't loaded
-        const timeout = setTimeout(() => {
-          if (!thumbnailLoaded && !hasError) {
-            setShowFallback(true);
-          }
-        }, 3000);
-
-        return () => clearTimeout(timeout);
-      }
-    }, [isMobile, thumbnailLoaded, hasError]);
-
-    // For desktop, try to preload after component mounts
-    React.useEffect(() => {
-      if (!isMobile && videoRef.current) {
-        // Small delay to ensure video element is ready
-        const timeout = setTimeout(() => {
-          if (videoRef.current) {
-            videoRef.current.load();
-          }
-        }, 100);
-
-        return () => clearTimeout(timeout);
-      }
-    }, [isMobile]);
 
     return (
       <div 
@@ -125,72 +77,27 @@ const SocialProof = () => {
         style={{ animationDelay: `${200 + (index * 100)}ms` }}
       >
         {/* Video Container with Play Button - Taller aspect ratio */}
-        <div className="relative mb-4 rounded-lg overflow-hidden bg-gray-100 aspect-[3/4]">
-          {!hasError ? (
-            <video 
-              ref={videoRef}
-              className="w-full h-full object-cover cursor-pointer" 
-              preload={isMobile ? "none" : "auto"}
-              playsInline
-              muted
-              onClick={handleVideoClick}
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              onEnded={() => setIsPlaying(false)}
-              onError={handleVideoError}
-              onLoadedData={handleLoadedData}
-              style={{
-                visibility: thumbnailLoaded ? 'visible' : 'hidden'
-              }}
-            >
-              <source src={testimonial.videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            // Fallback when video completely fails to load
-            <div className="w-full h-full bg-gradient-to-br from-brand-green/30 to-brand-green/60 flex items-center justify-center">
-              <div className="text-center p-4">
-                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                  <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
-                </div>
-                <p className="text-sm font-medium text-white">{testimonial.author}</p>
-                <p className="text-xs text-white opacity-80">{testimonial.company}</p>
-              </div>
-            </div>
-          )}
-
-          {/* Loading state */}
-          {!thumbnailLoaded && !hasError && !showFallback && (
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/20 to-brand-green/40 flex items-center justify-center">
-              <div className="text-center p-4">
-                <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin mb-3"></div>
-                <p className="text-sm font-medium text-white">{testimonial.author}</p>
-                <p className="text-xs text-white opacity-80">{testimonial.company}</p>
-              </div>
-            </div>
-          )}
-
-          {/* Mobile fallback - show when video doesn't load */}
-          {(showFallback || (isMobile && !thumbnailLoaded && !hasError)) && (
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/30 to-brand-green/60 flex items-center justify-center">
-              <div className="text-center p-4">
-                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                  <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
-                </div>
-                <p className="text-sm font-medium text-white">{testimonial.author}</p>
-                <p className="text-xs text-white opacity-80">{testimonial.company}</p>
-                <p className="text-xs text-white opacity-60 mt-2">
-                  {isMobile ? "Tap to play video" : "Click to load video"}
-                </p>
-              </div>
-            </div>
-          )}
+        <div className="relative mb-4 rounded-lg overflow-hidden aspect-[3/4]">
+          <video 
+            ref={videoRef}
+            className="w-full h-full object-cover cursor-pointer" 
+            preload={isMobile ? "none" : "metadata"}
+            playsInline
+            muted
+            poster={isMobile ? testimonial.posterUrl : undefined}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            onEnded={() => setIsPlaying(false)}
+          >
+            <source src={testimonial.videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           
-          {/* Play/Pause Button Overlay - only show when not playing */}
-          {!isPlaying && !hasError && thumbnailLoaded && (
+          {/* Play Button Overlay - show when not playing or haven't started */}
+          {!isPlaying && (
             <div 
               className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center cursor-pointer transition-opacity hover:bg-opacity-40"
-              onClick={togglePlay}
+              onClick={handlePlay}
             >
               <div className="bg-brand-green bg-opacity-90 rounded-full p-3 hover:bg-opacity-100 hover:scale-110 transition-all">
                 <Play className="w-6 h-6 text-white ml-1" fill="currentColor" />
@@ -198,11 +105,11 @@ const SocialProof = () => {
             </div>
           )}
 
-          {/* Video Controls - Simple pause overlay when playing */}
-          {isPlaying && !hasError && (
+          {/* Pause overlay when playing */}
+          {isPlaying && (
             <div 
               className="absolute inset-0 bg-transparent cursor-pointer opacity-0 hover:opacity-100 transition-opacity"
-              onClick={togglePlay}
+              onClick={handlePause}
             >
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div className="bg-black bg-opacity-50 rounded-full p-2">
