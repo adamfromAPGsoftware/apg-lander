@@ -14,8 +14,7 @@ const CallToAction = () => {
             Book Your Discovery Call
           </Button>
           <Button 
-            variant="outline" 
-            className="border-brand-green text-brand-green hover:bg-brand-green hover:bg-opacity-10 text-lg py-6 px-8"
+            className="bg-gray-800 text-white hover:bg-gray-700 border border-gray-800 hover:border-gray-700 text-lg py-6 px-8 transition-all"
             onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}
           >
             Try the Demo

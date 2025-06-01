@@ -9,25 +9,21 @@ const SocialProof = () => {
       company: "Founder at LyricsWhiz",
       quote: "They have been exceptional with their understanding of AI and that's been vital for this projects success",
       fullQuote: "I want to give a big shoutout to APG Software Solutions for being a standout development process. They been exceptional with their understand of Bubble and AI and that's been vital for this projects success. Communication has been top notch and their approach has made everything feel effortless",
-      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Loren%20Schiller%20Lyrics%20Whiz.mp4",
-      // Optional poster - will fallback to video thumbnail or gradient
-      posterUrl: ""
+      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Loren%20Schiller%20Lyrics%20Whiz.mp4"
     },
     {
       author: "Dan", 
       company: "Founder at AEON",
       quote: "Honestly one of the best agencies I've ever worked with and I would highly recommend them if you're looking for an A+ software partner",
       fullQuote: "I wanted to say a big thanks to the team at APG Software Solutions who have been a fantastic development partner. They communicate really well and have a really sound understanding of Bubble which has been crucial to our success. Honestly one of the best agencies I've ever worked with and I would highly recommend them if you're looking for an A+ software partner",
-      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Dan%20Benyamin%20(AEON).mp4",
-      posterUrl: ""
+      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Dan%20Benyamin%20(AEON).mp4"
     },
     {
       author: "Tom",
       company: "CEO at T5 Football", 
       quote: "Their level of expertise, communication and the detail they go into was above and beyond what I was expected.",
       fullQuote: "Their level of expertise, communication and the detail they go into was above and beyond what I was expected. I've worked with many software agencies before and they haven't really delivered what these guys delivered in such a short amount of time",
-      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Thomas%20Fay%20(T5%20Football).MP4",
-      posterUrl: ""
+      videoUrl: "https://pub-80dc93d36e40439985eb519b51227185.r2.dev/Thomas%20Fay%20(T5%20Football).MP4"
     }
   ];
 
@@ -49,9 +45,7 @@ const SocialProof = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [hasError, setHasError] = React.useState(false);
-    const [isPosterLoaded, setIsPosterLoaded] = React.useState(false);
-    const [videoLoaded, setVideoLoaded] = React.useState(false);
-    const [generatedPoster, setGeneratedPoster] = React.useState<string | null>(null);
+    const [thumbnailLoaded, setThumbnailLoaded] = React.useState(false);
 
     const togglePlay = () => {
       if (videoRef.current) {
@@ -75,56 +69,13 @@ const SocialProof = () => {
       console.error('Video failed to load:', testimonial.videoUrl);
     };
 
-    const handleLoadedMetadata = () => {
-      setVideoLoaded(true);
-      // Force a frame to be shown by seeking to a small time
+    const handleLoadedData = () => {
+      setThumbnailLoaded(true);
+      // Ensure we're showing the first frame
       if (videoRef.current) {
         videoRef.current.currentTime = 0.1;
       }
     };
-
-    const handleCanPlay = () => {
-      // Generate poster from video if no external poster provided
-      if (!testimonial.posterUrl && videoRef.current && !generatedPoster) {
-        setTimeout(() => {
-          generatePosterFromVideo();
-        }, 100);
-      }
-    };
-
-    // Generate a poster from the video's first frame
-    const generatePosterFromVideo = () => {
-      if (videoRef.current && !hasError && videoRef.current.videoWidth > 0) {
-        try {
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          if (ctx) {
-            canvas.width = videoRef.current.videoWidth;
-            canvas.height = videoRef.current.videoHeight;
-            ctx.drawImage(videoRef.current, 0, 0);
-            const posterDataUrl = canvas.toDataURL('image/jpeg', 0.8);
-            setGeneratedPoster(posterDataUrl);
-          }
-        } catch (error) {
-          console.warn('Could not generate poster from video:', error);
-        }
-      }
-    };
-
-    React.useEffect(() => {
-      // Only preload poster if URL is provided
-      if (testimonial.posterUrl && testimonial.posterUrl.trim() !== '') {
-        const img = new Image();
-        img.onload = () => setIsPosterLoaded(true);
-        img.onerror = () => setIsPosterLoaded(false);
-        img.src = testimonial.posterUrl;
-      } else {
-        setIsPosterLoaded(true); // Skip poster loading if no URL
-      }
-    }, [testimonial.posterUrl]);
-
-    const shouldShowPoster = testimonial.posterUrl && testimonial.posterUrl.trim() !== '';
-    const hasValidPoster = shouldShowPoster || generatedPoster;
 
     return (
       <div 
@@ -132,62 +83,55 @@ const SocialProof = () => {
         style={{ animationDelay: `${200 + (index * 100)}ms` }}
       >
         {/* Video Container with Play Button - Taller aspect ratio */}
-        <div className="relative mb-4 rounded-lg overflow-hidden bg-gray-200 aspect-[3/4]">
+        <div className="relative mb-4 rounded-lg overflow-hidden bg-gray-100 aspect-[3/4]">
           {!hasError ? (
-            <>
-              <video 
-                ref={videoRef}
-                className="w-full h-full object-cover cursor-pointer" 
-                preload="auto"
-                playsInline
-                muted
-                poster={shouldShowPoster ? testimonial.posterUrl : generatedPoster || undefined}
-                onClick={handleVideoClick}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                onEnded={() => setIsPlaying(false)}
-                onError={handleVideoError}
-                onLoadedMetadata={handleLoadedMetadata}
-                onCanPlay={handleCanPlay}
-                style={{
-                  // Ensure video is visible even without poster
-                  visibility: videoLoaded || hasValidPoster ? 'visible' : 'hidden'
-                }}
-              >
-                <source src={testimonial.videoUrl} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              
-              {/* Show fallback gradient if video not loaded and no poster */}
-              {!videoLoaded && !hasValidPoster && (
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-green/30 to-brand-green/60 flex items-center justify-center">
-                  <div className="text-center p-4">
-                    <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-3 mx-auto">
-                      <Play className="w-6 h-6 text-white ml-0.5" fill="currentColor" />
-                    </div>
-                    <p className="text-sm font-medium text-white">{testimonial.author}</p>
-                    <p className="text-xs text-white opacity-80">{testimonial.company}</p>
-                  </div>
-                </div>
-              )}
-            </>
+            <video 
+              ref={videoRef}
+              className="w-full h-full object-cover cursor-pointer" 
+              preload="auto"
+              playsInline
+              muted
+              onClick={handleVideoClick}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => setIsPlaying(false)}
+              onError={handleVideoError}
+              onLoadedData={handleLoadedData}
+              style={{
+                visibility: thumbnailLoaded ? 'visible' : 'hidden'
+              }}
+            >
+              <source src={testimonial.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           ) : (
             // Fallback when video completely fails to load
-            <div className="w-full h-full bg-gradient-to-br from-brand-green/20 to-brand-green/40 flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-br from-brand-green/30 to-brand-green/60 flex items-center justify-center">
               <div className="text-center p-4">
-                <div className="w-16 h-16 bg-brand-green rounded-full flex items-center justify-center mb-4 mx-auto">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
                 </div>
-                <p className="text-sm font-medium">{testimonial.author}</p>
-                <p className="text-xs text-gray-600">{testimonial.company}</p>
+                <p className="text-sm font-medium text-white">{testimonial.author}</p>
+                <p className="text-xs text-white opacity-80">{testimonial.company}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Loading state */}
+          {!thumbnailLoaded && !hasError && (
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/20 to-brand-green/40 flex items-center justify-center">
+              <div className="text-center p-4">
+                <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin mb-3"></div>
+                <p className="text-sm font-medium text-white">{testimonial.author}</p>
+                <p className="text-xs text-white opacity-80">{testimonial.company}</p>
               </div>
             </div>
           )}
           
-          {/* Play/Pause Button Overlay */}
-          {!isPlaying && !hasError && (
+          {/* Play/Pause Button Overlay - only show when not playing */}
+          {!isPlaying && !hasError && thumbnailLoaded && (
             <div 
-              className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center cursor-pointer"
+              className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center cursor-pointer transition-opacity hover:bg-opacity-40"
               onClick={togglePlay}
             >
               <div className="bg-brand-green bg-opacity-90 rounded-full p-3 hover:bg-opacity-100 hover:scale-110 transition-all">
@@ -207,13 +151,6 @@ const SocialProof = () => {
                   <Pause className="w-4 h-4 text-white" fill="currentColor" />
                 </div>
               </div>
-            </div>
-          )}
-
-          {/* Loading indicator */}
-          {!videoLoaded && !hasError && shouldShowPoster && !isPosterLoaded && (
-            <div className="absolute inset-0 bg-gray-300 animate-pulse flex items-center justify-center">
-              <div className="w-8 h-8 border-2 border-brand-green border-t-transparent rounded-full animate-spin"></div>
             </div>
           )}
         </div>
