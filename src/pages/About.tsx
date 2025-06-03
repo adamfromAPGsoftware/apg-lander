@@ -23,7 +23,7 @@ const About = () => {
             image: "/team/Patrick.avif"
           },
           {
-            name: "Rohit",
+            name: "Rohit Verma",
             role: "CTO",
             image: "/team/rohit.png"
           },
