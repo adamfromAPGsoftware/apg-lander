@@ -299,7 +299,9 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
         </div>
         <div>
           <h3 className="font-semibold text-gray-900">{assistant.name}</h3>
-          <p className="text-sm text-gray-600">{assistant.action}</p>
+          {isActive && (
+            <p className="text-sm text-gray-600">{assistant.action}</p>
+          )}
         </div>
       </div>
       {renderAction()}
