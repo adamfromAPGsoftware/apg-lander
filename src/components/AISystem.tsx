@@ -502,6 +502,32 @@ const AIWorkflowVisualization: React.FC = () => {
     return { from, to };
   };
 
+  // Function to calculate beam connection points from AI Knowledge to agents
+  const getBeamConnectionPoints = (brainElement: HTMLElement | null, agentElement: HTMLElement | null) => {
+    if (!brainElement || !agentElement || !containerRef.current) {
+      return { from: { x: 0, y: 0 }, to: { x: 0, y: 0 } };
+    }
+
+    const brainPos = getElementPosition(brainElement, containerRef.current);
+    const agentPos = getElementPosition(agentElement, containerRef.current);
+
+    // Connect from left side center of the brain circle (not the entire container)
+    // Brain circle: p-10 (40px) + w-16 (64px) + p-10 (40px) = 144px diameter
+    // So center is at 72px from top of the brain container
+    const brainCircleCenter = 72; // 40px padding + 32px (half of 64px icon)
+    const from = {
+      x: brainPos.x,
+      y: brainPos.y + brainCircleCenter
+    };
+
+    const to = {
+      x: agentPos.x + agentPos.width,
+      y: agentPos.y + agentPos.height / 2
+    };
+
+    return { from, to };
+  };
+
   // Function to get flow path coordinates
   const getFlowPath = () => {
     if (!crmRef.current || !brainRef.current || !containerRef.current) {
@@ -751,7 +777,7 @@ const AIWorkflowVisualization: React.FC = () => {
             
             if (!assistantElement || !brainRef.current) return null;
             
-            const { from, to } = getConnectionPoints(brainRef.current, assistantElement);
+            const { from, to } = getBeamConnectionPoints(brainRef.current, assistantElement);
             
             return (
               <EnergyBeam
