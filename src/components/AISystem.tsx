@@ -165,15 +165,30 @@ interface FlowingPillProps {
 }
 
 const FlowingPill: React.FC<FlowingPillProps> = ({ pill, progress, reducedMotion, pathStart, pathEnd }) => {
-  const x = pathStart.x + (pathEnd.x - pathStart.x) * progress;
-  const y = pathStart.y + (pathEnd.y - pathStart.y) * progress;
+  // Create an arc path instead of straight line
+  const getArcPosition = (progress: number) => {
+    // Arc height - positive for downward arc (goes underneath agents)
+    const arcHeight = 120; // Positive for downward arc
+    
+    // Linear interpolation for X
+    const x = pathStart.x + (pathEnd.x - pathStart.x) * progress;
+    
+    // Quadratic curve for Y (creates the arc)
+    const baseY = pathStart.y + (pathEnd.y - pathStart.y) * progress;
+    const arcOffset = arcHeight * 4 * progress * (1 - progress); // Parabolic arc
+    const y = baseY + arcOffset;
+    
+    return { x, y };
+  };
+
+  const position = getArcPosition(progress);
   
   return (
     <div
       className="absolute z-10 pointer-events-none"
       style={{
-        left: `${x}px`,
-        top: `${y}px`,
+        left: `${position.x}px`,
+        top: `${position.y}px`,
         transform: 'translate(-50%, -50%)',
         opacity: progress > 0.9 ? 1 - (progress - 0.9) * 10 : 1
       }}
@@ -308,10 +323,10 @@ interface AIBrainProps {
 }
 
 const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => (
-  <div className="relative flex items-center justify-center">
+  <div className="relative flex flex-col items-center justify-center">
     <div
       className={`
-        relative p-8 rounded-full transition-all duration-500
+        relative p-10 rounded-full transition-all duration-500
         ${isActive ? 'scale-110' : 'scale-100'}
       `}
       style={{
@@ -326,7 +341,7 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
       aria-label="AI Brain processing data"
     >
       <Brain 
-        className={`w-12 h-12 text-white ${
+        className={`w-16 h-16 text-white ${
           isActive && !reducedMotion ? 'animate-pulse' : ''
         }`}
         style={{ animationDuration: `${1 / speed}s` }}
@@ -344,25 +359,30 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
               }}
             />
           ))}
+          
+          {/* Orbiting particles positioned relative to the brain circle */}
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-white rounded-full animate-ping"
+              style={{
+                left: '50%',
+                top: '50%',
+                transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-60px)`,
+                animationDelay: `${i * 0.2}s`,
+                animationDuration: `${1.5 / speed}s`
+              }}
+            />
+          ))}
         </>
       )}
     </div>
     
-    {isActive && !reducedMotion && (
-      <div className="absolute inset-0 flex items-center justify-center">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-white rounded-full animate-ping"
-            style={{
-              transform: `rotate(${i * 45}deg) translateY(-60px)`,
-              animationDelay: `${i * 0.2}s`,
-              animationDuration: `${1.5 / speed}s`
-            }}
-          />
-        ))}
-      </div>
-    )}
+    {/* AI Knowledge Label */}
+    <div className="mt-4 text-center">
+      <h3 className="text-lg font-bold text-gray-900">AI Knowledge</h3>
+      <p className="text-sm text-gray-600">Processing Hub</p>
+    </div>
   </div>
 );
 
@@ -491,14 +511,15 @@ const AIWorkflowVisualization: React.FC = () => {
     const crmPos = getElementPosition(crmRef.current, containerRef.current);
     const brainPos = getElementPosition(brainRef.current, containerRef.current);
 
+    // Connect from bottom center of CRM to bottom center of AI brain
     const start = {
-      x: crmPos.x + crmPos.width,
-      y: crmPos.y + crmPos.height / 2
+      x: crmPos.x + crmPos.width / 2,
+      y: crmPos.y + crmPos.height
     };
 
     const end = {
-      x: brainPos.x,
-      y: brainPos.y + brainPos.height / 2
+      x: brainPos.x + brainPos.width / 2,
+      y: brainPos.y + brainPos.height
     };
 
     const length = Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
@@ -509,23 +530,43 @@ const AIWorkflowVisualization: React.FC = () => {
   const runAnimationCycle = () => {
     const cycleDuration = 8000 / speed;
     const steps = [
+      // Send each pill type with staggered timing
       { time: 0, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[0].id] })) },
-      { time: 500, action: () => {
+      { time: 300, action: () => {
         const pill = pills[0];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 1000, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[1].id] })) },
-      { time: 1500, action: () => {
+      { time: 600, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[1].id] })) },
+      { time: 900, action: () => {
         const pill = pills[1];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 2000, action: () => setAnimationState(prev => ({ ...prev, brainActive: true })) },
-      { time: 2500, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['task', 'finance'] })) },
-      { time: 3000, action: () => setAnimationState(prev => ({ ...prev, assistantsActive: ['task', 'finance'] })) },
-      { time: 4000, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[2].id, pills[3].id] })) },
-      { time: 5000, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['proposal', 'social'] })) },
-      { time: 5500, action: () => setAnimationState(prev => ({ ...prev, assistantsActive: ['proposal', 'social'] })) },
-      { time: 6500, action: () => setAnimationState(prev => ({ ...prev, crmGlow: true })) },
+      { time: 1200, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[2].id] })) },
+      { time: 1500, action: () => {
+        const pill = pills[2];
+        setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
+      }},
+      { time: 1800, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[3].id] })) },
+      { time: 2100, action: () => {
+        const pill = pills[3];
+        setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
+      }},
+      { time: 2400, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[4].id] })) },
+      { time: 2700, action: () => {
+        const pill = pills[4];
+        setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
+      }},
+      { time: 3000, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[5].id] })) },
+      { time: 3300, action: () => {
+        const pill = pills[5];
+        setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
+      }},
+      { time: 3600, action: () => setAnimationState(prev => ({ ...prev, brainActive: true })) },
+      { time: 4000, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['task', 'finance'] })) },
+      { time: 4300, action: () => setAnimationState(prev => ({ ...prev, assistantsActive: ['task', 'finance'] })) },
+      { time: 5500, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['proposal', 'social'] })) },
+      { time: 5800, action: () => setAnimationState(prev => ({ ...prev, assistantsActive: ['proposal', 'social'] })) },
+      { time: 6800, action: () => setAnimationState(prev => ({ ...prev, crmGlow: true })) },
       { time: 7500, action: () => setAnimationState({
         activePills: [],
         brainActive: false,
@@ -562,7 +603,7 @@ const AIWorkflowVisualization: React.FC = () => {
       setFlowingPills(prev => 
         prev.map(item => ({
           ...item,
-          progress: Math.min(item.progress + 0.02 * speed, 1)
+          progress: Math.min(item.progress + 0.008 * speed, 1)
         })).filter(item => item.progress < 1)
       );
       
@@ -647,18 +688,27 @@ const AIWorkflowVisualization: React.FC = () => {
           </div>
 
           {/* Flow Path - dynamically positioned between CRM and Brain */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-1" ref={flowPathRef}>
-            <div
-              className={`w-full h-full rounded-full transition-all duration-1000 ${
-                !reducedMotion ? 'animate-pulse' : ''
-              }`}
-              style={{
-                background: isPlaying 
-                  ? 'linear-gradient(90deg, transparent, #8b5cf6, #06b6d4, transparent)'
-                  : '#d1d5db',
-                animationDuration: `${2 / speed}s`
-              }}
-            />
+          <div className="absolute left-0 top-0 w-full h-full pointer-events-none z-5" ref={flowPathRef}>
+            <svg className="w-full h-full">
+              {(() => {
+                const { start, end } = getFlowPath();
+                const arcHeight = 120; // Positive for downward arc (same as FlowingPill)
+                const midX = (start.x + end.x) / 2;
+                const midY = (start.y + end.y) / 2 + arcHeight;
+                
+                return (
+                  <path
+                    d={`M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`}
+                    stroke={isPlaying ? '#8b5cf6' : '#d1d5db'}
+                    strokeWidth="2"
+                    fill="none"
+                    opacity="0.7"
+                    className={!reducedMotion ? 'animate-pulse' : ''}
+                    style={{ animationDuration: `${2 / speed}s` }}
+                  />
+                );
+              })()}
+            </svg>
             {flowingPills.map((item) => (
               <FlowingPill
                 key={item.id}
