@@ -43,70 +43,70 @@ const BusinessToolsConvergence: React.FC<BusinessToolsConvergenceProps> = ({
       label: 'CRM',
       icon: <Users className="w-6 h-6" />,
       color: '#10B981',
-      initialPosition: { x: -200, y: -60 }
+      initialPosition: { x: 0, y: -80 }
     },
     {
       id: 'payroll',
       label: 'Payroll',
       icon: <DollarSign className="w-6 h-6" />,
       color: '#3B82F6',
-      initialPosition: { x: 200, y: -60 }
+      initialPosition: { x: 150, y: -25 }
     },
     {
       id: 'social',
       label: 'Social Media',
       icon: <Calendar className="w-6 h-6" />,
       color: '#8B5CF6',
-      initialPosition: { x: -230, y: -20 }
+      initialPosition: { x: 120, y: 65 }
     },
     {
       id: 'communication',
       label: 'Communication',
       icon: <MessageCircle className="w-6 h-6" />,
       color: '#F59E0B',
-      initialPosition: { x: 230, y: -20 }
+      initialPosition: { x: -120, y: 65 }
     },
     {
       id: 'tasks',
       label: 'Task Boards',
       icon: <Kanban className="w-6 h-6" />,
       color: '#EF4444',
-      initialPosition: { x: -120, y: 20 }
+      initialPosition: { x: -150, y: -25 }
     },
     {
       id: 'invoicing',
       label: 'Invoicing',
       icon: <FileText className="w-6 h-6" />,
       color: '#06B6D4',
-      initialPosition: { x: 120, y: 20 }
+      initialPosition: { x: -150, y: 25 }
     },
     {
       id: 'reporting',
       label: 'Reporting',
       icon: <BarChart3 className="w-6 h-6" />,
       color: '#84CC16',
-      initialPosition: { x: -160, y: -100 }
+      initialPosition: { x: -120, y: -65 }
     },
     {
       id: 'dashboards',
       label: 'Dashboards',
       icon: <Layout className="w-6 h-6" />,
       color: '#F97316',
-      initialPosition: { x: 160, y: -100 }
+      initialPosition: { x: 120, y: -65 }
     },
     {
       id: 'estimating',
       label: 'Estimating',
       icon: <Calculator className="w-6 h-6" />,
       color: '#EC4899',
-      initialPosition: { x: -60, y: 60 }
+      initialPosition: { x: 150, y: 25 }
     },
     {
       id: 'ai',
       label: 'AI Agents',
       icon: <Bot className="w-6 h-6" />,
       color: '#6366F1',
-      initialPosition: { x: 60, y: 60 }
+      initialPosition: { x: 0, y: 80 }
     }
   ]
 
@@ -152,9 +152,9 @@ const BusinessToolsConvergence: React.FC<BusinessToolsConvergenceProps> = ({
   }, [centralIconControls, onComplete, shouldReduceMotion])
 
   const getBubbleVariants = (tool: BusinessTool, index: number) => {
-    // Responsive position scaling - more conservative on mobile
+    // Expanded mobile scaling to use full width available
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-    const positionScale = isMobile ? 0.6 : 1
+    const positionScale = isMobile ? 1.1 : 1.4
     
     return {
       initial: {
@@ -319,7 +319,10 @@ const BusinessToolsConvergence: React.FC<BusinessToolsConvergenceProps> = ({
           >
             <motion.div
               className="relative flex items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-green-600 shadow-xl"
-              style={{ width: '50px', height: '50px' }}
+              style={{ 
+                width: typeof window !== 'undefined' && window.innerWidth >= 768 ? '65px' : '50px', 
+                height: typeof window !== 'undefined' && window.innerWidth >= 768 ? '65px' : '50px' 
+              }}
               animate={shouldReduceMotion ? {} : {
                 boxShadow: [
                   "0 0 20px rgba(34, 197, 94, 0.4)",
@@ -333,7 +336,7 @@ const BusinessToolsConvergence: React.FC<BusinessToolsConvergenceProps> = ({
                 ease: [0.4, 0, 0.6, 1]
               }}
             >
-              <Bot className="w-5 h-5 md:w-6 md:h-6 text-white" />
+              <Bot className="w-6 h-6 md:w-8 md:h-8 text-white" />
               
               {/* Pulse rings */}
               {!shouldReduceMotion && [1, 2, 3].map((ring) => (

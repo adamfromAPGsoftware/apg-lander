@@ -1,24 +1,29 @@
 import React from 'react';
+import { Briefcase, DollarSign, Bot, Brain } from 'lucide-react';
 
 const TargetAudience = () => {
   const audiences = [
     {
-      icon: '🧰',
+      icon: <Briefcase className="w-8 h-8" />,
+      iconColor: "text-blue-600",
       title: "You're Running a Service–Based Business",
       description: "Agencies, consultants, construction firms and other operators who are juggling clients, projects, and internal workflows across too many tools."
     },
     {
-      icon: '💸',
+      icon: <DollarSign className="w-8 h-8" />,
+      iconColor: "text-amber-600",
       title: "You're Spending $3,000+/Month on SaaS Tools",
       description: "You're paying for project management, CRM, quoting, chat, and docs tools — but none of them actually work together or reflect your real processes."
     },
     {
-      icon: '🤖',
+      icon: <Bot className="w-8 h-8" />,
+      iconColor: "text-purple-600",
       title: "You Want to Automate, But Nothing's Ready",
       description: "You know AI could save you time, but your systems are too scattered and unstructured for it to do anything useful."
     },
     {
-      icon: '🧠',
+      icon: <Brain className="w-8 h-8" />,
+      iconColor: "text-pink-600",
       title: "You Need One Smart System That Just Works",
       description: "A single, AI-powered platform tailored to your business — built fast, easy to use, and ready to evolve as you grow."
     }
@@ -38,7 +43,7 @@ const TargetAudience = () => {
             >
               <div className="flex justify-center mb-4">
               <div className="bg-brand-green bg-opacity-20 rounded-full p-3 w-16 h-16 flex items-center justify-center">
-                <span className="text-4xl">{audience.icon}</span>
+                <div className={audience.iconColor}>{audience.icon}</div>
                 </div>
               </div>
               <h3 className="text-xl font-bold mb-3">{audience.title}</h3>
