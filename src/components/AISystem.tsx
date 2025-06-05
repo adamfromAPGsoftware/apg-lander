@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
-import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { 
-  Play, 
-  Pause, 
-  RotateCcw, 
   Brain, 
   FileText, 
   Receipt, 
@@ -50,76 +44,6 @@ interface AnimationState {
   beamTargets: string[];
 }
 
-interface ControlsProps {
-  isPlaying: boolean;
-  speed: number;
-  reducedMotion: boolean;
-  onPlayPause: () => void;
-  onReset: () => void;
-  onSpeedChange: (speed: number) => void;
-  onMotionToggle: (reduced: boolean) => void;
-}
-
-const Controls: React.FC<ControlsProps> = ({
-  isPlaying,
-  speed,
-  reducedMotion,
-  onPlayPause,
-  onReset,
-  onSpeedChange,
-  onMotionToggle
-}) => (
-  <Card className="p-4 mb-6 bg-white/90 backdrop-blur-sm border-gray-200 shadow-sm">
-    <div className="flex flex-wrap items-center gap-4">
-      <div className="flex items-center gap-2">
-        <Button
-          onClick={onPlayPause}
-          variant="outline"
-          size="sm"
-          className="flex items-center gap-2 border-gray-300 hover:bg-gray-50"
-          aria-label={isPlaying ? "Pause animation" : "Play animation"}
-        >
-          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          {isPlaying ? 'Pause' : 'Play'}
-        </Button>
-        <Button
-          onClick={onReset}
-          variant="outline"
-          size="sm"
-          className="flex items-center gap-2 border-gray-300 hover:bg-gray-50"
-          aria-label="Reset animation"
-        >
-          <RotateCcw className="w-4 h-4" />
-          Reset
-        </Button>
-      </div>
-      
-      <div className="flex items-center gap-2 min-w-[200px]">
-        <span className="text-sm text-gray-600">Speed:</span>
-        <Slider
-          value={[speed]}
-          onValueChange={(value) => onSpeedChange(value[0])}
-          min={0.5}
-          max={3}
-          step={0.1}
-          className="flex-1"
-          aria-label="Animation speed"
-        />
-        <span className="text-sm text-gray-600 w-8">{speed.toFixed(1)}x</span>
-      </div>
-      
-      <div className="flex items-center gap-2">
-        <Switch
-          checked={reducedMotion}
-          onCheckedChange={onMotionToggle}
-          aria-label="Reduce motion"
-        />
-        <span className="text-sm text-gray-600">Reduce Motion</span>
-      </div>
-    </div>
-  </Card>
-);
-
 interface PillProps {
   pill: PillData;
   isActive: boolean;
@@ -131,7 +55,7 @@ const Pill: React.FC<PillProps> = ({ pill, isActive, reducedMotion, speed }) => 
   <div
     className={`
       relative inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium
-      transition-all duration-300 cursor-pointer select-none
+      transition-all duration-400 cursor-pointer select-none
       ${isActive ? 'scale-110 shadow-lg' : 'hover:scale-105'}
       ${reducedMotion ? '' : 'animate-pulse'}
     `}
@@ -139,7 +63,7 @@ const Pill: React.FC<PillProps> = ({ pill, isActive, reducedMotion, speed }) => 
       backgroundColor: pill.color,
       color: 'white',
       boxShadow: isActive ? `0 0 20px ${pill.glowColor}40` : 'none',
-      animationDuration: `${2 / speed}s`
+      animationDuration: '2s'
     }}
     role="button"
     tabIndex={0}
@@ -219,7 +143,7 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
   return (
     <Card
       className={`
-        p-4 transition-all duration-300 relative overflow-hidden bg-white
+        p-4 transition-all duration-500 relative overflow-hidden bg-white
         ${isActive ? 'shadow-xl border-blue-300' : 'border-gray-200 shadow-sm'}
       `}
       style={{
@@ -231,7 +155,7 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
     >
       <div className="flex items-center gap-3">
         <div
-          className={`p-2 rounded-lg transition-all duration-300 ${
+          className={`p-2 rounded-lg transition-all duration-500 ${
             isActive ? 'scale-110' : ''
           }`}
           style={{ backgroundColor: `${assistant.color}15` }}
@@ -250,7 +174,7 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
           className="absolute inset-0 opacity-10 animate-pulse"
           style={{
             background: `linear-gradient(45deg, transparent, ${assistant.color}, transparent)`,
-            animationDuration: `${1 / speed}s`
+            animationDuration: '2s'
           }}
         />
       )}
@@ -268,7 +192,7 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
   <div className="relative flex flex-col items-center justify-center">
     <div
       className={`
-        relative p-10 rounded-full transition-all duration-500
+        relative p-10 rounded-full transition-all duration-700
         ${isActive ? 'scale-110' : 'scale-100'}
       `}
       style={{
@@ -286,7 +210,7 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
         className={`w-16 h-16 text-white ${
           isActive && !reducedMotion ? 'animate-pulse' : ''
         }`}
-        style={{ animationDuration: `${1 / speed}s` }}
+        style={{ animationDuration: '2s' }}
       />
       
       {isActive && !reducedMotion && (
@@ -296,8 +220,8 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
               key={i}
               className="absolute inset-0 rounded-full border-2 border-white/30 animate-ping"
               style={{
-                animationDelay: `${i * 0.5}s`,
-                animationDuration: `${2 / speed}s`
+                animationDelay: `${i * 0.7}s`,
+                animationDuration: '3s'
               }}
             />
           ))}
@@ -311,8 +235,8 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
                 left: '50%',
                 top: '50%',
                 transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-60px)`,
-                animationDelay: `${i * 0.2}s`,
-                animationDuration: `${1.5 / speed}s`
+                animationDelay: `${i * 0.3}s`,
+                animationDuration: '2.5s'
               }}
             />
           ))}
@@ -368,9 +292,6 @@ const EnergyBeam: React.FC<EnergyBeamProps> = ({ from, to, isActive, reducedMoti
 };
 
 const AIWorkflowVisualization: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [speed, setSpeed] = useState(1);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const [animationState, setAnimationState] = useState<AnimationState>({
     activePills: [],
     brainActive: false,
@@ -391,6 +312,11 @@ const AIWorkflowVisualization: React.FC = () => {
   const intervalRef = useRef<NodeJS.Timeout>();
   const animationRef = useRef<number>(0);
   const actionAnimationRef = useRef<number>(0);
+  
+  // Constants for animation
+  const isPlaying = true;
+  const speed = 1;
+  const reducedMotion = false;
   
   // Refs for dynamic positioning
   const crmRef = useRef<HTMLDivElement>(null);
@@ -505,56 +431,56 @@ const AIWorkflowVisualization: React.FC = () => {
   };
 
   const runAnimationCycle = () => {
-    const cycleDuration = 8000 / speed;
+    const cycleDuration = 12000; // Reduced from 16000 to 12000 for better pacing
     const steps = [
-      // Send each pill type with staggered timing
+      // Send each pill type with staggered timing - balanced timing
       { time: 0, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[0].id] })) },
-      { time: 300, action: () => {
+      { time: 400, action: () => {
         const pill = pills[0];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 600, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[1].id] })) },
-      { time: 900, action: () => {
+      { time: 800, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[1].id] })) },
+      { time: 1200, action: () => {
         const pill = pills[1];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 1200, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[2].id] })) },
-      { time: 1500, action: () => {
+      { time: 1600, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[2].id] })) },
+      { time: 2000, action: () => {
         const pill = pills[2];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 1800, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[3].id] })) },
-      { time: 2100, action: () => {
+      { time: 2400, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[3].id] })) },
+      { time: 2800, action: () => {
         const pill = pills[3];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 2400, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[4].id] })) },
-      { time: 2700, action: () => {
+      { time: 3200, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[4].id] })) },
+      { time: 3600, action: () => {
         const pill = pills[4];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 3000, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[5].id] })) },
-      { time: 3300, action: () => {
+      { time: 4000, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[5].id] })) },
+      { time: 4400, action: () => {
         const pill = pills[5];
         setFlowingPills(prev => [...prev, { pill, progress: 0, id: `${pill.id}-${Date.now()}` }]);
       }},
-      { time: 3600, action: () => setAnimationState(prev => ({ ...prev, brainActive: true })) },
-      { time: 4000, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['task', 'finance'] })) },
-      { time: 4300, action: () => {
+      { time: 4800, action: () => setAnimationState(prev => ({ ...prev, brainActive: true })) },
+      { time: 5400, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['task', 'finance'] })) },
+      { time: 5800, action: () => {
         setAnimationState(prev => ({ ...prev, assistantsActive: ['task', 'finance'] }));
         // Spawn action icons for active agents
         spawnActionIcon('task');
         spawnActionIcon('finance');
       }},
-      { time: 5500, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['proposal', 'social'] })) },
-      { time: 5800, action: () => {
+      { time: 7500, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['proposal', 'social'] })) },
+      { time: 7900, action: () => {
         setAnimationState(prev => ({ ...prev, assistantsActive: ['proposal', 'social'] }));
         // Spawn action icons for active agents
         spawnActionIcon('proposal');
         spawnActionIcon('social');
       }},
-      { time: 6800, action: () => setAnimationState(prev => ({ ...prev, crmGlow: true })) },
-      { time: 7500, action: () => setAnimationState({
+      { time: 9500, action: () => setAnimationState(prev => ({ ...prev, crmGlow: true })) },
+      { time: 11000, action: () => setAnimationState({
         activePills: [],
         brainActive: false,
         assistantsActive: [],
@@ -564,14 +490,14 @@ const AIWorkflowVisualization: React.FC = () => {
     ];
 
     steps.forEach(step => {
-      setTimeout(step.action, step.time / speed);
+      setTimeout(step.action, step.time);
     });
   };
 
   useEffect(() => {
     if (isPlaying) {
       runAnimationCycle();
-      intervalRef.current = setInterval(runAnimationCycle, 8000 / speed);
+      intervalRef.current = setInterval(runAnimationCycle, 12000); // Reduced interval timing
     } else {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -583,14 +509,14 @@ const AIWorkflowVisualization: React.FC = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, speed]);
+  }, [isPlaying]);
 
   useEffect(() => {
     const animateFlowingPills = () => {
       setFlowingPills(prev => 
         prev.map(item => ({
           ...item,
-          progress: Math.min(item.progress + 0.008 * speed, 1) // Reduced from 0.02 to 0.008 for slower animation
+          progress: Math.min(item.progress + 0.006, 1) // Increased from 0.004 to 0.006 for better speed
         })).filter(item => item.progress < 1)
       );
       
@@ -608,7 +534,7 @@ const AIWorkflowVisualization: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPlaying, speed, reducedMotion]);
+  }, [isPlaying, reducedMotion]);
 
   // Animate flowing action icons
   useEffect(() => {
@@ -616,7 +542,7 @@ const AIWorkflowVisualization: React.FC = () => {
       setFlowingActionIcons(prev => 
         prev.map(item => ({
           ...item,
-          progress: Math.min(item.progress + 0.02 * speed, 1)
+          progress: Math.min(item.progress + 0.015, 1) // Increased from 0.01 to 0.015 for better speed
         })).filter(item => item.progress < 1)
       );
       
@@ -634,21 +560,7 @@ const AIWorkflowVisualization: React.FC = () => {
         cancelAnimationFrame(actionAnimationRef.current);
       }
     };
-  }, [isPlaying, speed, reducedMotion]);
-
-  const handlePlayPause = () => setIsPlaying(!isPlaying);
-  const handleReset = () => {
-    setIsPlaying(false);
-    setAnimationState({
-      activePills: [],
-      brainActive: false,
-      assistantsActive: [],
-      crmGlow: false,
-      beamTargets: []
-    });
-    setFlowingPills([]);
-    setTimeout(() => setIsPlaying(true), 100);
-  };
+  }, [isPlaying, reducedMotion]);
 
   // Function to spawn action icons from agents
   const spawnActionIcon = (agentId: string) => {
@@ -707,16 +619,6 @@ const AIWorkflowVisualization: React.FC = () => {
       </div>
 
       <div className="w-full max-w-7xl mx-auto p-6">
-        <Controls
-          isPlaying={isPlaying}
-          speed={speed}
-          reducedMotion={reducedMotion}
-          onPlayPause={handlePlayPause}
-          onReset={handleReset}
-          onSpeedChange={setSpeed}
-          onMotionToggle={setReducedMotion}
-        />
-
         <div className="relative min-h-[600px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-gray-200 overflow-hidden shadow-sm" ref={containerRef}>
           {/* CRM Section - Left Column */}
           <div className="absolute left-[5%] top-1/2 transform -translate-y-1/2 z-10" ref={crmRef}>
@@ -764,7 +666,7 @@ const AIWorkflowVisualization: React.FC = () => {
                     fill="none"
                     opacity="0.7"
                     className={!reducedMotion ? 'animate-pulse' : ''}
-                    style={{ animationDuration: `${2 / speed}s` }}
+                    style={{ animationDuration: '2.5s' }}
                   />
                 );
               })()}
@@ -842,15 +744,6 @@ const AIWorkflowVisualization: React.FC = () => {
               />
             );
           })}
-
-          {/* Status Indicators */}
-          <div className="absolute bottom-4 left-4 flex gap-2">
-            <Badge variant={isPlaying ? "default" : "secondary"}>
-              {isPlaying ? "Running" : "Paused"}
-            </Badge>
-            <Badge variant="outline">Speed: {speed}x</Badge>
-            {reducedMotion && <Badge variant="outline">Reduced Motion</Badge>}
-          </div>
         </div>
 
         <div className="mt-6 text-center text-sm text-gray-600">
