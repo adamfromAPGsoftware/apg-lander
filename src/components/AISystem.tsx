@@ -216,65 +216,6 @@ interface AssistantCardProps {
 }
 
 const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, reducedMotion, speed }) => {
-  const [actionActive, setActionActive] = useState(false);
-
-  useEffect(() => {
-    if (isActive) {
-      setActionActive(true);
-      const timer = setTimeout(() => setActionActive(false), 2000 / speed);
-      return () => clearTimeout(timer);
-    }
-  }, [isActive, speed]);
-
-  const renderAction = () => {
-    if (!actionActive) return null;
-
-    switch (assistant.id) {
-      case 'task':
-        return (
-          <div className="flex gap-1 mt-2">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className={`w-4 h-4 rounded bg-blue-500 transition-transform duration-500 ${
-                  reducedMotion ? '' : 'animate-bounce'
-                }`}
-                style={{ animationDelay: `${i * 100}ms`, animationDuration: `${1 / speed}s` }}
-              />
-            ))}
-          </div>
-        );
-      case 'finance':
-        return (
-          <div className="mt-2 flex items-center gap-1">
-            <DollarSign className={`w-5 h-5 text-green-500 ${reducedMotion ? '' : 'animate-spin'}`} 
-              style={{ animationDuration: `${1 / speed}s` }} />
-            <span className="text-green-500 font-bold">+$1,234</span>
-          </div>
-        );
-      case 'proposal':
-        return (
-          <div className="mt-2">
-            <FileEdit className={`w-5 h-5 text-purple-500 ${reducedMotion ? '' : 'animate-pulse'}`}
-              style={{ animationDuration: `${0.5 / speed}s` }} />
-          </div>
-        );
-      case 'social':
-        return (
-          <div className="flex gap-1 mt-2">
-            <Instagram className={`w-4 h-4 text-pink-500 ${reducedMotion ? '' : 'animate-bounce'}`}
-              style={{ animationDuration: `${0.6 / speed}s` }} />
-            <Twitter className={`w-4 h-4 text-blue-400 ${reducedMotion ? '' : 'animate-bounce'}`}
-              style={{ animationDelay: '0.2s', animationDuration: `${0.6 / speed}s` }} />
-            <Music className={`w-4 h-4 text-red-500 ${reducedMotion ? '' : 'animate-bounce'}`}
-              style={{ animationDelay: '0.4s', animationDuration: `${0.6 / speed}s` }} />
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <Card
       className={`
@@ -304,7 +245,6 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
           )}
         </div>
       </div>
-      {renderAction()}
       {isActive && !reducedMotion && (
         <div
           className="absolute inset-0 opacity-10 animate-pulse"
@@ -439,9 +379,18 @@ const AIWorkflowVisualization: React.FC = () => {
     beamTargets: []
   });
   const [flowingPills, setFlowingPills] = useState<Array<{ pill: PillData; progress: number; id: string }>>([]);
+  const [flowingActionIcons, setFlowingActionIcons] = useState<Array<{ 
+    agentId: string; 
+    icon: React.ReactNode; 
+    color: string; 
+    progress: number; 
+    id: string;
+    fromPosition: { x: number; y: number };
+  }>>([]);
   
   const intervalRef = useRef<NodeJS.Timeout>();
   const animationRef = useRef<number>(0);
+  const actionAnimationRef = useRef<number>(0);
   
   // Refs for dynamic positioning
   const crmRef = useRef<HTMLDivElement>(null);
@@ -591,9 +540,19 @@ const AIWorkflowVisualization: React.FC = () => {
       }},
       { time: 3600, action: () => setAnimationState(prev => ({ ...prev, brainActive: true })) },
       { time: 4000, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['task', 'finance'] })) },
-      { time: 4300, action: () => setAnimationState(prev => ({ ...prev, assistantsActive: ['task', 'finance'] })) },
+      { time: 4300, action: () => {
+        setAnimationState(prev => ({ ...prev, assistantsActive: ['task', 'finance'] }));
+        // Spawn action icons for active agents
+        spawnActionIcon('task');
+        spawnActionIcon('finance');
+      }},
       { time: 5500, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['proposal', 'social'] })) },
-      { time: 5800, action: () => setAnimationState(prev => ({ ...prev, assistantsActive: ['proposal', 'social'] })) },
+      { time: 5800, action: () => {
+        setAnimationState(prev => ({ ...prev, assistantsActive: ['proposal', 'social'] }));
+        // Spawn action icons for active agents
+        spawnActionIcon('proposal');
+        spawnActionIcon('social');
+      }},
       { time: 6800, action: () => setAnimationState(prev => ({ ...prev, crmGlow: true })) },
       { time: 7500, action: () => setAnimationState({
         activePills: [],
@@ -631,7 +590,7 @@ const AIWorkflowVisualization: React.FC = () => {
       setFlowingPills(prev => 
         prev.map(item => ({
           ...item,
-          progress: Math.min(item.progress + 0.008 * speed, 1)
+          progress: Math.min(item.progress + 0.008 * speed, 1) // Reduced from 0.02 to 0.008 for slower animation
         })).filter(item => item.progress < 1)
       );
       
@@ -651,6 +610,32 @@ const AIWorkflowVisualization: React.FC = () => {
     };
   }, [isPlaying, speed, reducedMotion]);
 
+  // Animate flowing action icons
+  useEffect(() => {
+    const animateFlowingActionIcons = () => {
+      setFlowingActionIcons(prev => 
+        prev.map(item => ({
+          ...item,
+          progress: Math.min(item.progress + 0.02 * speed, 1)
+        })).filter(item => item.progress < 1)
+      );
+      
+      if (isPlaying) {
+        actionAnimationRef.current = requestAnimationFrame(animateFlowingActionIcons);
+      }
+    };
+
+    if (isPlaying && !reducedMotion) {
+      actionAnimationRef.current = requestAnimationFrame(animateFlowingActionIcons);
+    }
+
+    return () => {
+      if (actionAnimationRef.current) {
+        cancelAnimationFrame(actionAnimationRef.current);
+      }
+    };
+  }, [isPlaying, speed, reducedMotion]);
+
   const handlePlayPause = () => setIsPlaying(!isPlaying);
   const handleReset = () => {
     setIsPlaying(false);
@@ -663,6 +648,53 @@ const AIWorkflowVisualization: React.FC = () => {
     });
     setFlowingPills([]);
     setTimeout(() => setIsPlaying(true), 100);
+  };
+
+  // Function to spawn action icons from agents
+  const spawnActionIcon = (agentId: string) => {
+    const agentIndex = assistants.findIndex(a => a.id === agentId);
+    const agentElement = assistantRefs.current[agentIndex];
+    
+    if (!agentElement || !containerRef.current) return;
+    
+    const agentPos = getElementPosition(agentElement, containerRef.current);
+    const fromPosition = {
+      x: agentPos.x,
+      y: agentPos.y + agentPos.height / 2
+    };
+
+    let icon: React.ReactNode;
+    let color: string;
+
+    switch (agentId) {
+      case 'task':
+        icon = <CheckSquare className="w-4 h-4" />;
+        color = '#3b82f6';
+        break;
+      case 'finance':
+        icon = <DollarSign className="w-4 h-4" />;
+        color = '#10b981';
+        break;
+      case 'proposal':
+        icon = <FileEdit className="w-4 h-4" />;
+        color = '#8b5cf6';
+        break;
+      case 'social':
+        icon = <Instagram className="w-4 h-4" />;
+        color = '#ec4899';
+        break;
+      default:
+        return;
+    }
+
+    setFlowingActionIcons(prev => [...prev, {
+      agentId,
+      icon,
+      color,
+      progress: 0,
+      id: `${agentId}-action-${Date.now()}`,
+      fromPosition
+    }]);
   };
 
   return (
@@ -747,6 +779,24 @@ const AIWorkflowVisualization: React.FC = () => {
                 pathEnd={getFlowPath().end}
               />
             ))}
+            
+            {/* Flowing Action Icons from Agents to CRM */}
+            {flowingActionIcons.map((item) => {
+              const crmPos = crmRef.current ? getElementPosition(crmRef.current, containerRef.current) : { x: 0, y: 0, width: 0, height: 0 };
+              const crmTarget = {
+                x: crmPos.x + crmPos.width,
+                y: crmPos.y + crmPos.height / 2
+              };
+              
+              return (
+                <FlowingActionIcon
+                  key={item.id}
+                  actionIcon={item}
+                  reducedMotion={reducedMotion}
+                  crmPosition={crmTarget}
+                />
+              );
+            })}
           </div>
 
           {/* AI Assistants - Center Column */}
@@ -811,6 +861,53 @@ const AIWorkflowVisualization: React.FC = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+interface FlowingActionIconProps {
+  actionIcon: {
+    agentId: string;
+    icon: React.ReactNode;
+    color: string;
+    progress: number;
+    id: string;
+    fromPosition: { x: number; y: number };
+  };
+  reducedMotion: boolean;
+  crmPosition: { x: number; y: number };
+}
+
+const FlowingActionIcon: React.FC<FlowingActionIconProps> = ({ actionIcon, reducedMotion, crmPosition }) => {
+  // Create path from agent to CRM (left side)
+  const startX = actionIcon.fromPosition.x;
+  const startY = actionIcon.fromPosition.y;
+  const endX = crmPosition.x;
+  const endY = crmPosition.y;
+  
+  const x = startX + (endX - startX) * actionIcon.progress;
+  const y = startY + (endY - startY) * actionIcon.progress;
+  
+  return (
+    <div
+      className="absolute z-10 pointer-events-none"
+      style={{
+        left: `${x}px`,
+        top: `${y}px`,
+        transform: 'translate(-50%, -50%)',
+        opacity: actionIcon.progress > 0.9 ? 1 - (actionIcon.progress - 0.9) * 10 : 1
+      }}
+    >
+      <div
+        className="flex items-center justify-center w-8 h-8 rounded-full shadow-lg"
+        style={{
+          backgroundColor: actionIcon.color,
+          color: 'white',
+          boxShadow: reducedMotion ? '0 4px 12px rgba(0,0,0,0.15)' : `0 0 15px ${actionIcon.color}40, 0 4px 12px rgba(0,0,0,0.15)`
+        }}
+      >
+        {actionIcon.icon}
+      </div>
+    </div>
   );
 };
 
