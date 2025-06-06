@@ -247,7 +247,7 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
     {/* AI Knowledge Label */}
     <div className="mt-4 text-center">
       <h3 className="text-lg font-bold text-gray-900">AI Knowledge</h3>
-      <p className="text-sm text-gray-600">Processing Hub</p>
+      <p className="text-sm text-gray-600">Vector Database</p>
     </div>
   </div>
 );
