@@ -54,7 +54,7 @@ interface PillProps {
 const Pill: React.FC<PillProps> = ({ pill, isActive, reducedMotion, speed }) => (
   <div
     className={`
-      relative inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium
+      relative inline-flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-2 rounded-full text-xs md:text-sm font-medium
       transition-all duration-400 cursor-pointer select-none
       ${isActive ? 'scale-110 shadow-lg' : 'hover:scale-105'}
       ${reducedMotion ? '' : 'animate-pulse'}
@@ -70,7 +70,7 @@ const Pill: React.FC<PillProps> = ({ pill, isActive, reducedMotion, speed }) => 
     aria-label={`${pill.label} data pill`}
   >
     {pill.icon}
-    <span>{pill.label}</span>
+    <span className="hidden md:inline">{pill.label}</span>
     {isActive && !reducedMotion && (
       <div
         className="absolute inset-0 rounded-full animate-ping opacity-20"
@@ -91,8 +91,8 @@ interface FlowingPillProps {
 const FlowingPill: React.FC<FlowingPillProps> = ({ pill, progress, reducedMotion, pathStart, pathEnd }) => {
   // Create an arc path instead of straight line
   const getArcPosition = (progress: number) => {
-    // Arc height - positive for downward arc (goes underneath agents)
-    const arcHeight = 120; // Positive for downward arc
+    // Consistent arc height with SVG path
+    const arcHeight = 80; // Reduced for better mobile experience
     
     // Linear interpolation for X
     const x = pathStart.x + (pathEnd.x - pathStart.x) * progress;
@@ -118,7 +118,7 @@ const FlowingPill: React.FC<FlowingPillProps> = ({ pill, progress, reducedMotion
       }}
     >
       <div
-        className="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium shadow-lg"
+        className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-2 rounded-full text-xs md:text-sm font-medium shadow-lg"
         style={{
           backgroundColor: pill.color,
           color: 'white',
@@ -143,7 +143,7 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
   return (
     <Card
       className={`
-        p-4 transition-all duration-500 relative overflow-hidden bg-white max-w-xs
+        p-2 md:p-4 transition-all duration-500 relative overflow-hidden bg-white max-w-[120px] md:max-w-xs
         ${isActive ? 'shadow-xl border-blue-300' : 'border-gray-200 shadow-sm'}
       `}
       style={{
@@ -153,9 +153,9 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
       role="region"
       aria-label={`${assistant.name} status`}
     >
-      <div className="flex items-start gap-3">
+      <div className="flex items-start gap-2 md:gap-3">
         <div
-          className={`p-2 rounded-lg transition-all duration-500 flex-shrink-0 ${
+          className={`p-1 md:p-2 rounded-lg transition-all duration-500 flex-shrink-0 ${
             isActive ? 'scale-110' : ''
           }`}
           style={{ backgroundColor: `${assistant.color}15` }}
@@ -163,9 +163,9 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
           {assistant.icon}
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-semibold text-gray-900">{assistant.name}</h3>
+          <h3 className="text-sm md:text-base font-semibold text-gray-900">{assistant.name}</h3>
           {isActive && (
-            <p className="text-sm text-gray-600 leading-relaxed">{assistant.action}</p>
+            <p className="text-xs md:text-sm text-gray-600 leading-relaxed hidden md:block">{assistant.action}</p>
           )}
         </div>
       </div>
@@ -192,7 +192,7 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
   <div className="relative flex flex-col items-center justify-center">
     <div
       className={`
-        relative p-10 rounded-full transition-all duration-700
+        relative p-6 md:p-10 rounded-full transition-all duration-700
         ${isActive ? 'scale-110' : 'scale-100'}
       `}
       style={{
@@ -207,7 +207,7 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
       aria-label="AI Brain processing data"
     >
       <Brain 
-        className={`w-16 h-16 text-white ${
+        className={`w-10 h-10 md:w-16 md:h-16 text-white ${
           isActive && !reducedMotion ? 'animate-pulse' : ''
         }`}
         style={{ animationDuration: '2s' }}
@@ -230,11 +230,11 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-2 h-2 bg-white rounded-full animate-ping"
+              className="absolute w-1 h-1 md:w-2 md:h-2 bg-white rounded-full animate-ping"
               style={{
                 left: '50%',
                 top: '50%',
-                transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-60px)`,
+                transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-40px) md:translateY(-60px)`,
                 animationDelay: `${i * 0.3}s`,
                 animationDuration: '2.5s'
               }}
@@ -245,9 +245,9 @@ const AIBrain: React.FC<AIBrainProps> = ({ isActive, reducedMotion, speed }) => 
     </div>
     
     {/* AI Knowledge Label */}
-    <div className="mt-4 text-center">
-      <h3 className="text-lg font-bold text-gray-900">AI Knowledge</h3>
-      <p className="text-sm text-gray-600">Vector Database</p>
+    <div className="mt-2 md:mt-4 text-center">
+      <h3 className="text-sm md:text-lg font-bold text-gray-900">AI Knowledge</h3>
+      <p className="text-xs md:text-sm text-gray-600">Vector Database</p>
     </div>
   </div>
 );
@@ -338,7 +338,7 @@ const AIWorkflowVisualization: React.FC = () => {
   const assistants: AssistantData[] = [
     { 
       id: 'task', 
-      name: 'Task Assistant', 
+      name: 'Task Agent', 
       icon: <Kanban className="w-5 h-5" />, 
       color: '#3b82f6', 
       position: { x: 200, y: 100 }, 
@@ -346,7 +346,7 @@ const AIWorkflowVisualization: React.FC = () => {
     },
     { 
       id: 'finance', 
-      name: 'Finance Assistant', 
+      name: 'Finance Agent', 
       icon: <DollarSign className="w-5 h-5" />, 
       color: '#10b981', 
       position: { x: 200, y: 200 }, 
@@ -354,7 +354,7 @@ const AIWorkflowVisualization: React.FC = () => {
     },
     { 
       id: 'proposal', 
-      name: 'Proposal Assistant', 
+      name: 'Proposal Agent', 
       icon: <FileEdit className="w-5 h-5" />, 
       color: '#8b5cf6', 
       position: { x: 200, y: 300 }, 
@@ -362,7 +362,7 @@ const AIWorkflowVisualization: React.FC = () => {
     },
     { 
       id: 'social', 
-      name: 'Social Assistant', 
+      name: 'Social Agent', 
       icon: <Instagram className="w-5 h-5" />, 
       color: '#ec4899', 
       position: { x: 200, y: 400 }, 
@@ -418,9 +418,11 @@ const AIWorkflowVisualization: React.FC = () => {
     const agentPos = getElementPosition(agentElement, containerRef.current);
 
     // Connect from left side center of the brain circle (not the entire container)
-    // Brain circle: p-10 (40px) + w-16 (64px) + p-10 (40px) = 144px diameter
-    // So center is at 72px from top of the brain container
-    const brainCircleCenter = 72; // 40px padding + 32px (half of 64px icon)
+    // Mobile: p-6 (24px) + w-10 (40px) + p-6 (24px) = 88px diameter, center at 44px
+    // Desktop: p-10 (40px) + w-16 (64px) + p-10 (40px) = 144px diameter, center at 72px
+    const isMobile = window.innerWidth < 768;
+    const brainCircleCenter = isMobile ? 44 : 72;
+    
     const from = {
       x: brainPos.x,
       y: brainPos.y + brainCircleCenter
@@ -658,12 +660,12 @@ const AIWorkflowVisualization: React.FC = () => {
         </p>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto p-6">
-        <div className="relative min-h-[600px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-gray-200 overflow-hidden shadow-sm" ref={containerRef}>
+      <div className="w-full max-w-7xl mx-auto p-3 md:p-6">
+        <div className="relative min-h-[400px] md:min-h-[600px] bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-gray-200 overflow-hidden shadow-sm" ref={containerRef}>
           {/* CRM Section - Left Column */}
-          <div className="absolute left-[5%] top-1/2 transform -translate-y-1/2 z-10" ref={crmRef}>
+          <div className="absolute left-[3%] md:left-[5%] top-1/2 transform -translate-y-1/2 z-10" ref={crmRef}>
             <Card
-              className={`p-6 transition-all duration-500 bg-white ${
+              className={`p-3 md:p-6 transition-all duration-500 bg-white ${
                 animationState.crmGlow ? 'shadow-xl border-blue-300' : 'border-gray-200 shadow-sm'
               }`}
               style={{
@@ -671,11 +673,16 @@ const AIWorkflowVisualization: React.FC = () => {
                 boxShadow: animationState.crmGlow && !reducedMotion ? '0 0 30px #3b82f630, 0 8px 32px rgba(0,0,0,0.1)' : undefined
               }}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <Database className="w-6 h-6 text-blue-600" />
-                <h2 className="text-xl font-bold text-gray-900">Your CRM</h2>
+              {/* Mobile: Icon only */}
+              <div className="flex justify-center mb-2 md:hidden">
+                <Database className="w-4 h-4 text-blue-600" />
               </div>
-              <div className="flex flex-col space-y-3">
+              {/* Desktop: Full header */}
+              <div className="hidden md:flex items-center gap-3 mb-4">
+                <Database className="w-6 h-6 text-blue-600" />
+                <h2 className="text-xl font-bold text-gray-900">CRM</h2>
+              </div>
+              <div className="flex flex-col space-y-2 md:space-y-3">
                 {pills.map((pill) => (
                   <Pill
                     key={pill.id}
@@ -694,7 +701,7 @@ const AIWorkflowVisualization: React.FC = () => {
             <svg className="w-full h-full">
               {(() => {
                 const { start, end } = getFlowPath();
-                const arcHeight = 120; // Positive for downward arc (same as FlowingPill)
+                const arcHeight = 80; // Reduced arc height for smaller screens
                 const midX = (start.x + end.x) / 2;
                 const midY = (start.y + end.y) / 2 + arcHeight;
                 
@@ -741,8 +748,8 @@ const AIWorkflowVisualization: React.FC = () => {
             })}
           </div>
 
-          {/* AI Assistants - Center Column */}
-          <div className="absolute left-1/2 top-16 transform -translate-x-1/2 space-y-4 z-10">
+          {/* AI Agents - Center Column */}
+          <div className="absolute left-1/2 top-8 md:top-16 transform -translate-x-1/2 space-y-2 md:space-y-4 z-10">
             {assistants.map((assistant, index) => (
               <div key={assistant.id} ref={el => (assistantRefs.current[index] = el)}>
                 <AssistantCard
@@ -756,7 +763,7 @@ const AIWorkflowVisualization: React.FC = () => {
           </div>
 
           {/* AI Brain - Right Column */}
-          <div className="absolute right-[5%] top-1/2 transform -translate-y-1/2 z-10" ref={brainRef}>
+          <div className="absolute right-[3%] md:right-[5%] top-1/2 transform -translate-y-1/2 z-10" ref={brainRef}>
             <AIBrain
               isActive={animationState.brainActive}
               reducedMotion={reducedMotion}
@@ -786,10 +793,9 @@ const AIWorkflowVisualization: React.FC = () => {
           })}
         </div>
 
-        <div className="mt-6 text-center text-sm text-gray-600">
+        <div className="mt-4 md:mt-6 text-center text-xs md:text-sm text-gray-600">
           <p>
-            This visualization demonstrates how data flows from your CRM through AI assistants,
-            gets processed by the AI brain, and returns as intelligent actions.
+            This visualisation shows how data from your CRM flows into an AI Knowledge Base, enabling AI Agents to take smart, automated actions across your business.
           </p>
         </div>
       </div>
@@ -832,7 +838,7 @@ const FlowingActionIcon: React.FC<FlowingActionIconProps> = ({ actionIcon, reduc
       }}
     >
       <div
-        className="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap"
+        className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 md:py-2 rounded-full text-xs md:text-sm font-medium shadow-lg whitespace-nowrap"
         style={{
           backgroundColor: actionIcon.color,
           color: 'white',
