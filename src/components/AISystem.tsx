@@ -143,7 +143,7 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
   return (
     <Card
       className={`
-        p-4 transition-all duration-500 relative overflow-hidden bg-white
+        p-4 transition-all duration-500 relative overflow-hidden bg-white max-w-xs
         ${isActive ? 'shadow-xl border-blue-300' : 'border-gray-200 shadow-sm'}
       `}
       style={{
@@ -153,19 +153,19 @@ const AssistantCard: React.FC<AssistantCardProps> = ({ assistant, isActive, redu
       role="region"
       aria-label={`${assistant.name} status`}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-start gap-3">
         <div
-          className={`p-2 rounded-lg transition-all duration-500 ${
+          className={`p-2 rounded-lg transition-all duration-500 flex-shrink-0 ${
             isActive ? 'scale-110' : ''
           }`}
           style={{ backgroundColor: `${assistant.color}15` }}
         >
           {assistant.icon}
         </div>
-        <div>
+        <div className="min-w-0 flex-1">
           <h3 className="font-semibold text-gray-900">{assistant.name}</h3>
           {isActive && (
-            <p className="text-sm text-gray-600">{assistant.action}</p>
+            <p className="text-sm text-gray-600 leading-relaxed">{assistant.action}</p>
           )}
         </div>
       </div>
@@ -307,6 +307,7 @@ const AIWorkflowVisualization: React.FC = () => {
     progress: number; 
     id: string;
     fromPosition: { x: number; y: number };
+    label: string;
   }>>([]);
   
   const intervalRef = useRef<NodeJS.Timeout>();
@@ -335,10 +336,38 @@ const AIWorkflowVisualization: React.FC = () => {
   ];
 
   const assistants: AssistantData[] = [
-    { id: 'task', name: 'Task Assistant', icon: <Kanban className="w-5 h-5" />, color: '#3b82f6', position: { x: 200, y: 100 }, action: 'Managing workflows' },
-    { id: 'finance', name: 'Finance Assistant', icon: <DollarSign className="w-5 h-5" />, color: '#10b981', position: { x: 200, y: 200 }, action: 'Processing transactions' },
-    { id: 'proposal', name: 'Proposal Assistant', icon: <FileEdit className="w-5 h-5" />, color: '#8b5cf6', position: { x: 200, y: 300 }, action: 'Creating documents' },
-    { id: 'social', name: 'Social Assistant', icon: <Instagram className="w-5 h-5" />, color: '#ec4899', position: { x: 200, y: 400 }, action: 'Managing social media' }
+    { 
+      id: 'task', 
+      name: 'Task Assistant', 
+      icon: <Kanban className="w-5 h-5" />, 
+      color: '#3b82f6', 
+      position: { x: 200, y: 100 }, 
+      action: 'Extracting tasks from Meeting Transcript' 
+    },
+    { 
+      id: 'finance', 
+      name: 'Finance Assistant', 
+      icon: <DollarSign className="w-5 h-5" />, 
+      color: '#10b981', 
+      position: { x: 200, y: 200 }, 
+      action: 'Extracting Smart Analytics from Transaction History' 
+    },
+    { 
+      id: 'proposal', 
+      name: 'Proposal Assistant', 
+      icon: <FileEdit className="w-5 h-5" />, 
+      color: '#8b5cf6', 
+      position: { x: 200, y: 300 }, 
+      action: 'Generating Draft Proposal based on Client Communication History' 
+    },
+    { 
+      id: 'social', 
+      name: 'Social Assistant', 
+      icon: <Instagram className="w-5 h-5" />, 
+      color: '#ec4899', 
+      position: { x: 200, y: 400 }, 
+      action: 'Creating AI UGC posts based on Company Branding' 
+    }
   ];
 
   // Function to get element position relative to container
@@ -431,7 +460,7 @@ const AIWorkflowVisualization: React.FC = () => {
   };
 
   const runAnimationCycle = () => {
-    const cycleDuration = 12000; // Reduced from 16000 to 12000 for better pacing
+    const cycleDuration = 15000; // Increased from 12000 to 15000 to accommodate longer agent scenes
     const steps = [
       // Send each pill type with staggered timing - balanced timing
       { time: 0, action: () => setAnimationState(prev => ({ ...prev, activePills: [pills[0].id] })) },
@@ -472,21 +501,21 @@ const AIWorkflowVisualization: React.FC = () => {
         spawnActionIcon('task');
         spawnActionIcon('finance');
       }},
-      { time: 7500, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['proposal', 'social'] })) },
-      { time: 7900, action: () => {
+      { time: 9500, action: () => setAnimationState(prev => ({ ...prev, beamTargets: ['proposal', 'social'] })) }, // Extended from 7500 to 9500 (+2 seconds)
+      { time: 9900, action: () => {
         setAnimationState(prev => ({ ...prev, assistantsActive: ['proposal', 'social'] }));
         // Spawn action icons for active agents
         spawnActionIcon('proposal');
         spawnActionIcon('social');
       }},
-      { time: 9500, action: () => setAnimationState(prev => ({ ...prev, crmGlow: true })) },
-      { time: 11000, action: () => setAnimationState({
+      { time: 11900, action: () => setAnimationState(prev => ({ ...prev, crmGlow: true })) }, // Extended from 9500 to 11900 (+2 seconds)
+      { time: 13500, action: () => setAnimationState({
         activePills: [],
         brainActive: false,
         assistantsActive: [],
         crmGlow: false,
         beamTargets: []
-      })}
+      })} // Extended from 11000 to 13500
     ];
 
     steps.forEach(step => {
@@ -497,7 +526,7 @@ const AIWorkflowVisualization: React.FC = () => {
   useEffect(() => {
     if (isPlaying) {
       runAnimationCycle();
-      intervalRef.current = setInterval(runAnimationCycle, 12000); // Reduced interval timing
+      intervalRef.current = setInterval(runAnimationCycle, 15000); // Updated interval timing
     } else {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -542,7 +571,7 @@ const AIWorkflowVisualization: React.FC = () => {
       setFlowingActionIcons(prev => 
         prev.map(item => ({
           ...item,
-          progress: Math.min(item.progress + 0.015, 1) // Increased from 0.01 to 0.015 for better speed
+          progress: Math.min(item.progress + 0.008, 1) // Reduced from 0.015 to 0.008 for slower movement
         })).filter(item => item.progress < 1)
       );
       
@@ -575,38 +604,49 @@ const AIWorkflowVisualization: React.FC = () => {
       y: agentPos.y + agentPos.height / 2
     };
 
-    let icon: React.ReactNode;
-    let color: string;
+    let pillsToSpawn: Array<{ icon: React.ReactNode; color: string; label: string }> = [];
 
     switch (agentId) {
       case 'task':
-        icon = <CheckSquare className="w-4 h-4" />;
-        color = '#3b82f6';
+        pillsToSpawn = [
+          { icon: <CheckSquare className="w-4 h-4" />, color: '#3b82f6', label: 'Task' }
+        ];
         break;
       case 'finance':
-        icon = <DollarSign className="w-4 h-4" />;
-        color = '#10b981';
+        pillsToSpawn = [
+          { icon: <DollarSign className="w-4 h-4" />, color: '#10b981', label: 'Transaction' }
+        ];
         break;
       case 'proposal':
-        icon = <FileEdit className="w-4 h-4" />;
-        color = '#8b5cf6';
+        pillsToSpawn = [
+          { icon: <FileEdit className="w-4 h-4" />, color: '#8b5cf6', label: 'Proposal' }
+        ];
         break;
       case 'social':
-        icon = <Instagram className="w-4 h-4" />;
-        color = '#ec4899';
+        pillsToSpawn = [
+          { icon: <Instagram className="w-4 h-4" />, color: '#ec4899', label: 'Instagram Post' },
+          { icon: <Music className="w-4 h-4" />, color: '#ec4899', label: 'TikTok Post' },
+          { icon: <Twitter className="w-4 h-4" />, color: '#ec4899', label: 'LinkedIn Post' }
+        ];
         break;
       default:
         return;
     }
 
-    setFlowingActionIcons(prev => [...prev, {
-      agentId,
-      icon,
-      color,
-      progress: 0,
-      id: `${agentId}-action-${Date.now()}`,
-      fromPosition
-    }]);
+    // Spawn pills with staggered timing for social media (multiple pills)
+    pillsToSpawn.forEach((pill, index) => {
+      setTimeout(() => {
+        setFlowingActionIcons(prev => [...prev, {
+          agentId,
+          icon: pill.icon,
+          color: pill.color,
+          progress: 0,
+          id: `${agentId}-action-${pill.label}-${Date.now()}`,
+          fromPosition,
+          label: pill.label
+        }]);
+      }, index * 200); // 200ms delay between each pill for social media
+    });
   };
 
   return (
@@ -765,6 +805,7 @@ interface FlowingActionIconProps {
     progress: number;
     id: string;
     fromPosition: { x: number; y: number };
+    label: string;
   };
   reducedMotion: boolean;
   crmPosition: { x: number; y: number };
@@ -791,7 +832,7 @@ const FlowingActionIcon: React.FC<FlowingActionIconProps> = ({ actionIcon, reduc
       }}
     >
       <div
-        className="flex items-center justify-center w-8 h-8 rounded-full shadow-lg"
+        className="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap"
         style={{
           backgroundColor: actionIcon.color,
           color: 'white',
@@ -799,6 +840,7 @@ const FlowingActionIcon: React.FC<FlowingActionIconProps> = ({ actionIcon, reduc
         }}
       >
         {actionIcon.icon}
+        <span>{actionIcon.label}</span>
       </div>
     </div>
   );
