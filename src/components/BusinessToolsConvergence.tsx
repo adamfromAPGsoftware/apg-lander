@@ -320,8 +320,8 @@ const BusinessToolsConvergence: React.FC<BusinessToolsConvergenceProps> = ({
             <motion.div
               className="relative flex items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-green-600 shadow-xl"
               style={{ 
-                width: typeof window !== 'undefined' && window.innerWidth >= 768 ? '65px' : '50px', 
-                height: typeof window !== 'undefined' && window.innerWidth >= 768 ? '65px' : '50px' 
+                width: typeof window !== 'undefined' && window.innerWidth >= 768 ? '80px' : '65px', 
+                height: typeof window !== 'undefined' && window.innerWidth >= 768 ? '80px' : '65px' 
               }}
               animate={shouldReduceMotion ? {} : {
                 boxShadow: [
@@ -336,7 +336,7 @@ const BusinessToolsConvergence: React.FC<BusinessToolsConvergenceProps> = ({
                 ease: [0.4, 0, 0.6, 1]
               }}
             >
-              <Bot className="w-6 h-6 md:w-8 md:h-8 text-white" />
+              <Bot className="w-8 h-8 md:w-10 md:h-10 text-white" />
               
               {/* Pulse rings */}
               {!shouldReduceMotion && [1, 2, 3].map((ring) => (
