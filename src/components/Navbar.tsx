@@ -47,7 +47,7 @@ const Navbar = () => {
 
         {/* Desktop CTA Button */}
         <div className="hidden md:block">
-          <Button className="bg-brand-green text-black hover:bg-opacity-90 px-6 py-2 relative overflow-hidden">
+          <Button className="bg-brand-green text-black hover:bg-opacity-90 px-6 py-2 relative overflow-hidden" onClick={() => window.open('https://go.apgsoftware.com/lead-filtering', '_blank')}>
             <GlowEffect 
               colors={['#90F23C', '#ffffff', '#90F23C', '#7AE82C']}
               mode="rotate"
@@ -132,7 +132,7 @@ const Navbar = () => {
           
           {/* Mobile CTA Button */}
           <div className="pt-6 pb-2">
-            <Button className="w-full bg-brand-green text-black hover:bg-opacity-90 px-6 py-3 relative overflow-hidden">
+            <Button className="w-full bg-brand-green text-black hover:bg-opacity-90 px-6 py-3 relative overflow-hidden" onClick={() => window.open('https://go.apgsoftware.com/lead-filtering', '_blank')}>
               <GlowEffect 
                 colors={['#90F23C', '#ffffff', '#90F23C', '#7AE82C']}
                 mode="rotate"

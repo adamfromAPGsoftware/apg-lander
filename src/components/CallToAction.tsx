@@ -10,7 +10,7 @@ const CallToAction = () => {
           Let's replace your stack and launch your AI-powered system.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-8">
+          <Button className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-6 px-8" onClick={() => window.open('https://go.apgsoftware.com/lead-filtering', '_blank')}>
             Book Your Discovery Call
           </Button>
           <Button 
