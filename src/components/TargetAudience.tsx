@@ -30,7 +30,7 @@ const TargetAudience = () => {
   ];
 
   return (
-    <section id="target-audience" className="py-16 md:py-24 max-width">
+    <section id="target-audience" className="py-32 md:py-8 max-width">
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Who This Is For</h2>
       </div>
