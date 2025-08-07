@@ -15,7 +15,7 @@ const CallToAction = () => {
           </Button>
           <Button 
             className="bg-gray-800 text-white hover:bg-gray-700 border border-gray-800 hover:border-gray-700 text-lg py-6 px-8 transition-all"
-            onClick={() => window.open('https://app.apgsoftwaresolutions.com', '_blank')}
+            onClick={() => window.open('https://go.apgsoftware.com', '_blank')}
           >
             Try the Demo
           </Button>
