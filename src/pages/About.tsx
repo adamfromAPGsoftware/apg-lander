@@ -53,9 +53,10 @@ const About = () => {
             image: "/team/Eslam.png"
           }
         ]}
-        mainImage={{
-          src: "/Adam Speech Presentation.webp",
-          alt: "Adam Goodyer speaking at presentation",
+        mainVideo={{
+          youtubeId: "IyrSfHizvWc",
+          title: "Adam Goodyer presentation",
+          description: "Watch our founder interview with an audience of over 40,000 on YouTube",
         }}
         secondaryImage={{
           src: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=500&fit=crop&crop=center",
@@ -64,19 +65,19 @@ const About = () => {
         upworkCard={{
           profileImage: "/team/adam.png",
           name: "Adam G.",
-          location: "Sydney, Australia • 1:49 PM local time",
+          location: "Sydney, Australia",
           jobSuccess: "100% Job Success",
           expertVetted: true,
           totalEarnings: "$80K+",
-          totalJobs: "54",
-          totalHours: "1,051",
+          totalJobs: "60+",
+          totalHours: "1,250+",
           profileUrl: "https://www.upwork.com/freelancers/adamfromapg",
         }}
         youtubeCard={{
           channelName: "@adamfreelances",
           channelUrl: "https://www.youtube.com/@adamfreelances",
-          totalViews: "50,000+",
-          communityMembers: "250+",
+          totalViews: "100,000+",
+          communityMembers: "300+",
           profileImage: "/team/adam.png",
         }}
         companiesTitle=""

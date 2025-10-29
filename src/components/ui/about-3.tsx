@@ -23,6 +23,11 @@ interface About3Props {
     src: string;
     alt: string;
   };
+  mainVideo?: {
+    youtubeId: string;
+    title?: string;
+    description?: string;
+  };
   secondaryImage?: {
     src: string;
     alt: string;
@@ -110,6 +115,7 @@ export const About3 = ({
     src: "https://shadcnblocks.com/images/block/placeholder-1.svg",
     alt: "placeholder",
   },
+  mainVideo,
   secondaryImage = {
     src: "https://shadcnblocks.com/images/block/placeholder-2.svg",
     alt: "placeholder",
@@ -244,12 +250,32 @@ export const About3 = ({
           </div>
         )}
 
-        <div className="grid gap-7 lg:grid-cols-3 lg:items-end">
-          <img
-            src={mainImage.src}
-            alt={mainImage.alt}
-            className="h-96 lg:h-auto lg:max-h-[600px] w-full rounded-xl object-cover lg:col-span-2"
-          />
+        {mainVideo?.description && (
+          <div className="mb-8">
+            <h2 className="text-3xl font-semibold text-center md:text-left">
+              {mainVideo.description}
+            </h2>
+          </div>
+        )}
+
+        <div className="grid gap-7 lg:grid-cols-3 lg:items-stretch">
+          {mainVideo ? (
+            <div className="h-96 lg:h-full w-full rounded-xl overflow-hidden lg:col-span-2">
+              <iframe
+                src={`https://www.youtube.com/embed/${mainVideo.youtubeId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1`}
+                title={mainVideo.title || "YouTube video"}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          ) : (
+            <img
+              src={mainImage.src}
+              alt={mainImage.alt}
+              className="h-96 lg:h-auto lg:max-h-[600px] w-full rounded-xl object-cover lg:col-span-2"
+            />
+          )}
           <div className="flex flex-col gap-7 md:flex-row lg:flex-col">
             {upworkCard ? (
               <div className="md:w-1/2 lg:w-auto">
