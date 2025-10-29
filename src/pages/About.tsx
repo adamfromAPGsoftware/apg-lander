@@ -10,7 +10,7 @@ const About = () => {
       
       <About3
         title="About APG Software"
-        description="We're a passionate team dedicated to creating custom AI-powered software solutions that help businesses replace expensive SaaS subscriptions and streamline their operations in just 2 weeks."
+        description="We're a passionate team dedicated to creating custom AI-powered software solutions that help businesses replace expensive SaaS subscriptions and streamline their operations in 90 days or less."
         teamMembers={[
           {
             name: "Adam Goodyer",

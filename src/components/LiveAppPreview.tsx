@@ -5,7 +5,7 @@ const LiveAppPreview = () => {
       <div className="text-center mb-12 animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">What You're Missing</h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Click through a real system you could have running in 14 days — for just $150/month in hosting.
+          Click through a real system you could have running in 90 days or less.
         </p>
       </div>
       

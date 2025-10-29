@@ -9,18 +9,18 @@ const ProcessSteps = () => {
     },
     {
       icon: "🧠",
-      title: "Map + Scope",
-      description: "Plan your custom system architecture"
+      title: "Scope + Prototype",
+      description: "Plan your system and build an interactive prototype"
     },
     {
       icon: "⚒️",
-      title: "2-Week MVP",
-      description: "Live platform delivered and ready to use"
+      title: "Develop",
+      description: "Full platform delivered in 90 days or less"
     },
     {
       icon: "🔄",
-      title: "Iterate in Sprints",
-      description: "Add AI and advanced features as you grow"
+      title: "Agile Sprints",
+      description: "Expand with AI automations and advanced features"
     }
   ];
 

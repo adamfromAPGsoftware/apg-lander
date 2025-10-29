@@ -5,7 +5,7 @@ const CallToAction = () => {
   return (
     <section id="cta" className="py-16 md:py-32 max-width">
       <div className="bg-brand-green bg-opacity-10 rounded-xl p-8 md:p-16 text-center border border-brand-green border-opacity-30 animate-fade-in">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6">Two Weeks to the Last Tool You'll Ever Need</h2>
+        <h2 className="text-3xl md:text-5xl font-bold mb-6">90 Days or Less to the Last Tool You'll Ever Need</h2>
         <p className="text-xl mb-10 max-w-2xl mx-auto text-muted-foreground">
           Let's replace your stack and launch your AI-powered system.
         </p>

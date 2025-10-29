@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 const ValueProposition = () => {
   const benefits = [
     "Fully customized to your business",
-    "Delivered in 14 days (guaranteed)",
+    "Delivered in 90 days or less (guaranteed)",
     "Own it outright — no per-user pricing",
     "Ready for AI from day one (vector DB integrated)",
     "Built to evolve with bi-weekly sprints"
@@ -14,7 +14,7 @@ const ValueProposition = () => {
   return (
     <section id="value-proposition" className="py-16 md:py-24 bg-muted rounded-xl max-width">
       <div className="text-center mb-12 animate-fade-in">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">One Custom System. Live in 2 Weeks.</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">One Custom System. Live in 90 Days or Less.</h2>
       </div>
       
       <div className="max-w-3xl mx-auto">

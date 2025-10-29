@@ -13,7 +13,7 @@ const Footer = () => {
           />
           <div>
             <h3 className="font-bold text-foreground">APG Software</h3>
-            <p className="text-xs text-muted-foreground">Custom business software, built in 14 days.</p>
+            <p className="text-xs text-muted-foreground">Custom business software, built in 90 days or less.</p>
           </div>
         </div>
 

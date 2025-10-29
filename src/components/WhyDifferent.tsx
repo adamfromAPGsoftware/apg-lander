@@ -18,7 +18,7 @@ function WhyDifferent() {
         {
             icon: Zap,
             iconColor: "text-orange-600",
-            title: "Live in 2 Weeks — Yours Forever",
+            title: "Live in 90 Days or Less — Yours Forever",
             description: "Fast delivery, no monthly per-user fees, and you own the system outright. Built to evolve with your business."
         }
     ];
