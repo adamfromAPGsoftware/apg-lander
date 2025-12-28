@@ -4,22 +4,22 @@ import { Settings2, Sparkles, Zap } from 'lucide-react'
 function WhyDifferent() {
     const features = [
         {
+            icon: Zap,
+            iconColor: "text-orange-600",
+            title: "Get 15-25 Hours Back Every Week",
+            description: "Eliminate manual data entry, status updates, and file hunting. More time for revenue-generating work."
+        },
+        {
             icon: Sparkles,
             iconColor: "text-yellow-600",
-            title: "Built for AI from Day One",
-            description: "Vector database, structured data, and AI-ready architecture built in. No retrofitting required."
+            title: "AI That Understands Your Business",
+            description: "Ask questions, get instant answers, and let AI handle routine tasks. Native AI, not a bolt-on."
         },
         {
             icon: Settings2,
             iconColor: "text-slate-600",
-            title: "Replaces $3,000+/Month in SaaS Tools",
-            description: "One system replaces your CRM, project management, invoicing, communication, and reporting tools."
-        },
-        {
-            icon: Zap,
-            iconColor: "text-orange-600",
-            title: "Live in 90 Days or Less — Yours Forever",
-            description: "Fast delivery, no monthly per-user fees, and you own the system outright. Built to evolve with your business."
+            title: "One Platform Replaces Your Stack",
+            description: "CRM, projects, messaging, files, and payroll in one place. No more disconnected tools."
         }
     ];
 
@@ -28,7 +28,7 @@ function WhyDifferent() {
             <div className="text-center mb-12 animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Why This Tool Is Different</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Not just software — this is the last internal system your business will ever need.
+                    Stop losing hours to busywork. Start making decisions with AI-powered clarity.
                 </p>
             </div>
             
