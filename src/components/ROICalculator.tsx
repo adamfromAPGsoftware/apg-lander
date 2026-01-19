@@ -178,7 +178,7 @@ const ROICalculator = () => {
       <div className="text-center">
         <Button 
           className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-7 px-10 md:py-7 md:px-12 whitespace-normal break-words max-w-xs w-full mx-auto md:max-w-none md:w-auto"
-          onClick={() => window.open('https://go.apgsoftware.com', '_blank')}
+          onClick={() => window.open('https://crm.apgsoftware.com/demo/app/dashboard', '_blank')}
         >
           See What You Could Have Instead
         </Button>
