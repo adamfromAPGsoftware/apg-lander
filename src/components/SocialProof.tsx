@@ -130,7 +130,7 @@ const SocialProof = () => {
         {/* Platform Logos */}
         <div className="flex items-center sm:ml-4 gap-4">
           <a 
-            href="https://www.upwork.com/freelancers/adamfromapg" 
+            href="https://www.upwork.com/freelancers/adamgoodyer?mp_source=share" 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:opacity-80 transition-opacity"

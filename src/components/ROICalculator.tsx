@@ -81,10 +81,14 @@ const ROICalculator = () => {
 
   return (
     <div id="roi-calculator" className="bg-card p-6 md:p-8 rounded-xl border border-border animate-fade-in w-full">
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex items-center gap-2 mb-4">
         <Calculator className="text-brand-green" />
         <h3 className="text-xl font-bold">Interactive ROI Calculator</h3>
       </div>
+
+      <p className="text-muted-foreground mb-6 text-sm md:text-base">
+        For a 10-person team, our clients typically see <span className="font-semibold text-foreground">$558K-$934K</span> in combined annual ROI.
+      </p>
       
       <div className="mb-8">
         <h4 className="text-lg mb-3">Which tools are you currently paying for?</h4>
@@ -173,11 +177,19 @@ const ROICalculator = () => {
             </div>
           </div>
         </div>
+
+        {annualWaste > 0 && (
+          <div className="mt-4 pt-4 border-t border-border">
+            <p className="text-sm text-foreground">
+              At 1-3 month payback, a custom system could pay for itself and keep saving you <span className="font-bold">${annualWaste.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span> every year after.
+            </p>
+          </div>
+        )}
       </div>
       
-      <div className="text-center">
-        <Button 
-          className="bg-brand-green text-black hover:bg-opacity-90 text-lg py-7 px-10 md:py-7 md:px-12 whitespace-normal break-words max-w-xs w-full mx-auto md:max-w-none md:w-auto"
+      <div className="text-center pb-4">
+        <Button
+          className="bg-brand-green text-black hover:bg-opacity-90 text-base md:text-lg py-6 px-6 md:py-7 md:px-12 whitespace-normal text-center h-auto min-h-[48px]"
           onClick={() => window.open('https://crm.apgsoftware.com/demo/app/dashboard', '_blank')}
         >
           See What You Could Have Instead

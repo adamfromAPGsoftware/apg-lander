@@ -119,7 +119,7 @@ const Testimonials = () => {
           {/* View on Upwork Link */}
           <div className="mt-6">
             <a 
-              href="https://www.upwork.com/freelancers/adamfromapg" 
+              href="https://www.upwork.com/freelancers/adamgoodyer?mp_source=share" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-foreground hover:text-brand-green transition-colors font-medium"

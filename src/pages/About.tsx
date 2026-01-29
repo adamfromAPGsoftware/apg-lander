@@ -9,8 +9,8 @@ const About = () => {
       <Navbar />
       
       <About3
-        title="About APG Software"
-        description="We're a passionate team dedicated to creating custom AI-powered software solutions that help businesses replace expensive SaaS subscriptions and streamline their operations in 90 days or less."
+        title="We Help Service Businesses Escape the SaaS Trap"
+        description="Service businesses with 10-100 employees are bleeding $3K-10K/month on disconnected tools—and locked out of AI because their data is scattered everywhere. We build unified, AI-ready platforms in 90 days that you own forever."
         teamMembers={[
           {
             name: "Adam Goodyer",
@@ -23,9 +23,14 @@ const About = () => {
             image: "/team/Patrick.avif"
           },
           {
-            name: "Rohit Verma",
-            role: "CTO",
-            image: "/team/rohit.png"
+            name: "Erickson Guinto",
+            role: "Tech Lead",
+            image: "/team/erickson_guinto.jpeg"
+          },
+          {
+            name: "Roko Serdar",
+            role: "Head of Growth",
+            image: "/team/Roko_Serdar.jpeg"
           },
           {
             name: "Jephtah Okezie",
@@ -71,7 +76,7 @@ const About = () => {
           totalEarnings: "$80K+",
           totalJobs: "60+",
           totalHours: "1,250+",
-          profileUrl: "https://www.upwork.com/freelancers/adamfromapg",
+          profileUrl: "https://www.upwork.com/freelancers/adamgoodyer?mp_source=share",
         }}
         youtubeCard={{
           channelName: "@adamfreelances",
@@ -83,30 +88,24 @@ const About = () => {
         companiesTitle=""
         companies={[]}
         achievementsTitle="Our Track Record"
-        achievementsDescription="With over a decade of combined experience, we've helped startups and SMEs streamline operations using modern technology and AI-powered solutions."
+        achievementsDescription="We've helped 50+ service businesses escape the SaaS trap—saving an average of 91% on software costs while unlocking AI capabilities they couldn't access before."
         achievements={[
           { label: "Projects Delivered", value: "50+" },
           { label: "Years in Operation", value: "6+" },
           { label: "Client Satisfaction", value: "100%" }
         ]}
         foundingJourneyTitle="Our Founding Journey"
-        foundingJourneyDescription={`APG Software Solutions was founded by Adam Goodyer with a simple but powerful mission: to make transformative technology radically more accessible.
+        foundingJourneyDescription={`APG Software was founded with one mission: to help service businesses escape the SaaS trap.
 
-After nearly a decade as a top-rated freelancer and delivering over 100 successful projects, I saw the same challenges play out time and again—software projects stalling, budgets ballooning, and founders left with tools that didn't truly meet their needs.
+After delivering 100+ projects, I kept seeing the same pattern: businesses with 10-100 employees stuck paying $3K-10K/month for 10-20 tools that don't talk to each other. They're locked out of the AI transformation because their data is scattered across disconnected apps.
 
-I knew there had to be a better way.
+Enterprise companies can afford million-dollar custom solutions. Startups can bootstrap with free tools. But the mid-market? They're stuck renting software that forces them into 80% workflows and workarounds.
 
-So I built APG: an agency designed to blend lean development practices, low-code technology, and AI integration to deliver smarter, faster, and more human-centric software solutions.
+We fix that. In 90 days, we build you a single, AI-ready platform that replaces your entire stack—and you own it forever. No per-user fees. No vendor lock-in. Just a system built to evolve with your business.
 
-Fast forward to today, and our mission has only grown stronger. We're helping businesses break free from the high costs and limitations of SaaS subscriptions—and take back control with custom-built systems designed to evolve with them.
+Our clients typically save 91% on software costs and 25+ hours/week in admin overhead. One landscaping company went from Excel chaos to $1M+ revenue growth in 6 months.
 
-We do this through two distinct arms:
-
-Our agency, which builds powerful AI-ready platforms for clients.
-
-Our educational platform, which empowers builders to create these systems themselves.
-
-Together, we're not just building software—we're building a movement.`}
+That's the APG difference: we don't just build software—we unlock your ability to scale.`}
       />
 
       <Footer />
