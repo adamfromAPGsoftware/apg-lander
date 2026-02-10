@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { GlowEffect } from "@/components/ui/glow-effect";
+import { Sparkles } from 'lucide-react';
 
 const Navbar = () => {
   const location = useLocation();
@@ -43,6 +44,10 @@ const Navbar = () => {
               <a href="#live-app-preview" className="text-sm hover:text-brand-green transition-colors">Live Preview</a>
             </>
           )}
+          <Link to="/resources" className="text-sm hover:text-brand-green transition-colors inline-flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-brand-green" />
+            Free Resources
+          </Link>
         </div>
 
         {/* Desktop CTA Button */}
@@ -97,8 +102,8 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <Link 
-            to="/about" 
+          <Link
+            to="/about"
             className="block text-lg hover:text-brand-green transition-colors py-2"
             onClick={closeMobileMenu}
           >
@@ -106,22 +111,22 @@ const Navbar = () => {
           </Link>
           {isHomePage && (
             <>
-              <a 
-                href="#ai-system" 
+              <a
+                href="#ai-system"
                 className="block text-lg hover:text-brand-green transition-colors py-2"
                 onClick={closeMobileMenu}
               >
                 AI System
               </a>
-              <a 
-                href="#ai-agents" 
+              <a
+                href="#ai-agents"
                 className="block text-lg hover:text-brand-green transition-colors py-2"
                 onClick={closeMobileMenu}
               >
                 Agents
               </a>
-              <a 
-                href="#live-app-preview" 
+              <a
+                href="#live-app-preview"
                 className="block text-lg hover:text-brand-green transition-colors py-2"
                 onClick={closeMobileMenu}
               >
@@ -129,6 +134,14 @@ const Navbar = () => {
               </a>
             </>
           )}
+          <Link
+            to="/resources"
+            className="flex items-center gap-2 text-lg hover:text-brand-green transition-colors py-2"
+            onClick={closeMobileMenu}
+          >
+            <Sparkles className="w-4 h-4 text-brand-green" />
+            Free Resources
+          </Link>
           
           {/* Mobile CTA Button */}
           <div className="pt-6 pb-2">
