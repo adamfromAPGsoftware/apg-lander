@@ -30,6 +30,9 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      <div className="mt-6 text-center text-[10px] text-muted-foreground/50">
+        APG SOFTWARE SOLUTIONS PTY LTD · ABN 31 674 897 262
+      </div>
     </footer>
   );
 };
